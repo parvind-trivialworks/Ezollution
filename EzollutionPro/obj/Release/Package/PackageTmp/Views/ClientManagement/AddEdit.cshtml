@@ -1,0 +1,251 @@
+﻿@model EzollutionPro_BAL.Models.ClientManagementModel
+@{
+    ViewBag.Title = "Add Edit Client";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<SelectListItem> liServiceType = new List<SelectListItem>();
+
+    liServiceType.Add(new SelectListItem
+    {
+        Text = "PROJECTED BUSINESS",
+        Value = "PROJECTED BUSINESS",
+    }); liServiceType.Add(new SelectListItem
+    {
+        Text = "SERVICES INTERESTED",
+        Value = "SERVICES INTERESTED",
+    });
+    bool AllowEdit = (bool)ViewBag.AllowEdit;
+
+
+}
+<style type="text/css">
+    .input-group {
+        width: 100%;
+    }
+</style>
+
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+<link href="~/Content/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title"><i class="fa fa-files-o"></i>&nbsp;@ViewBag.Title
+        @if(Model.iClientManagementId > 0)
+        {
+            <span>: Client Code(@Model.sClientCode)</span>
+        }
+        </h3>
+        <div class="pull-right">
+
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div id="home" class="tab-pane fade in active">
+                <div class="">
+
+                    <div class="box-body" style="min-height:500px">
+                        @if (TempData["Message"]!=null && TempData["Message"].ToString() == "success")
+                        {
+                            <div class="alert alert-success">Client details updated successfully.</div>
+                        }
+                        @using (Html.BeginForm("AddEdit", "ClientManagement", FormMethod.Post, new { @id = "frmInvoice2" }))
+                        {
+                            @Html.HiddenFor(x => x.iClientManagementId)
+                            @Html.HiddenFor(x => x.blsActive)
+                          
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-3">
+                                            @Html.Label("Date")
+                                            @Html.TextBoxFor(x => x.dtDate, new { @class = "form-control",@readonly="true" })
+                                            @Html.ValidationMessageFor(x => x.dtDate)
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.Label("New Client Name")
+                                            @Html.TextBoxFor(x => x.sNewClientName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.sNewClientName)
+                                        </div>
+
+
+                                        <div class="col-md-3">
+                                            @Html.Label("Existing Client Name")
+                                            @Html.TextBoxFor(x => x.sExistingClientName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.sExistingClientName)
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @Html.Label("Contact Person Name")
+                                            @Html.TextBoxFor(x => x.sContactPersonName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.sContactPersonName)
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-3">
+                                        <div class="col-md-3">
+                                            @Html.Label("Contact Person Contact No")
+                                            @Html.TextBoxFor(x => x.sContactPersonContactNo, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.sContactPersonContactNo)
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.Label("Decision Maker Name")
+                                            @Html.TextBoxFor(x => x.sDecisionMakerName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.sDecisionMakerName)
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @Html.Label("Decision Maker Contact No")
+                                            @Html.TextBoxFor(x => x.sDecisionMakerContactNo, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.sDecisionMakerContactNo)
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @Html.Label("Reference")
+                                            @Html.TextBoxFor(x => x.sReference, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.sReference)
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-3">
+                                        <div class="col-md-3">
+                                            @Html.Label("Branch")
+                                            @Html.TextBoxFor(x => x.sBranch, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.sBranch)
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.Label("Address")
+                                            @Html.TextAreaFor(x => x.sAddress, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.sAddress)
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @Html.Label("Next Followup Date")
+                                            @Html.TextBoxFor(x => x.dtNextFollowUpDate, new { @class = "form-control", @readonly = "true" })
+                                            @Html.ValidationMessageFor(x => x.dtNextFollowUpDate)
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @Html.Label("Email Id")
+                                            @Html.TextBoxFor(x => x.sEmailId, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.sEmailId)
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-3">
+                                        <div class="col-md-3">
+                                            @Html.Label("Rate Offered")
+                                            @Html.TextBoxFor(x => x.dRateOffered, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.dRateOffered)
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.Label("Final Rate")
+                                            @Html.TextBoxFor(x => x.dFinalRate, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.dFinalRate)
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @Html.Label("Revenue Expected")
+                                            @Html.TextBoxFor(x => x.dRevenueExpected, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.dRevenueExpected)
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @Html.Label("Actual Revenue")
+                                            @Html.TextBoxFor(x => x.dActualRevenue, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.dActualRevenue)
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-3">
+                                        <div class="col-md-3">
+                                            @Html.Label("Business Start Date")
+                                            @Html.TextBoxFor(x => x.dtBusinessStartDate, new { @class = "form-control", @readonly = "true" })
+                                            @Html.ValidationMessageFor(x => x.dtBusinessStartDate)
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.Label("Service Type")
+                                            @Html.DropDownListFor(model => model.sServiceType, liServiceType, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.sServiceType)
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.Label("Upload Agreement")
+                                            <input type="file" id="sAgreementImageName" name="sAgreementImageName" />
+                                            @Html.ValidationMessageFor(x => x.sAgreementImageName)
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        <div class="col-md-3">
+                                            <label>&nbsp;</label>
+                                            <div class="input-group">
+                                                @if (AllowEdit)
+                                                {
+                                                <input type="submit" value="Save Client" name="get" class="btn btn-success" id="btnGet" />
+                                                }
+                                                &nbsp;  <a href="/ClientManagement/Index" class="btn btn-danger">Back</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    </div>
+
+                                </div>
+                            <br />
+
+                        }
+                        @if (Model.iClientManagementId > 0)
+                        {
+                            <div class="box box-success">
+
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">
+                                        <i class="fa fa-files-o"></i>&nbsp;Client Followups
+                                        &nbsp; <button class='btn btn-warning btn-xs' onclick='AddEditFollowUp(@Model.iClientManagementId,0)'>
+                                        <i class='fa fa-plus'></i>Add New Followup</button>
+                                    </h3>
+                                </div>
+                                <div class="box-body">
+                                    <table id="FollowupTable" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>FollowUp Type</th>
+                                                <th>Difference</th>
+                                                <th>Remark</th>
+                                                <th>Management Remark</th>
+                                                <th>Rate Offered</th>
+                                                <th>Final Rate</th>
+                                                <th>Revenue Expected</th>
+                                                <th>Actual Revenue</th>
+                                                <th>Next FollowUp Date</th>
+                                                <th>Created On</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Scripts/PageScripts/ClientManagement.js"></script>
+    <script>
+        $(document).ready(function () {
+            GetFollowups('@Model.iClientManagementId');
+        });
+    </script>
+}

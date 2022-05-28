@@ -1,0 +1,115 @@
+﻿@model EzollutionPro_BAL.Models.AirEGMFlightModel
+
+@{
+    ViewBag.Title = "Add Update Flight Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.iFlightId)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="form-group col-md-6 col-md-6">
+            <label>Client Name</label>
+            <select id="iClientId" name="iClientId" class="form-control selectpicker" data-live-search="true">
+                <option>Select</option>
+                @foreach (var item in (List<EzollutionPro_BAL.Models.Masters.DropDownData>)ViewBag.Clients)
+                {
+                    <option data-carn="@item.Value" value=@item.Id @(item.Id == Model.iClientId ? "selected" : "")>@item.Text</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.iClientId, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6 col-md-6">
+            <label>Custom Location</label>
+            <select id="iLocationId" name="iLocationId" class="form-control selectpicker" data-live-search="true">
+                <option>Select</option>
+                @foreach (var item in (List<EzollutionPro_BAL.Models.Masters.DropDownData>)ViewBag.CustomLocations)
+                {
+                    <option data-custom="@item.Value" value=@item.Id @(item.Id == Model.iLocationId ? "selected" : "")>@item.Text</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.iLocationId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label>Flight Number</label>
+            @Html.EditorFor(model => model.sFlightNo, new { htmlAttributes = new { @class = "form-control", @maxlength=15 } })
+            @Html.ValidationMessageFor(model => model.sFlightNo, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            <label>Flight Date</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <label for="sFlightDate" class="fa fa-calendar"></label>
+                </div>
+                @Html.EditorFor(model => model.sFlightDate, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.sFlightDate, "", new { @class = "text-danger" })
+        </div>
+        </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label>EGM No</label>
+            @Html.EditorFor(model => model.sEGMNo, new { htmlAttributes = new { @class = "form-control", @maxlength = 7 } })
+            @Html.ValidationMessageFor(model => model.sEGMNo, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-3">
+            <label>Port of Origin</label>
+            @Html.EditorFor(model => model.sPortOfOrigin, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.sPortOfOrigin, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-3">
+            <label>Port of Destination</label>
+            @Html.EditorFor(model => model.sPortOfDestination, new { htmlAttributes = new { @class = "form-control", @maxlength = 3 } })
+            @Html.ValidationMessageFor(model => model.sPortOfDestination, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label>Flight Registration No</label>
+            @Html.EditorFor(model => model.sFlightRegistrationNo, new { htmlAttributes = new { @class = "form-control", @maxlength = 10 } })
+            @Html.ValidationMessageFor(model => model.sFlightRegistrationNo, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            <br />
+            <div class="pull-right">
+                <button type="submit" value="Create" class="btn btn-success">
+                    <i class="fa fa-save"></i>
+                    Save
+                </button>
+                <button type="button" class="btn btn-danger" onclick="location.href='/AirEGMFlight/Index'">
+                    <i class="fa fa-times"></i>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script>
+        $(function () {
+            $.validator.unobtrusive.parse("form");
+            $('#sFlightDate').datepicker({
+                endDate: new Date(),
+                format: "dd/mm/yyyy",
+                autoclose: true
+            });
+        });
+        $(document).on('change', '#iLocationId', function () {
+            $('#sPortOfOrigin').val($('#iLocationId option:selected').data('custom'));
+        });
+        $(document).on('keyup', 'input[type="text"],textarea', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    </script>
+}
+

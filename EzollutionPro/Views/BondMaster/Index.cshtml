@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Countries</h3>
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" onclick="AddUpdateBondMaster(0)"><i class="fa fa-plus"></i> Add New Bond</button>
+            </div>
+        </div>
+        <div class="pull-right">
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-3 form-group">
+                <label>Shipping Line</label>
+                @Html.DropDownList("iShippingId", new SelectList(ViewBag.ShippingLines, "Value", "Text"), "All", new { @class = "form-control",@data_live_search="true" })
+            </div>
+            <div class="col-md-3 form-group">
+                <label>Port of Destination</label>
+                @Html.DropDownList("iPOD", new SelectList(ViewBag.PODs, "Value", "Text"), "All", new { @class = "form-control", @data_live_search = "true" })
+            </div>
+            <div class="col-md-3 form-group">
+                <label>Final Destination</label>
+                @Html.DropDownList("iFPOD", new SelectList(ViewBag.FPODs, "Value", "Text"), "All", new { @class = "form-control", @data_live_search = "true" })
+            </div>
+            <div class="col-md-3 form-group">
+                <label>Cargo Movement</label>
+                @Html.DropDownList("sCargoMovement", new SelectList(new List<SelectListItem> { new SelectListItem { Value = "TI", Text = "Trans Shipment" }, new SelectListItem { Value = "LC", Text = "Local Cargo" } }, "Value", "Text"), "All", new { @class = "form-control", @data_live_search = "true" })
+            </div>
+            <div class="col-md-3 form-group">
+                <label>Mode of Transport</label>
+                @Html.DropDownList("sModeOfTransport", new SelectList(new List<SelectListItem> { new SelectListItem { Text = "TRAIN", Value = "T" }, new SelectListItem { Text = "ROAD", Value = "R" } }, "Value", "Text"), "All", new { @class = "form-control", @data_live_search = "true" })
+            </div>
+            <div class="col-md-9">
+                <br />
+                <button id="btnSearch" type="button" class="btn btn-sm btn-success">
+                    <i class="fa fa-search">
+                    </i>
+                </button>
+            </div>
+        </div>
+        <div class="table table-responsive">
+            <table class="table table-bordered" id="tblBondMaster">
+                <thead>
+                    <tr>
+                        <th>
+                            Bond Number
+                        </th>
+                        <th>
+                            Carrier Code
+                        </th>
+                        <th>
+                            Mode of Transport
+                        </th>
+                        <th>
+                            MLO Code
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/PageScripts/Masters/BondMaster.js"></script>
+}
+

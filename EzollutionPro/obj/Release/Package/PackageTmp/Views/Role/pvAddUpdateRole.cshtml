@@ -1,0 +1,30 @@
+﻿@model EzollutionPro_BAL.Models.RoleModel
+<div class="modal-header">
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update Role</h4>
+</div>
+@using (Html.BeginForm("AddUpdateRole", "Role", FormMethod.Post, new { @id = "frmSaveRole" }))
+{
+<div class="modal-body">
+    @Html.HiddenFor(x => x.iRoleId)
+    <div class="form-group">
+        @Html.Label("Role")
+        @Html.TextBoxFor(x => x.sRoleName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.sRoleName)
+    </div>
+    <div class="form-group">
+        @Html.Label("Description")
+        @Html.TextAreaFor(x => x.sDescription, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.sDescription)
+    </div>
+        <div class="form-group">
+        @Html.Label("Is Client")
+        @Html.CheckBoxFor(x => x.bIsClient)
+        @Html.ValidationMessageFor(x => x.bIsClient)
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+</div>
+}

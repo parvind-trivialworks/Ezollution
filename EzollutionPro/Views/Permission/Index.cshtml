@@ -1,0 +1,70 @@
+﻿@model List<EzollutionPro_BAL.Models.PermissionModel>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Manage Permission</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div id="home" class="tab-pane fade in active">
+                <div class="box-body">
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="Name" class="col-sm-2 control-label">
+                                                    Role
+                                                </label>
+                                                <div class="col-sm-7">
+                                                    @Html.DropDownList("iRoleId", new SelectList(ViewBag.Roles, "Value", "Text"), "[ SELECT ]", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Assign Information</legend>
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12 pad-L-0">
+                                            <br>
+                                            <div class="row mgn-B-20">
+                                                <div>
+                                                    <table id="PermissionListGrid" class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Select
+                                                                </th>
+                                                                <th>
+                                                                    Activity Code
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in Model)
+                                                            {
+                                                                <tr>
+                                                                    <td><input type="checkbox" class="permission" data-id="@item.iPermissionId" /></td>
+                                                                    <td>@item.sPermissionName</td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/PageScripts/Permission.js"></script>
+}

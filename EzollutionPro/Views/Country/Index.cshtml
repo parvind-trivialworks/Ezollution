@@ -1,0 +1,48 @@
+﻿<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Countries</h3>
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" onclick="AddCountry(0)"><i class="fa fa-plus"></i> Add New Country</button>
+            </div>
+        </div>
+        <div class="pull-right">
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="table table-responsive">
+            <table class="table table-bordered" id="tblCountry">
+                <thead>
+                    <tr>
+                        <th>
+                            Country Code
+                        </th>
+                        <th>
+                            Country Name
+                        </th>
+                        <th>
+                            Country Telephone Code
+                        </th>
+                        <th>
+                            Currency Code
+                        </th>
+                        <th>
+                            Country Description
+                        </th>
+                        <th>
+                            Currency Description
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/PageScripts/Masters/Country.js"></script>
+}
+

@@ -1,0 +1,83 @@
+﻿
+@model EzollutionPro_BAL.Models.Masters.EmailSearchModel
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Client's Email List</h3>
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" onclick="AddEditEmail(0,0)"><i class="fa fa-plus"></i> Add New Email</button>
+            </div>
+        </div>
+        <div class="pull-right">
+        </div>
+    </div>
+    <div class="box-body">
+        @using (Html.BeginForm("Index", "ClientMail", FormMethod.Post, new { @id = "" }))
+        {
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="col-md-2">
+                        <label>Client Type</label>
+                        <div class="">
+                            @{
+                                List<SelectListItem> listClientType = new List<SelectListItem>();
+                                listClientType.Add(new SelectListItem
+                                {
+                                    Text = "SEA",
+                                    Value = "0",
+                                    Selected = true
+                                });
+
+                                listClientType.Add(new SelectListItem
+                                {
+                                    Text = "AIR",
+                                    Value = "1",
+                                    Selected = true
+                                });
+
+                            }
+                            @Html.DropDownListFor(model => model.iClientType, listClientType, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.iClientType)
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Label("Client")
+                        @Html.DropDownListFor(x => x.iClientId, new SelectList(ViewBag.Clients, "Value", "Text"), "[ ALL CLIENTS ]", new { @data_live_search = "true", @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.iClientId)
+                    </div>
+                    <div class="col-md-2">
+                        <label>&nbsp;</label>
+                        <div class="input-group">
+                            <input type="button" class="btn btn-info" id="btnSearchEmail" value="Search Emails" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <br />
+            
+        }
+        <div class="table table-responsive">
+            <table class="table table-bordered" id="EmailTable">
+                <thead>
+                    <tr>
+                        <th>SNo.</th>
+                        <th>Client Type</th>
+                        <th>Client Name</th>
+                        <th>Person Name</th>
+                        <th>Email Address</th>
+                        <th>Is Default</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="/Scripts/PageScripts/Masters/ClientEmail.js"></script>
+}

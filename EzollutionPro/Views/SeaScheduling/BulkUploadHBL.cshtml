@@ -1,0 +1,40 @@
+﻿@model EzollutionPro_BAL.Models.BulkUploadHBLModel
+@{
+    ViewBag.Title = "Upload HBL";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            Bulk Upload HBL
+        </h3>
+    </div>
+    <div class="box-body capitalize">
+        @if (TempData.Peek("SuccessMsg") != null)
+        {
+        <div class="alert alert-success">
+            <strong>Success!</strong> @TempData["SuccessMsg"]
+        </div>
+        }
+        @using (Html.BeginForm("BulkUploadHBL", "SeaScheduling", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true)
+            <div class="row">
+                <div class="col-md-3">
+                    <label>HBL File</label>
+                    @Html.TextBoxFor(m=>m.HBLFile,new {@class="form-control",@type="file" })
+                    @Html.ValidationMessageFor(m=>m.HBLFile)
+                </div>
+                <div class="col-md-3">
+                    <br/>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-upload"></i>
+                        Upload
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,113 @@
+﻿@model EzollutionPro_BAL.Models.Masters.ClientEmailModel
+<div class="modal-header">
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update Email</h4>
+</div>
+@using (Html.BeginForm("SaveEmail", "ClientMail", FormMethod.Post, new { @id = "frmSaveEmail" }))
+{
+<div class="modal-body" id="divFormEmail">
+    @Html.HiddenFor(x => x.iMailId)
+    <div class="row mt-3">
+        <div class="col-md-2">
+            @Html.Label("Cleint Type")
+        </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                @{
+                    List<SelectListItem> listClientType = new List<SelectListItem>();
+                    listClientType.Add(new SelectListItem
+                    {
+                        Text = "SEA",
+                        Value = "0",
+                        Selected = true
+                    });
+
+                    listClientType.Add(new SelectListItem
+                    {
+                        Text = "AIR",
+                        Value = "1",
+                    });
+
+                }
+                @Html.DropDownListFor(model => model.iClientType, listClientType, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.iClientType)
+            </div>
+        </div>
+        <div class="col-md-2">
+            @Html.Label("Client Name")
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownListFor(x => x.iClientId, new SelectList(ViewBag.Clients, "Value", "Text"), "[ SELECT ]", new { @data_live_search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iClientId)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-2">
+            @Html.Label("Person Name")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.sEmailPersonName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sEmailPersonName)
+        </div>
+        <div class="col-md-2">
+            @Html.Label("Email ID")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.sEmailId, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sEmailId)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-2">
+            @Html.Label("Is Active")
+        </div>
+        <div class="col-md-4">
+            @Html.CheckBoxFor(x => x.blsActive, new { @class = "" })
+            @Html.ValidationMessageFor(x => x.blsActive)
+        </div>
+        <div class="col-md-2">
+            @Html.Label("Set Default")
+        </div>
+        <div class="col-md-4">
+            @Html.CheckBoxFor(x => x.bIsDefault, new { @class = "" })
+            @Html.ValidationMessageFor(x => x.bIsDefault)
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#divFormEmail #iClientType").change(function () {  
+            var ClientType = $("#divFormEmail #iClientType").val();
+            if (ClientType == "") {
+                $("#divFormEmail #iClientId").html("");
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                url: "/ClientMail/GetClients",
+                contentType: "application/json; charset=utf-8",
+                data: '{"ClientType":"' + $("#divFormEmail #iClientType").val().trim() + '"}',
+                dataType: "json",
+                async: false,
+                success: function (res) {
+                    var iClientId = $("#divFormEmail #iClientId");
+                    iClientId.html("");
+                    iClientId.append($('<option>').text("[ SELECT ]").attr('value', ""));
+                    for (let li of res) {
+                        iClientId.append($('<option>').text(li.Text).attr('value', li.Value));
+                    }
+                    iClientId.selectpicker('refresh');
+                }
+            })
+        });
+       
+    });
+ 
+
+</script>

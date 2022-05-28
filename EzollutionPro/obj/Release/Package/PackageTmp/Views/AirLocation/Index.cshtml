@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Locations</h3>
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" onclick="AddAirLocation(0)"><i class="fa fa-plus"></i> Add New Location</button>
+            </div>
+        </div>
+        <div class="pull-right">
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="table table-responsive">
+            <table class="table table-bordered" id="tblAirLocation">
+                <thead>
+                    <tr>
+                        <th>Custom Location</th>
+                        <th>Custom Code</th>
+                        <th>Three Letter Code</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/PageScripts/Masters/AirLocation.js"></script>
+}
+
+

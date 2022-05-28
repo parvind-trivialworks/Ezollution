@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Add/Update Container";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model EzollutionPro_BAL.Models.ContainerData
+<div class="container capitalize">
+    <section class="content">
+        @using (Html.BeginForm("AddUpdateContainer", "SeaScheduling", FormMethod.Post))
+        {
+            <div id="idclassPrimary" class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add/Update Container Details (MBL No: @Model.sMBLNumber)  </h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Container Number</label>
+                                    @Html.TextBoxFor(m => m.sContainerNumber, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sContainerNumber)
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Container Seal No</label>
+                                    @Html.TextBoxFor(m => m.sContainerSealNumber, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sContainerSealNumber)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Total Packages</label>
+                                    @Html.TextBoxFor(m => m.nTotalPackages, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nTotalPackages)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Container Weight</label>
+                                    @Html.TextBoxFor(m => m.nContainerWeight, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nContainerWeight)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Container Status</label>
+                                    @Html.DropDownListFor(m => m.sContainerStatus, new List<SelectListItem>
+                                                                             {
+                                                                                new SelectListItem{ Text="----Select Container Status----", Value = "", Selected = true },
+                                                                                new SelectListItem{ Text="FCL", Value = "FCL"},
+                                                                                new SelectListItem{ Text="LCL", Value = "LCL"},
+                                                                                new SelectListItem{ Text="EMP", Value = "EMP"},
+                                                                             }, new { @class = "form-control", @data_live_search = "true" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>ISO Code</label>
+                                        @Html.DropDownListFor(m => m.sISOCode, new List<SelectListItem>
+                                                                                     {
+                                                                                        new SelectListItem{ Text="----Select ISO Code----", Value = "", Selected = true },
+                                                                                        new SelectListItem{ Text="20 ft - 2200", Value = "2200"},
+                                                                                        new SelectListItem{ Text="40 ft - 4200", Value = "4200"},
+                                                                                     }, new { @class = "form-control",@data_live_search="true" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input id="saveContainer" type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.HiddenFor(m => m.iSchedulingId)
+            @Html.HiddenFor(m => m.iHBLId)
+            @Html.HiddenFor(m => m.iContainerId)
+        }
+        <!-- /.box -->
+    </section>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/PageScripts/SeaScheduling/AddUpdateContainer.js"></script>
+}

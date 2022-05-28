@@ -1,0 +1,170 @@
+﻿@model EzollutionPro_BAL.Models.MBLData
+@{
+    ViewBag.Title = "Add/Update MBL";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var cargos = new List<SelectListItem> {
+                new SelectListItem{ Text="Trans shipment", Value = "TI"},
+new SelectListItem{ Text="Local Cargo", Value = "LC" },
+};
+}
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+@using (Html.BeginForm("AddUpdateMBL", "SeaScheduling", FormMethod.Post,new { @id = "frmSaveMBL" }))
+{
+    <div class="container capitalize">
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+                <div class="box-header with-border border-primary">
+                    <h3 class="box-title">Add/Update MBL Details (MBL No: @Model.sMBLNumber)</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Master Bill of Lading No.</label>
+                                    @Html.TextBoxFor(m => m.sMBLNumber, new { @class = "form-control", @readonly = "true" })
+                                    @Html.ValidationMessageFor(m => m.sMBLNumber)
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Master Bill of Lading date</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.sMBLDate, new { @class = "form-control" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.sMBLDate)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Port of Shipment</label>
+                                    @Html.DropDownListFor(model => model.iPOSId, ViewBag.POS as IEnumerable<SelectListItem>, "----Select Port Of Shipment----", new { @data_live_search="true",@class = "form-control " })
+                                    @Html.ValidationMessageFor(model => model.sPOSCode)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Port of Destination</label>
+                                    @Html.TextBoxFor(m => m.sPODCode, new { @class = "form-control", @readonly = "true" })
+                                    @Html.ValidationMessageFor(model => model.sPODCode)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Cargo Movement</label>
+                                    @Html.DropDownListFor(m => m.sCargoMovement, cargos as IEnumerable<SelectListItem>, "----Select Cargo Movement----", new { @data_live_search = "true", @class = "form-control " })
+                                    @Html.ValidationMessageFor(model => model.sCargoMovement)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Destination Code (CFS Code)</label>
+                                    @Html.TextBoxFor(m => m.sCFSCode, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sCFSCode)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Final Destination</label>
+                                    @Html.TextBoxFor(m => m.sPOFDCode, new { @class = "form-control", @readonly = "true" })
+                                    @Html.ValidationMessageFor(m => m.sPOFDCode)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>IGM Number</label>
+                                    @Html.TextBoxFor(m => m.sIGMNo, new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>IGM Date</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.sIGMDate, new { @class = "form-control" })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.sIGMDate)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>IMO Code of Vessel</label>
+                                    @Html.TextBoxFor(m => m.sIMOCode, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.sIMOCode)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Vessel Code</label>
+                                    @Html.TextBoxFor(m => m.sVesselCode, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sVesselCode)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Voyage Number</label>
+                                    @Html.TextBoxFor(m => m.sVoyageNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sVoyageNo)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Line Number</label>
+                                    @Html.TextBoxFor(m => m.sLineNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.sLineNo)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+            </div>
+            @Html.HiddenFor(m => m.iSchedulingId)
+            @Html.HiddenFor(m => m.iMBLId)
+        </section>
+    </div>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/PageScripts/SeaScheduling/AddUpdateMBL.js"></script>
+}

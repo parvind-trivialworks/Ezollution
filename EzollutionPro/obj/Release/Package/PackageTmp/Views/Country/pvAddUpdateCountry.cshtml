@@ -1,0 +1,73 @@
+﻿@model EzollutionPro_BAL.Models.Masters.CountryModel
+<div class="modal-header">
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update Country</h4>
+</div>
+@using (Html.BeginForm("AddUpdateCountry", "Country", FormMethod.Post, new { @id = "frmSaveCountry" }))
+{
+    <div class="modal-body">
+        @Html.HiddenFor(x => x.iCountryId)
+        <div class="row mt-2">
+            <div class="col-md-2">
+                @Html.Label("Country Code")
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(x => x.sCountryCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sCountryCode)
+            </div>
+            <div class="col-md-2">
+                @Html.Label("Country Name")
+            </div>
+            <div class="col-md-4">
+
+                @Html.TextBoxFor(x => x.sCountryName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sCountryName)
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-2">
+                @Html.Label("Country Telephone Code")
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(x => x.sCountryPhoneCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sCountryPhoneCode)
+            </div>
+            <div class="col-md-2">
+                @Html.Label("Currency Code")
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(x => x.sCurrencyCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sCurrencyCode)
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-2">
+                @Html.Label("Country Image")
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(x => x.CountryImage, new { @type="file",@class = "form-control" })
+                @Html.ValidationMessageFor(x => x.CountryImage)
+            </div>
+            <div class="col-md-2">
+                @Html.Label("Description")
+            </div>
+            <div class="col-md-4">
+                @Html.TextAreaFor(x => x.sCountryDescription, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sCountryDescription)
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-2">
+                @Html.Label("Currency Description")
+            </div>
+            <div class="col-md-4">
+                @Html.TextAreaFor(x => x.sCurrencyDescription, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sCurrencyDescription)
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+    </div>
+}

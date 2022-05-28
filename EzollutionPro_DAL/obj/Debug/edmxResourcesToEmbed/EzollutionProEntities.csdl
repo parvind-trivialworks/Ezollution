@@ -1,0 +1,1423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EzollutionProEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_AddBillingItem">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+      <Parameter Name="ClienType" Mode="In" Type="Int32" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+      <Parameter Name="InvoiceId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetInvoice">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+      <Parameter Name="ClienType" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetInvoiceItemCount" ReturnType="Collection(Int32)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+      <Parameter Name="ClienType" Mode="In" Type="Int32" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_AddInvoiceItem">
+      <Parameter Name="iInvoiceID" Mode="In" Type="Int32" />
+      <Parameter Name="iInvoiceItemID" Mode="In" Type="Int32" />
+      <Parameter Name="sHSN_SAC" Mode="In" Type="String" />
+      <Parameter Name="sHSN_Desc" Mode="In" Type="String" />
+      <Parameter Name="sItemDescription" Mode="In" Type="String" />
+      <Parameter Name="iQuantity" Mode="In" Type="Int32" />
+      <Parameter Name="sUnit" Mode="In" Type="String" />
+      <Parameter Name="dAmountPerUnit" Mode="In" Type="Decimal" />
+      <Parameter Name="dCgstInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="dSgstInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="dIgstInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="dCsesInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="iAddedBy" Mode="In" Type="Int32" />
+      <Parameter Name="dtAddedOn" Mode="In" Type="DateTime" />
+      <Parameter Name="iModifiedBy" Mode="In" Type="Int32" />
+      <Parameter Name="dtModifiedOn" Mode="In" Type="DateTime" />
+      <Parameter Name="blsActive" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_UpdateInvoiceTotal">
+      <Parameter Name="iInvoiceId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspBulkUploadHBL">
+      <Parameter Name="sMBLNumber" Mode="In" Type="String" />
+      <Parameter Name="iUserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_UpdateIsDefaultEmail">
+      <Parameter Name="iMailId" Mode="In" Type="Int32" />
+      <Parameter Name="iClientType" Mode="In" Type="Int32" />
+      <Parameter Name="iClientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_UpdateInvoiceBalance">
+      <Parameter Name="iInvoiceId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_rpt_ALLDateWiseReport" ReturnType="Collection(Model.sp_rpt_ALLDateWiseReport_Result)">
+      <Parameter Name="FromDate" Mode="In" Type="String" />
+      <Parameter Name="ToDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_rpt_DateWiseReport" ReturnType="Collection(Model.sp_rpt_DateWiseReport_Result)">
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+      <Parameter Name="ClienType" Mode="In" Type="Int32" />
+      <Parameter Name="FromDate" Mode="In" Type="String" />
+      <Parameter Name="ToDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_rpt_IGMAIR_Report" ReturnType="Collection(Model.sp_rpt_IGMAIR_Report_Result)">
+      <Parameter Name="clientId" Mode="In" Type="String" />
+      <Parameter Name="fromDate" Mode="In" Type="String" />
+      <Parameter Name="toDate" Mode="In" Type="String" />
+      <Parameter Name="filterBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_rpt_MBLReport" ReturnType="Collection(Model.sp_rpt_MBLReport_Result)">
+      <Parameter Name="clientId" Mode="In" Type="String" />
+      <Parameter Name="fromDate" Mode="In" Type="String" />
+      <Parameter Name="toDate" Mode="In" Type="String" />
+      <Parameter Name="filterBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="uspGetMsgResult" ReturnType="Collection(Model.uspGetMsgResult_Result)">
+      <Parameter Name="iSchedulingId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_AddInvoiceItem_Old">
+      <Parameter Name="iInvoiceId" Mode="In" Type="Int32" />
+      <Parameter Name="sHSN_SAC" Mode="In" Type="String" />
+      <Parameter Name="sHSN_Desc" Mode="In" Type="String" />
+      <Parameter Name="iQuantity" Mode="In" Type="Int32" />
+      <Parameter Name="sUnit" Mode="In" Type="String" />
+      <Parameter Name="dAmountPerUnit" Mode="In" Type="Decimal" />
+      <Parameter Name="dCgstInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="dSgstInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="dIgstInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="dCsesInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="iAddedBy" Mode="In" Type="Int32" />
+      <Parameter Name="dtAddedOn" Mode="In" Type="DateTime" />
+      <Parameter Name="iModifiedBy" Mode="In" Type="Int32" />
+      <Parameter Name="dtModifiedOn" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_AddInvoiceItem2">
+      <Parameter Name="iClientId" Mode="In" Type="Int32" />
+      <Parameter Name="iYear" Mode="In" Type="Int32" />
+      <Parameter Name="iMonth" Mode="In" Type="Int32" />
+      <Parameter Name="sHSN_SAC" Mode="In" Type="String" />
+      <Parameter Name="sHSN_Desc" Mode="In" Type="String" />
+      <Parameter Name="iQuantity" Mode="In" Type="Int32" />
+      <Parameter Name="sUnit" Mode="In" Type="String" />
+      <Parameter Name="dAmountPerUnit" Mode="In" Type="Decimal" />
+      <Parameter Name="dCgstInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="dSgstInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="dIgstInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="dCsesInPercent" Mode="In" Type="Decimal" />
+      <Parameter Name="iAddedBy" Mode="In" Type="Int32" />
+      <Parameter Name="dtAddedOn" Mode="In" Type="DateTime" />
+      <Parameter Name="iModifiedBy" Mode="In" Type="Int32" />
+      <Parameter Name="dtModifiedOn" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_UpdateInvoiceBalance1">
+      <Parameter Name="iInvoiceId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="tblAirClientMasters" EntityType="Model.tblAirClientMaster" />
+    <EntitySet Name="tblAirEGMFlightDetailsMs" EntityType="Model.tblAirEGMFlightDetailsM" />
+    <EntitySet Name="tblAirEGMMAWBMs" EntityType="Model.tblAirEGMMAWBM" />
+    <EntitySet Name="tblAirHAWBMs" EntityType="Model.tblAirHAWBM" />
+    <EntitySet Name="tblAirIGMFlightDetailsMs" EntityType="Model.tblAirIGMFlightDetailsM" />
+    <EntitySet Name="tblAirIGMMAWBMs" EntityType="Model.tblAirIGMMAWBM" />
+    <EntitySet Name="tblAirLocationMs" EntityType="Model.tblAirLocationM" />
+    <EntitySet Name="tblBillingItems" EntityType="Model.tblBillingItem" />
+    <EntitySet Name="tblBondMasterMs" EntityType="Model.tblBondMasterM" />
+    <EntitySet Name="tblCityMs" EntityType="Model.tblCityM" />
+    <EntitySet Name="tblClientManagements" EntityType="Model.tblClientManagement" />
+    <EntitySet Name="tblClientManagementFollowups" EntityType="Model.tblClientManagementFollowup" />
+    <EntitySet Name="tblClientMasters" EntityType="Model.tblClientMaster" />
+    <EntitySet Name="tblClientMultipleEmails" EntityType="Model.tblClientMultipleEmail" />
+    <EntitySet Name="tblCompanies" EntityType="Model.tblCompany" />
+    <EntitySet Name="tblCountryMs" EntityType="Model.tblCountryM" />
+    <EntitySet Name="tblInvoices" EntityType="Model.tblInvoice" />
+    <EntitySet Name="tblInvoiceItems" EntityType="Model.tblInvoiceItem" />
+    <EntitySet Name="tblInvoicePayments" EntityType="Model.tblInvoicePayment" />
+    <EntitySet Name="tblPermissionsMs" EntityType="Model.tblPermissionsM" />
+    <EntitySet Name="tblPODMasters" EntityType="Model.tblPODMaster" />
+    <EntitySet Name="tblPOFDMasters" EntityType="Model.tblPOFDMaster" />
+    <EntitySet Name="tblPOSMasters" EntityType="Model.tblPOSMaster" />
+    <EntitySet Name="tblRoleMs" EntityType="Model.tblRoleM" />
+    <EntitySet Name="tblRolePermissionMaps" EntityType="Model.tblRolePermissionMap" />
+    <EntitySet Name="tblSeaBondMasters" EntityType="Model.tblSeaBondMaster" />
+    <EntitySet Name="tblSeaContainerMasters" EntityType="Model.tblSeaContainerMaster" />
+    <EntitySet Name="tblSeaHBLMasters" EntityType="Model.tblSeaHBLMaster" />
+    <EntitySet Name="tblSeaMBLMasters" EntityType="Model.tblSeaMBLMaster" />
+    <EntitySet Name="tblSeaSchedulings" EntityType="Model.tblSeaScheduling" />
+    <EntitySet Name="tblShippingLines" EntityType="Model.tblShippingLine" />
+    <EntitySet Name="tblStateMs" EntityType="Model.tblStateM" />
+    <EntitySet Name="tblUserMs" EntityType="Model.tblUserM" />
+    <AssociationSet Name="FK_tblAirEGMFlightDetailsM_tblAirClientMaster" Association="Model.FK_tblAirEGMFlightDetailsM_tblAirClientMaster">
+      <End Role="tblAirClientMaster" EntitySet="tblAirClientMasters" />
+      <End Role="tblAirEGMFlightDetailsM" EntitySet="tblAirEGMFlightDetailsMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAirIGMFlightDetailsM_tblAirClientMaster" Association="Model.FK_tblAirIGMFlightDetailsM_tblAirClientMaster">
+      <End Role="tblAirClientMaster" EntitySet="tblAirClientMasters" />
+      <End Role="tblAirIGMFlightDetailsM" EntitySet="tblAirIGMFlightDetailsMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAirEGMFlightDetailsM_tblAirLocationM" Association="Model.FK_tblAirEGMFlightDetailsM_tblAirLocationM">
+      <End Role="tblAirLocationM" EntitySet="tblAirLocationMs" />
+      <End Role="tblAirEGMFlightDetailsM" EntitySet="tblAirEGMFlightDetailsMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAirEGMMAWBM_tblAirEGMFlightDetailsM" Association="Model.FK_tblAirEGMMAWBM_tblAirEGMFlightDetailsM">
+      <End Role="tblAirEGMFlightDetailsM" EntitySet="tblAirEGMFlightDetailsMs" />
+      <End Role="tblAirEGMMAWBM" EntitySet="tblAirEGMMAWBMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAirIGMFlightDetailsM_tblAirLocationM" Association="Model.FK_tblAirIGMFlightDetailsM_tblAirLocationM">
+      <End Role="tblAirLocationM" EntitySet="tblAirLocationMs" />
+      <End Role="tblAirIGMFlightDetailsM" EntitySet="tblAirIGMFlightDetailsMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAirIGMMAWBM_tblAirIGMFlightDetailsM" Association="Model.FK_tblAirIGMMAWBM_tblAirIGMFlightDetailsM">
+      <End Role="tblAirIGMFlightDetailsM" EntitySet="tblAirIGMFlightDetailsMs" />
+      <End Role="tblAirIGMMAWBM" EntitySet="tblAirIGMMAWBMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblBillingItem_tblBillingItem" Association="Model.FK_tblBillingItem_tblBillingItem">
+      <End Role="tblInvoice" EntitySet="tblInvoices" />
+      <End Role="tblBillingItem" EntitySet="tblBillingItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblBondMasterM_tblPODMaster" Association="Model.FK_tblBondMasterM_tblPODMaster">
+      <End Role="tblPODMaster" EntitySet="tblPODMasters" />
+      <End Role="tblBondMasterM" EntitySet="tblBondMasterMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblBondMasterM_tblPOFDMaster" Association="Model.FK_tblBondMasterM_tblPOFDMaster">
+      <End Role="tblPOFDMaster" EntitySet="tblPOFDMasters" />
+      <End Role="tblBondMasterM" EntitySet="tblBondMasterMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblBondMasterM_tblShippingLine" Association="Model.FK_tblBondMasterM_tblShippingLine">
+      <End Role="tblShippingLine" EntitySet="tblShippingLines" />
+      <End Role="tblBondMasterM" EntitySet="tblBondMasterMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCityM_tblStateM" Association="Model.FK_tblCityM_tblStateM">
+      <End Role="tblStateM" EntitySet="tblStateMs" />
+      <End Role="tblCityM" EntitySet="tblCityMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserM_tblCityM" Association="Model.FK_tblUserM_tblCityM">
+      <End Role="tblCityM" EntitySet="tblCityMs" />
+      <End Role="tblUserM" EntitySet="tblUserMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSeaScheduling_tblClientMaster" Association="Model.FK_tblSeaScheduling_tblClientMaster">
+      <End Role="tblClientMaster" EntitySet="tblClientMasters" />
+      <End Role="tblSeaScheduling" EntitySet="tblSeaSchedulings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStateM_tblCountryM" Association="Model.FK_tblStateM_tblCountryM">
+      <End Role="tblCountryM" EntitySet="tblCountryMs" />
+      <End Role="tblStateM" EntitySet="tblStateMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblInvoic__iInvo__3C89F72A" Association="Model.FK__tblInvoic__iInvo__3C89F72A">
+      <End Role="tblInvoice" EntitySet="tblInvoices" />
+      <End Role="tblInvoiceItem" EntitySet="tblInvoiceItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRolePermissionMap_tblPermissionM" Association="Model.FK_tblRolePermissionMap_tblPermissionM">
+      <End Role="tblPermissionsM" EntitySet="tblPermissionsMs" />
+      <End Role="tblRolePermissionMap" EntitySet="tblRolePermissionMaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSeaScheduling_tblPODMaster" Association="Model.FK_tblSeaScheduling_tblPODMaster">
+      <End Role="tblPODMaster" EntitySet="tblPODMasters" />
+      <End Role="tblSeaScheduling" EntitySet="tblSeaSchedulings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSeaScheduling_tblPOFDMaster" Association="Model.FK_tblSeaScheduling_tblPOFDMaster">
+      <End Role="tblPOFDMaster" EntitySet="tblPOFDMasters" />
+      <End Role="tblSeaScheduling" EntitySet="tblSeaSchedulings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSeaMBLMaster_tblPOSMaster" Association="Model.FK_tblSeaMBLMaster_tblPOSMaster">
+      <End Role="tblPOSMaster" EntitySet="tblPOSMasters" />
+      <End Role="tblSeaMBLMaster" EntitySet="tblSeaMBLMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRolePermissionMap_tblRoleM" Association="Model.FK_tblRolePermissionMap_tblRoleM">
+      <End Role="tblRoleM" EntitySet="tblRoleMs" />
+      <End Role="tblRolePermissionMap" EntitySet="tblRolePermissionMaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserM_tblRoleM" Association="Model.FK_tblUserM_tblRoleM">
+      <End Role="tblRoleM" EntitySet="tblRoleMs" />
+      <End Role="tblUserM" EntitySet="tblUserMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSeaBondMaster_tblSeaScheduling" Association="Model.FK_tblSeaBondMaster_tblSeaScheduling">
+      <End Role="tblSeaScheduling" EntitySet="tblSeaSchedulings" />
+      <End Role="tblSeaBondMaster" EntitySet="tblSeaBondMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSeaContainerMaster_tblSeaHBLMaster" Association="Model.FK_tblSeaContainerMaster_tblSeaHBLMaster">
+      <End Role="tblSeaHBLMaster" EntitySet="tblSeaHBLMasters" />
+      <End Role="tblSeaContainerMaster" EntitySet="tblSeaContainerMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSeaContainerMaster_tblSeaScheduling" Association="Model.FK_tblSeaContainerMaster_tblSeaScheduling">
+      <End Role="tblSeaScheduling" EntitySet="tblSeaSchedulings" />
+      <End Role="tblSeaContainerMaster" EntitySet="tblSeaContainerMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSeaHBLMaster_tblSeaMBLMaster" Association="Model.FK_tblSeaHBLMaster_tblSeaMBLMaster">
+      <End Role="tblSeaMBLMaster" EntitySet="tblSeaMBLMasters" />
+      <End Role="tblSeaHBLMaster" EntitySet="tblSeaHBLMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSeaHBLMaster_tblSeaScheduling" Association="Model.FK_tblSeaHBLMaster_tblSeaScheduling">
+      <End Role="tblSeaScheduling" EntitySet="tblSeaSchedulings" />
+      <End Role="tblSeaHBLMaster" EntitySet="tblSeaHBLMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSeaMBLMaster_tblSeaScheduling" Association="Model.FK_tblSeaMBLMaster_tblSeaScheduling">
+      <End Role="tblSeaScheduling" EntitySet="tblSeaSchedulings" />
+      <End Role="tblSeaMBLMaster" EntitySet="tblSeaMBLMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSeaScheduling_tblShippingLine" Association="Model.FK_tblSeaScheduling_tblShippingLine">
+      <End Role="tblShippingLine" EntitySet="tblShippingLines" />
+      <End Role="tblSeaScheduling" EntitySet="tblSeaSchedulings" />
+    </AssociationSet>
+    <EntitySet Name="vw_AirSea_MAW_MBL" EntityType="Model.vw_AirSea_MAW_MBL" />
+    <EntitySet Name="vw_ClientMaster" EntityType="Model.vw_ClientMaster" />
+    <EntitySet Name="tblAirMAWBMs" EntityType="Model.tblAirMAWBM" />
+    <AssociationSet Name="FK_tblAirMAWBM_tblAirClientMaster" Association="Model.FK_tblAirMAWBM_tblAirClientMaster">
+      <End Role="tblAirClientMaster" EntitySet="tblAirClientMasters" />
+      <End Role="tblAirMAWBM" EntitySet="tblAirMAWBMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAirHAWBM_tblAirMAWBM" Association="Model.FK_tblAirHAWBM_tblAirMAWBM">
+      <End Role="tblAirMAWBM" EntitySet="tblAirMAWBMs" />
+      <End Role="tblAirHAWBM" EntitySet="tblAirHAWBMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAirMAWBM_tblAirLocationM" Association="Model.FK_tblAirMAWBM_tblAirLocationM">
+      <End Role="tblAirLocationM" EntitySet="tblAirLocationMs" />
+      <End Role="tblAirMAWBM" EntitySet="tblAirMAWBMs" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_rpt_ALLDateWiseReport_Result">
+    <Property Type="String" Name="clientName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="iInvoiceID" Nullable="false" />
+    <Property Type="String" Name="sInvoiceNo" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="iYear" Nullable="true" />
+    <Property Type="String" Name="iMonth" Nullable="true" MaxLength="9" />
+    <Property Type="DateTime" Name="InvoiceCreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="InvoiceAmount" Nullable="true" Precision="38" Scale="3" />
+    <Property Type="Decimal" Name="TotalTax" Nullable="true" Precision="38" Scale="3" />
+  </ComplexType>
+  <ComplexType Name="sp_rpt_DateWiseReport_Result">
+    <Property Type="String" Name="clientName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="iInvoiceID" Nullable="false" />
+    <Property Type="String" Name="sInvoiceNo" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="iYear" Nullable="true" />
+    <Property Type="String" Name="iMonth" Nullable="true" MaxLength="9" />
+    <Property Type="DateTime" Name="InvoiceCreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="InvoiceAmount" Nullable="true" Precision="38" Scale="3" />
+    <Property Type="Decimal" Name="TotalTax" Nullable="true" Precision="38" Scale="3" />
+  </ComplexType>
+  <ComplexType Name="sp_rpt_IGMAIR_Report_Result">
+    <Property Type="Int32" Name="iAirClientId" Nullable="false" />
+    <Property Type="String" Name="sClientName" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="sCustomLocation" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="sCustomCode" Nullable="true" MaxLength="6" />
+    <Property Type="DateTime" Name="dtActionDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="sMAWBNo" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="sHAWBNo" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_rpt_MBLReport_Result">
+    <Property Type="Int32" Name="iclientid" Nullable="false" />
+    <Property Type="String" Name="sclientname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="mblnumber" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="sHouseBillofLadingNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="sImporterName" Nullable="true" MaxLength="35" />
+  </ComplexType>
+  <ComplexType Name="uspGetMsgResult_Result">
+    <Property Type="Int32" Name="SchedulingId" Nullable="false" />
+    <Property Type="String" Name="CARN" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ICEGateSeaID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PortOfDestination" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="tblAirClientMaster">
+    <Key>
+      <PropertyRef Name="iAirClientId" />
+    </Key>
+    <Property Name="iAirClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sClientName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="sPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="sAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sGSTNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="sCARNNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="sCompanyName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="sICEGateId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <Property Name="sPinCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="sEmailId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sStateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sStateCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="sClientCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dPricePerUnit" Type="Decimal" Precision="12" Scale="2" />
+    <NavigationProperty Name="tblAirEGMFlightDetailsMs" Relationship="Model.FK_tblAirEGMFlightDetailsM_tblAirClientMaster" FromRole="tblAirClientMaster" ToRole="tblAirEGMFlightDetailsM" />
+    <NavigationProperty Name="tblAirIGMFlightDetailsMs" Relationship="Model.FK_tblAirIGMFlightDetailsM_tblAirClientMaster" FromRole="tblAirClientMaster" ToRole="tblAirIGMFlightDetailsM" />
+    <NavigationProperty Name="tblAirMAWBMs" Relationship="Model.FK_tblAirMAWBM_tblAirClientMaster" FromRole="tblAirClientMaster" ToRole="tblAirMAWBM" />
+  </EntityType>
+  <EntityType Name="tblAirEGMFlightDetailsM">
+    <Key>
+      <PropertyRef Name="iFlightId" />
+    </Key>
+    <Property Name="iFlightId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iClientId" Type="Int32" />
+    <Property Name="iLocationId" Type="Int32" />
+    <Property Name="sFlightNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="dtFlightDate" Type="DateTime" Precision="3" />
+    <Property Name="sEGMNo" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="sPortOfOrigin" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="sPortOfDestination" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="sFlightRegistrationNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="bIsReadyForTransmit" Type="Boolean" />
+    <NavigationProperty Name="tblAirClientMaster" Relationship="Model.FK_tblAirEGMFlightDetailsM_tblAirClientMaster" FromRole="tblAirEGMFlightDetailsM" ToRole="tblAirClientMaster" />
+    <NavigationProperty Name="tblAirLocationM" Relationship="Model.FK_tblAirEGMFlightDetailsM_tblAirLocationM" FromRole="tblAirEGMFlightDetailsM" ToRole="tblAirLocationM" />
+    <NavigationProperty Name="tblAirEGMMAWBMs" Relationship="Model.FK_tblAirEGMMAWBM_tblAirEGMFlightDetailsM" FromRole="tblAirEGMFlightDetailsM" ToRole="tblAirEGMMAWBM" />
+  </EntityType>
+  <EntityType Name="tblAirEGMMAWBM">
+    <Key>
+      <PropertyRef Name="iAirEGMMAWBId" />
+    </Key>
+    <Property Name="iAirEGMMAWBId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iAirEGMFlightDetailsId" Type="Int32" />
+    <Property Name="sMAWBNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="sPortOfOrigin" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="sPortOfDestination" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="dNoOfPackages" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="dTotalWeight" Type="Decimal" Precision="9" Scale="3" />
+    <Property Name="sGoodsDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cShipmentType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="0" />
+    <Property Name="iActionBy" Type="Int32" />
+    <NavigationProperty Name="tblAirEGMFlightDetailsM" Relationship="Model.FK_tblAirEGMMAWBM_tblAirEGMFlightDetailsM" FromRole="tblAirEGMMAWBM" ToRole="tblAirEGMFlightDetailsM" />
+  </EntityType>
+  <EntityType Name="tblAirHAWBM">
+    <Key>
+      <PropertyRef Name="iHAWBId" />
+    </Key>
+    <Property Name="iHAWBId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iMAWBId" Type="Int64" />
+    <Property Name="sHAWBNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="nPackages" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="nWeight" Type="Decimal" Precision="9" Scale="3" />
+    <Property Name="sDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="sDestination" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="sOrigin" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblAirMAWBM" Relationship="Model.FK_tblAirHAWBM_tblAirMAWBM" FromRole="tblAirHAWBM" ToRole="tblAirMAWBM" />
+  </EntityType>
+  <EntityType Name="tblAirIGMFlightDetailsM">
+    <Key>
+      <PropertyRef Name="iFlightId" />
+    </Key>
+    <Property Name="iFlightId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iClientId" Type="Int32" />
+    <Property Name="iLocationId" Type="Int32" />
+    <Property Name="sFlightNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="dtDepartureDate" Type="DateTime" Precision="0" />
+    <Property Name="dtArrivalDate" Type="DateTime" Precision="0" />
+    <Property Name="tTime" Type="Time" Precision="7" />
+    <Property Name="sPortOfOrigin" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="sPortOfDestination" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="sFlightRegistrationNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="bIsReadyForTransmit" Type="Boolean" />
+    <NavigationProperty Name="tblAirClientMaster" Relationship="Model.FK_tblAirIGMFlightDetailsM_tblAirClientMaster" FromRole="tblAirIGMFlightDetailsM" ToRole="tblAirClientMaster" />
+    <NavigationProperty Name="tblAirLocationM" Relationship="Model.FK_tblAirIGMFlightDetailsM_tblAirLocationM" FromRole="tblAirIGMFlightDetailsM" ToRole="tblAirLocationM" />
+    <NavigationProperty Name="tblAirIGMMAWBMs" Relationship="Model.FK_tblAirIGMMAWBM_tblAirIGMFlightDetailsM" FromRole="tblAirIGMFlightDetailsM" ToRole="tblAirIGMMAWBM" />
+  </EntityType>
+  <EntityType Name="tblAirIGMMAWBM">
+    <Key>
+      <PropertyRef Name="iAirIGMMAWBId" />
+    </Key>
+    <Property Name="iAirIGMMAWBId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iAirIGMFlightDetailsId" Type="Int32" />
+    <Property Name="sSpecialHandlingCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="sPalletNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="sMAWBNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="sPortOfOrigin" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="sPortOfDestination" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="dNoOfPackages" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="dTotalWeight" Type="Decimal" Precision="9" Scale="3" />
+    <Property Name="sGoodsDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cShipmentType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="0" />
+    <Property Name="iActionBy" Type="Int32" />
+    <NavigationProperty Name="tblAirIGMFlightDetailsM" Relationship="Model.FK_tblAirIGMMAWBM_tblAirIGMFlightDetailsM" FromRole="tblAirIGMMAWBM" ToRole="tblAirIGMFlightDetailsM" />
+  </EntityType>
+  <EntityType Name="tblAirLocationM">
+    <Key>
+      <PropertyRef Name="iLocationId" />
+    </Key>
+    <Property Name="iLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sCustomLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="sCustomCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="sThreeLetterCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblAirEGMFlightDetailsMs" Relationship="Model.FK_tblAirEGMFlightDetailsM_tblAirLocationM" FromRole="tblAirLocationM" ToRole="tblAirEGMFlightDetailsM" />
+    <NavigationProperty Name="tblAirIGMFlightDetailsMs" Relationship="Model.FK_tblAirIGMFlightDetailsM_tblAirLocationM" FromRole="tblAirLocationM" ToRole="tblAirIGMFlightDetailsM" />
+    <NavigationProperty Name="tblAirMAWBMs" Relationship="Model.FK_tblAirMAWBM_tblAirLocationM" FromRole="tblAirLocationM" ToRole="tblAirMAWBM" />
+  </EntityType>
+  <EntityType Name="tblBillingItem">
+    <Key>
+      <PropertyRef Name="iBillingId" />
+    </Key>
+    <Property Name="iBillingId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceId" Type="Int32" />
+    <Property Name="iClientId" Type="Int32" />
+    <Property Name="iMasterID" Type="Int32" />
+    <Property Name="iHouseNo" Type="Int32" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <Property Name="iClientType" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblInvoice" Relationship="Model.FK_tblBillingItem_tblBillingItem" FromRole="tblBillingItem" ToRole="tblInvoice" />
+  </EntityType>
+  <EntityType Name="tblBondMasterM">
+    <Key>
+      <PropertyRef Name="iBondId" />
+    </Key>
+    <Property Name="iBondId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sCargoMovement" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="iShippingId" Type="Int32" />
+    <Property Name="iPODId" Type="Int32" />
+    <Property Name="iFPODId" Type="Int32" />
+    <Property Name="nBondNo" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="sCarrierCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="sMLOCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="sModeOfTransport" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="sCFSName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sCFSCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblPODMaster" Relationship="Model.FK_tblBondMasterM_tblPODMaster" FromRole="tblBondMasterM" ToRole="tblPODMaster" />
+    <NavigationProperty Name="tblPOFDMaster" Relationship="Model.FK_tblBondMasterM_tblPOFDMaster" FromRole="tblBondMasterM" ToRole="tblPOFDMaster" />
+    <NavigationProperty Name="tblShippingLine" Relationship="Model.FK_tblBondMasterM_tblShippingLine" FromRole="tblBondMasterM" ToRole="tblShippingLine" />
+  </EntityType>
+  <EntityType Name="tblCityM">
+    <Key>
+      <PropertyRef Name="iCityId" />
+    </Key>
+    <Property Name="iCityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iStateId" Type="Int32" Nullable="false" />
+    <Property Name="sCityName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblStateM" Relationship="Model.FK_tblCityM_tblStateM" FromRole="tblCityM" ToRole="tblStateM" />
+    <NavigationProperty Name="tblUserMs" Relationship="Model.FK_tblUserM_tblCityM" FromRole="tblCityM" ToRole="tblUserM" />
+  </EntityType>
+  <EntityType Name="tblClientManagement">
+    <Key>
+      <PropertyRef Name="iClientManagementId" />
+    </Key>
+    <Property Name="iClientManagementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sClientCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="dtDate" Type="DateTime" Precision="3" />
+    <Property Name="sNewClientName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sExistingClientName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sContactPersonName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sContactPersonContactNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sDecisionMakerName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sDecisionMakerContactNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sReference" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sBranch" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="dtNextFollowUpDate" Type="DateTime" Precision="3" />
+    <Property Name="sEmailId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sServiceType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="dRateOffered" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dFinalRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dRevenueExpected" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dActualRevenue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dtBusinessStartDate" Type="DateTime" Precision="3" />
+    <Property Name="sAgreementImageName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="blsActive" Type="Boolean" />
+    <Property Name="iAddedBy" Type="Int32" />
+    <Property Name="dtAddedOn" Type="DateTime" Precision="3" />
+    <Property Name="sAddedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="sModifiedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblClientManagementFollowup">
+    <Key>
+      <PropertyRef Name="iClientManagementFollowupId" />
+    </Key>
+    <Property Name="iClientManagementFollowupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iClientManagementId" Type="Int32" />
+    <Property Name="sFollowUpType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="sDifference" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="sRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="sManagementRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dRateOffered" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dFinalRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dRevenueExpected" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dActualRevenue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dtNextFollowUpDate" Type="DateTime" Precision="3" />
+    <Property Name="blsActive" Type="Boolean" />
+    <Property Name="iAddedBy" Type="Int32" />
+    <Property Name="dtAddedOn" Type="DateTime" Precision="3" />
+    <Property Name="sAddedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="sModifiedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblClientMaster">
+    <Key>
+      <PropertyRef Name="iClientID" />
+    </Key>
+    <Property Name="iClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sClientCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sCARN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sOfficeAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="sCompanyName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="sLandLineNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="sMobileNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="sFaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sEmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sICEGateSeaID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sICEGateSeaPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sICEGateAirID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sICEGateAirPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="bIsActive" Type="Boolean" />
+    <Property Name="dtCreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="iCreatedBy" Type="Int32" />
+    <Property Name="dtModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="sPinCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="sGSTNNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="sStateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sStateCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="dPricePerUnit" Type="Decimal" Precision="12" Scale="2" />
+    <NavigationProperty Name="tblSeaSchedulings" Relationship="Model.FK_tblSeaScheduling_tblClientMaster" FromRole="tblClientMaster" ToRole="tblSeaScheduling" />
+  </EntityType>
+  <EntityType Name="tblClientMultipleEmail">
+    <Key>
+      <PropertyRef Name="iMailId" />
+    </Key>
+    <Property Name="iMailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iClientType" Type="Int32" />
+    <Property Name="iClientId" Type="Int32" />
+    <Property Name="sEmailId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sEmailPersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bIsDefault" Type="Boolean" />
+    <Property Name="blsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblCompany">
+    <Key>
+      <PropertyRef Name="iCompanyId" />
+    </Key>
+    <Property Name="iCompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="sAddress" Type="String" MaxLength="700" FixedLength="false" Unicode="true" />
+    <Property Name="sPincode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="sCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sStateCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="sPanNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="sGSTNNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sContactNo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sEamilID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="blsIsDefault" Type="Boolean" />
+    <Property Name="dtCreateDate" Type="DateTime" Precision="3" />
+    <Property Name="blsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblCountryM">
+    <Key>
+      <PropertyRef Name="iCountryId" />
+    </Key>
+    <Property Name="iCountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sCountryName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sCountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sCountryPhoneCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="sCurrencyCode" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="sCountryDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sCurrencyDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sCountryImageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblStateMs" Relationship="Model.FK_tblStateM_tblCountryM" FromRole="tblCountryM" ToRole="tblStateM" />
+  </EntityType>
+  <EntityType Name="tblInvoice">
+    <Key>
+      <PropertyRef Name="iInvoiceID" />
+    </Key>
+    <Property Name="iInvoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sInvoiceNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="iClientId" Type="Int32" />
+    <Property Name="iYear" Type="Int32" />
+    <Property Name="iMonth" Type="Int32" />
+    <Property Name="FromInvoiceDate" Type="DateTime" Precision="3" />
+    <Property Name="ToInvoiceDate" Type="DateTime" Precision="3" />
+    <Property Name="InvoiceCreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="iClientType" Type="Int16" />
+    <Property Name="sPOS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="iTotalQuantity" Type="Int32" />
+    <Property Name="dTotalAmount" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dTotalCgst" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dTotalSgst" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dTotalIgst" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dTotalCses" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dPaidAmount" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dBalance" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="blsActive" Type="Boolean" />
+    <Property Name="iAddedBy" Type="Int32" />
+    <Property Name="dtAddedOn" Type="DateTime" Precision="3" />
+    <Property Name="sAddedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="sModifiedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="blsPaymentStatus" Type="Boolean" />
+    <Property Name="sPaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtPaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="dtReceivedDate" Type="DateTime" Precision="3" />
+    <Property Name="iCompanyId" Type="Int32" />
+    <Property Name="dTotalTds" Type="Decimal" Precision="12" Scale="3" />
+    <NavigationProperty Name="tblBillingItems" Relationship="Model.FK_tblBillingItem_tblBillingItem" FromRole="tblInvoice" ToRole="tblBillingItem" />
+    <NavigationProperty Name="tblInvoiceItems" Relationship="Model.FK__tblInvoic__iInvo__3C89F72A" FromRole="tblInvoice" ToRole="tblInvoiceItem" />
+  </EntityType>
+  <EntityType Name="tblInvoiceItem">
+    <Key>
+      <PropertyRef Name="iInvoiceItemID" />
+    </Key>
+    <Property Name="iInvoiceItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iInvoiceID" Type="Int32" Nullable="false" />
+    <Property Name="sHSN_SAC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="sHSN_Desc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="sItemDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="iQuantity" Type="Int32" />
+    <Property Name="sUnit" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dAmountPerUnit" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dTotalAmount" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dCgstInPercent" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dSgstInPercent" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dIgstInPercent" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dCsesInPercent" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dCgstInAmount" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dSgstInAmount" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dIgstInAmount" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dCsesInAmount" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="blsActive" Type="Boolean" />
+    <Property Name="iAddedBy" Type="Int32" />
+    <Property Name="dtAddedOn" Type="DateTime" Precision="3" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblInvoice" Relationship="Model.FK__tblInvoic__iInvo__3C89F72A" FromRole="tblInvoiceItem" ToRole="tblInvoice" />
+  </EntityType>
+  <EntityType Name="tblInvoicePayment">
+    <Key>
+      <PropertyRef Name="iInvoicePaymentID" />
+    </Key>
+    <Property Name="iInvoicePaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iInvoiceId" Type="Int32" Nullable="false" />
+    <Property Name="dtCreateDate" Type="DateTime" Precision="3" />
+    <Property Name="dAmount" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dTds" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="dBalance" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="blsPaymentStatus" Type="Boolean" />
+    <Property Name="sPaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sCheckNeftNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCheckDate" Type="DateTime" Precision="3" />
+    <Property Name="dtReceivedDate" Type="DateTime" Precision="3" />
+    <Property Name="blsActive" Type="Boolean" />
+    <Property Name="iAddedBy" Type="Int32" />
+    <Property Name="dtAddedOn" Type="DateTime" Precision="3" />
+    <Property Name="sAddedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="sModifiedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblPermissionsM">
+    <Key>
+      <PropertyRef Name="iPermissionId" />
+    </Key>
+    <Property Name="iPermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iParentId" Type="Int32" />
+    <Property Name="sPermissionName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="iSort" Type="Int16" />
+    <Property Name="bShownInMenu" Type="Boolean" />
+    <Property Name="bIsMaster" Type="Boolean" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblRolePermissionMaps" Relationship="Model.FK_tblRolePermissionMap_tblPermissionM" FromRole="tblPermissionsM" ToRole="tblRolePermissionMap" />
+  </EntityType>
+  <EntityType Name="tblPODMaster">
+    <Key>
+      <PropertyRef Name="iPortID" />
+    </Key>
+    <Property Name="iPortID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sPortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sPortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="bStatus" Type="Boolean" />
+    <Property Name="iCreatedBy" Type="Int32" />
+    <Property Name="dtCreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblBondMasterMs" Relationship="Model.FK_tblBondMasterM_tblPODMaster" FromRole="tblPODMaster" ToRole="tblBondMasterM" />
+    <NavigationProperty Name="tblSeaSchedulings" Relationship="Model.FK_tblSeaScheduling_tblPODMaster" FromRole="tblPODMaster" ToRole="tblSeaScheduling" />
+  </EntityType>
+  <EntityType Name="tblPOFDMaster">
+    <Key>
+      <PropertyRef Name="iPortID" />
+    </Key>
+    <Property Name="iPortID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sPortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sPortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="bStatus" Type="Boolean" />
+    <Property Name="iCreatedBy" Type="Int32" />
+    <Property Name="dtCreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblBondMasterMs" Relationship="Model.FK_tblBondMasterM_tblPOFDMaster" FromRole="tblPOFDMaster" ToRole="tblBondMasterM" />
+    <NavigationProperty Name="tblSeaSchedulings" Relationship="Model.FK_tblSeaScheduling_tblPOFDMaster" FromRole="tblPOFDMaster" ToRole="tblSeaScheduling" />
+  </EntityType>
+  <EntityType Name="tblPOSMaster">
+    <Key>
+      <PropertyRef Name="iPortID" />
+    </Key>
+    <Property Name="iPortID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sPortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sPortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="bStatus" Type="Boolean" />
+    <Property Name="iCreatedBy" Type="Int32" />
+    <Property Name="dtCreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblSeaMBLMasters" Relationship="Model.FK_tblSeaMBLMaster_tblPOSMaster" FromRole="tblPOSMaster" ToRole="tblSeaMBLMaster" />
+  </EntityType>
+  <EntityType Name="tblRoleM">
+    <Key>
+      <PropertyRef Name="iRoleId" />
+    </Key>
+    <Property Name="iRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sRoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <Property Name="bIsClient" Type="Boolean" />
+    <NavigationProperty Name="tblRolePermissionMaps" Relationship="Model.FK_tblRolePermissionMap_tblRoleM" FromRole="tblRoleM" ToRole="tblRolePermissionMap" />
+    <NavigationProperty Name="tblUserMs" Relationship="Model.FK_tblUserM_tblRoleM" FromRole="tblRoleM" ToRole="tblUserM" />
+  </EntityType>
+  <EntityType Name="tblRolePermissionMap">
+    <Key>
+      <PropertyRef Name="iPermissionRoleMapId" />
+    </Key>
+    <Property Name="iPermissionRoleMapId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iRoleId" Type="Int32" />
+    <Property Name="iPermissionId" Type="Int32" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblPermissionsM" Relationship="Model.FK_tblRolePermissionMap_tblPermissionM" FromRole="tblRolePermissionMap" ToRole="tblPermissionsM" />
+    <NavigationProperty Name="tblRoleM" Relationship="Model.FK_tblRolePermissionMap_tblRoleM" FromRole="tblRolePermissionMap" ToRole="tblRoleM" />
+  </EntityType>
+  <EntityType Name="tblSeaBondMaster">
+    <Key>
+      <PropertyRef Name="iBondID" />
+    </Key>
+    <Property Name="iBondID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iSchedulingId" Type="Int32" Nullable="false" />
+    <Property Name="dBondNumber" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="sCarrierCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="sMovementType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="iAddedBy" Type="Int32" />
+    <Property Name="dtAddedOn" Type="DateTime" Precision="3" />
+    <Property Name="sAddedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="sModifiedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblSeaScheduling" Relationship="Model.FK_tblSeaBondMaster_tblSeaScheduling" FromRole="tblSeaBondMaster" ToRole="tblSeaScheduling" />
+  </EntityType>
+  <EntityType Name="tblSeaContainerMaster">
+    <Key>
+      <PropertyRef Name="iContainerId" />
+    </Key>
+    <Property Name="iContainerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iSchedulingId" Type="Int32" />
+    <Property Name="iHBLID" Type="Int32" />
+    <Property Name="sContainerNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="sContainerSealNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="nTotalPackages" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="nContainerWeight" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="sContainerStatus" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="sISOCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="iAddedBy" Type="Int32" />
+    <Property Name="dtAddedOn" Type="DateTime" Precision="3" />
+    <Property Name="sAddedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="iModifiedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="bStatus" Type="Boolean" />
+    <NavigationProperty Name="tblSeaHBLMaster" Relationship="Model.FK_tblSeaContainerMaster_tblSeaHBLMaster" FromRole="tblSeaContainerMaster" ToRole="tblSeaHBLMaster" />
+    <NavigationProperty Name="tblSeaScheduling" Relationship="Model.FK_tblSeaContainerMaster_tblSeaScheduling" FromRole="tblSeaContainerMaster" ToRole="tblSeaScheduling" />
+  </EntityType>
+  <EntityType Name="tblSeaHBLMaster">
+    <Key>
+      <PropertyRef Name="iHBLID" />
+    </Key>
+    <Property Name="iHBLID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iMBLId" Type="Int32" Nullable="false" />
+    <Property Name="iSchedulingId" Type="Int32" />
+    <Property Name="sHouseBillofLadingNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="dtHouseBillofLadingDate" Type="DateTime" Precision="3" />
+    <Property Name="sImporterName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="sImporterAddress1" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="sImporterAddress2" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="sImporterAddress3" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="dTotalNumberofPackages" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="sPackageCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="dGrossWeight" Type="Decimal" Precision="12" Scale="3" />
+    <Property Name="sUnitofWeight" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="sMarksandNumbers" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="sGoodsDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="iAddedBy" Type="Int32" />
+    <Property Name="dtAddedOn" Type="DateTime" Precision="3" />
+    <Property Name="sAddedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="sModifiedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iSubLineNo" Type="Byte" />
+    <NavigationProperty Name="tblSeaContainerMasters" Relationship="Model.FK_tblSeaContainerMaster_tblSeaHBLMaster" FromRole="tblSeaHBLMaster" ToRole="tblSeaContainerMaster" />
+    <NavigationProperty Name="tblSeaMBLMaster" Relationship="Model.FK_tblSeaHBLMaster_tblSeaMBLMaster" FromRole="tblSeaHBLMaster" ToRole="tblSeaMBLMaster" />
+    <NavigationProperty Name="tblSeaScheduling" Relationship="Model.FK_tblSeaHBLMaster_tblSeaScheduling" FromRole="tblSeaHBLMaster" ToRole="tblSeaScheduling" />
+  </EntityType>
+  <EntityType Name="tblSeaMBLMaster">
+    <Key>
+      <PropertyRef Name="iMBLId" />
+    </Key>
+    <Property Name="iMBLId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iSchedulingId" Type="Int32" />
+    <Property Name="dtMBLDate" Type="DateTime" Precision="0" />
+    <Property Name="iPOSId" Type="Int32" />
+    <Property Name="sCargoMovement" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="sCFSCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="nIGMNo" Type="Decimal" Precision="7" Scale="0" />
+    <Property Name="dtIGMDate" Type="DateTime" Precision="0" />
+    <Property Name="sIMOCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="sVesselCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="sVoyageNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="nLineNo" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="iAddedBy" Type="Int32" />
+    <Property Name="dtAddedOn" Type="DateTime" Precision="3" />
+    <Property Name="sAddedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="sModifiedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblPOSMaster" Relationship="Model.FK_tblSeaMBLMaster_tblPOSMaster" FromRole="tblSeaMBLMaster" ToRole="tblPOSMaster" />
+    <NavigationProperty Name="tblSeaHBLMasters" Relationship="Model.FK_tblSeaHBLMaster_tblSeaMBLMaster" FromRole="tblSeaMBLMaster" ToRole="tblSeaHBLMaster" />
+    <NavigationProperty Name="tblSeaScheduling" Relationship="Model.FK_tblSeaMBLMaster_tblSeaScheduling" FromRole="tblSeaMBLMaster" ToRole="tblSeaScheduling" />
+  </EntityType>
+  <EntityType Name="tblSeaScheduling">
+    <Key>
+      <PropertyRef Name="iSchedulingId" />
+    </Key>
+    <Property Name="iSchedulingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iClientId" Type="Int32" />
+    <Property Name="iShippingID" Type="Int32" />
+    <Property Name="sMBLNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="sContainerNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="iPortOfDestinationID" Type="Int32" />
+    <Property Name="iPortOfFinalDestinationID" Type="Int32" />
+    <Property Name="sVesselName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dtEstimatedDateOfArrival" Type="DateTime" Precision="3" />
+    <Property Name="bCheckListSent" Type="Boolean" />
+    <Property Name="bCheckListApproved" Type="Boolean" />
+    <Property Name="iSAction" Type="Int16" />
+    <Property Name="dtReceivedOn" Type="DateTime" Precision="3" />
+    <Property Name="sRemarks" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="sInvoiceRemarks" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="iCreatedBy" Type="Int32" />
+    <Property Name="dtCreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="sAddedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="sModifiedFromIp" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblClientMaster" Relationship="Model.FK_tblSeaScheduling_tblClientMaster" FromRole="tblSeaScheduling" ToRole="tblClientMaster" />
+    <NavigationProperty Name="tblPODMaster" Relationship="Model.FK_tblSeaScheduling_tblPODMaster" FromRole="tblSeaScheduling" ToRole="tblPODMaster" />
+    <NavigationProperty Name="tblPOFDMaster" Relationship="Model.FK_tblSeaScheduling_tblPOFDMaster" FromRole="tblSeaScheduling" ToRole="tblPOFDMaster" />
+    <NavigationProperty Name="tblSeaBondMasters" Relationship="Model.FK_tblSeaBondMaster_tblSeaScheduling" FromRole="tblSeaScheduling" ToRole="tblSeaBondMaster" />
+    <NavigationProperty Name="tblSeaContainerMasters" Relationship="Model.FK_tblSeaContainerMaster_tblSeaScheduling" FromRole="tblSeaScheduling" ToRole="tblSeaContainerMaster" />
+    <NavigationProperty Name="tblSeaHBLMasters" Relationship="Model.FK_tblSeaHBLMaster_tblSeaScheduling" FromRole="tblSeaScheduling" ToRole="tblSeaHBLMaster" />
+    <NavigationProperty Name="tblSeaMBLMasters" Relationship="Model.FK_tblSeaMBLMaster_tblSeaScheduling" FromRole="tblSeaScheduling" ToRole="tblSeaMBLMaster" />
+    <NavigationProperty Name="tblShippingLine" Relationship="Model.FK_tblSeaScheduling_tblShippingLine" FromRole="tblSeaScheduling" ToRole="tblShippingLine" />
+  </EntityType>
+  <EntityType Name="tblShippingLine">
+    <Key>
+      <PropertyRef Name="iShippingID" />
+    </Key>
+    <Property Name="iShippingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sMLOCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sShippingLineName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="bStatus" Type="Boolean" />
+    <Property Name="iCreatedBy" Type="Int32" />
+    <Property Name="dtCreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="iModifiedBy" Type="Int32" />
+    <Property Name="dtModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblBondMasterMs" Relationship="Model.FK_tblBondMasterM_tblShippingLine" FromRole="tblShippingLine" ToRole="tblBondMasterM" />
+    <NavigationProperty Name="tblSeaSchedulings" Relationship="Model.FK_tblSeaScheduling_tblShippingLine" FromRole="tblShippingLine" ToRole="tblSeaScheduling" />
+  </EntityType>
+  <EntityType Name="tblStateM">
+    <Key>
+      <PropertyRef Name="iStateId" />
+    </Key>
+    <Property Name="iStateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iCountryId" Type="Int32" Nullable="false" />
+    <Property Name="sStateName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sStateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblCityMs" Relationship="Model.FK_tblCityM_tblStateM" FromRole="tblStateM" ToRole="tblCityM" />
+    <NavigationProperty Name="tblCountryM" Relationship="Model.FK_tblStateM_tblCountryM" FromRole="tblStateM" ToRole="tblCountryM" />
+  </EntityType>
+  <EntityType Name="tblUserM">
+    <Key>
+      <PropertyRef Name="iUserId" />
+    </Key>
+    <Property Name="iUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sUsername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sPassword" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="iRoleId" Type="Int32" />
+    <Property Name="sFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sLastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="sAddress2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="iCityId" Type="Int32" />
+    <Property Name="sZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="sEmailID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sPhotoUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sPhoneNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <Property Name="sPANCARD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="iClientID" Type="Int32" />
+    <NavigationProperty Name="tblCityM" Relationship="Model.FK_tblUserM_tblCityM" FromRole="tblUserM" ToRole="tblCityM" />
+    <NavigationProperty Name="tblRoleM" Relationship="Model.FK_tblUserM_tblRoleM" FromRole="tblUserM" ToRole="tblRoleM" />
+  </EntityType>
+  <Association Name="FK_tblAirEGMFlightDetailsM_tblAirClientMaster">
+    <End Type="Model.tblAirClientMaster" Role="tblAirClientMaster" Multiplicity="0..1" />
+    <End Type="Model.tblAirEGMFlightDetailsM" Role="tblAirEGMFlightDetailsM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAirClientMaster">
+        <PropertyRef Name="iAirClientId" />
+      </Principal>
+      <Dependent Role="tblAirEGMFlightDetailsM">
+        <PropertyRef Name="iClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAirIGMFlightDetailsM_tblAirClientMaster">
+    <End Type="Model.tblAirClientMaster" Role="tblAirClientMaster" Multiplicity="0..1" />
+    <End Type="Model.tblAirIGMFlightDetailsM" Role="tblAirIGMFlightDetailsM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAirClientMaster">
+        <PropertyRef Name="iAirClientId" />
+      </Principal>
+      <Dependent Role="tblAirIGMFlightDetailsM">
+        <PropertyRef Name="iClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAirEGMFlightDetailsM_tblAirLocationM">
+    <End Type="Model.tblAirLocationM" Role="tblAirLocationM" Multiplicity="0..1" />
+    <End Type="Model.tblAirEGMFlightDetailsM" Role="tblAirEGMFlightDetailsM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAirLocationM">
+        <PropertyRef Name="iLocationId" />
+      </Principal>
+      <Dependent Role="tblAirEGMFlightDetailsM">
+        <PropertyRef Name="iLocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAirEGMMAWBM_tblAirEGMFlightDetailsM">
+    <End Type="Model.tblAirEGMFlightDetailsM" Role="tblAirEGMFlightDetailsM" Multiplicity="0..1" />
+    <End Type="Model.tblAirEGMMAWBM" Role="tblAirEGMMAWBM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAirEGMFlightDetailsM">
+        <PropertyRef Name="iFlightId" />
+      </Principal>
+      <Dependent Role="tblAirEGMMAWBM">
+        <PropertyRef Name="iAirEGMFlightDetailsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAirIGMFlightDetailsM_tblAirLocationM">
+    <End Type="Model.tblAirLocationM" Role="tblAirLocationM" Multiplicity="0..1" />
+    <End Type="Model.tblAirIGMFlightDetailsM" Role="tblAirIGMFlightDetailsM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAirLocationM">
+        <PropertyRef Name="iLocationId" />
+      </Principal>
+      <Dependent Role="tblAirIGMFlightDetailsM">
+        <PropertyRef Name="iLocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAirIGMMAWBM_tblAirIGMFlightDetailsM">
+    <End Type="Model.tblAirIGMFlightDetailsM" Role="tblAirIGMFlightDetailsM" Multiplicity="0..1" />
+    <End Type="Model.tblAirIGMMAWBM" Role="tblAirIGMMAWBM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAirIGMFlightDetailsM">
+        <PropertyRef Name="iFlightId" />
+      </Principal>
+      <Dependent Role="tblAirIGMMAWBM">
+        <PropertyRef Name="iAirIGMFlightDetailsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblBillingItem_tblBillingItem">
+    <End Type="Model.tblInvoice" Role="tblInvoice" Multiplicity="0..1" />
+    <End Type="Model.tblBillingItem" Role="tblBillingItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblInvoice">
+        <PropertyRef Name="iInvoiceID" />
+      </Principal>
+      <Dependent Role="tblBillingItem">
+        <PropertyRef Name="InvoiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblBondMasterM_tblPODMaster">
+    <End Type="Model.tblPODMaster" Role="tblPODMaster" Multiplicity="0..1" />
+    <End Type="Model.tblBondMasterM" Role="tblBondMasterM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPODMaster">
+        <PropertyRef Name="iPortID" />
+      </Principal>
+      <Dependent Role="tblBondMasterM">
+        <PropertyRef Name="iPODId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblBondMasterM_tblPOFDMaster">
+    <End Type="Model.tblPOFDMaster" Role="tblPOFDMaster" Multiplicity="0..1" />
+    <End Type="Model.tblBondMasterM" Role="tblBondMasterM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPOFDMaster">
+        <PropertyRef Name="iPortID" />
+      </Principal>
+      <Dependent Role="tblBondMasterM">
+        <PropertyRef Name="iFPODId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblBondMasterM_tblShippingLine">
+    <End Type="Model.tblShippingLine" Role="tblShippingLine" Multiplicity="0..1" />
+    <End Type="Model.tblBondMasterM" Role="tblBondMasterM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblShippingLine">
+        <PropertyRef Name="iShippingID" />
+      </Principal>
+      <Dependent Role="tblBondMasterM">
+        <PropertyRef Name="iShippingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCityM_tblStateM">
+    <End Type="Model.tblStateM" Role="tblStateM" Multiplicity="1" />
+    <End Type="Model.tblCityM" Role="tblCityM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStateM">
+        <PropertyRef Name="iStateId" />
+      </Principal>
+      <Dependent Role="tblCityM">
+        <PropertyRef Name="iStateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserM_tblCityM">
+    <End Type="Model.tblCityM" Role="tblCityM" Multiplicity="0..1" />
+    <End Type="Model.tblUserM" Role="tblUserM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCityM">
+        <PropertyRef Name="iCityId" />
+      </Principal>
+      <Dependent Role="tblUserM">
+        <PropertyRef Name="iCityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSeaScheduling_tblClientMaster">
+    <End Type="Model.tblClientMaster" Role="tblClientMaster" Multiplicity="0..1" />
+    <End Type="Model.tblSeaScheduling" Role="tblSeaScheduling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblClientMaster">
+        <PropertyRef Name="iClientID" />
+      </Principal>
+      <Dependent Role="tblSeaScheduling">
+        <PropertyRef Name="iClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStateM_tblCountryM">
+    <End Type="Model.tblCountryM" Role="tblCountryM" Multiplicity="1" />
+    <End Type="Model.tblStateM" Role="tblStateM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCountryM">
+        <PropertyRef Name="iCountryId" />
+      </Principal>
+      <Dependent Role="tblStateM">
+        <PropertyRef Name="iCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblInvoic__iInvo__3C89F72A">
+    <End Type="Model.tblInvoice" Role="tblInvoice" Multiplicity="1" />
+    <End Type="Model.tblInvoiceItem" Role="tblInvoiceItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblInvoice">
+        <PropertyRef Name="iInvoiceID" />
+      </Principal>
+      <Dependent Role="tblInvoiceItem">
+        <PropertyRef Name="iInvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRolePermissionMap_tblPermissionM">
+    <End Type="Model.tblPermissionsM" Role="tblPermissionsM" Multiplicity="0..1" />
+    <End Type="Model.tblRolePermissionMap" Role="tblRolePermissionMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPermissionsM">
+        <PropertyRef Name="iPermissionId" />
+      </Principal>
+      <Dependent Role="tblRolePermissionMap">
+        <PropertyRef Name="iPermissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSeaScheduling_tblPODMaster">
+    <End Type="Model.tblPODMaster" Role="tblPODMaster" Multiplicity="0..1" />
+    <End Type="Model.tblSeaScheduling" Role="tblSeaScheduling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPODMaster">
+        <PropertyRef Name="iPortID" />
+      </Principal>
+      <Dependent Role="tblSeaScheduling">
+        <PropertyRef Name="iPortOfDestinationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSeaScheduling_tblPOFDMaster">
+    <End Type="Model.tblPOFDMaster" Role="tblPOFDMaster" Multiplicity="0..1" />
+    <End Type="Model.tblSeaScheduling" Role="tblSeaScheduling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPOFDMaster">
+        <PropertyRef Name="iPortID" />
+      </Principal>
+      <Dependent Role="tblSeaScheduling">
+        <PropertyRef Name="iPortOfFinalDestinationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSeaMBLMaster_tblPOSMaster">
+    <End Type="Model.tblPOSMaster" Role="tblPOSMaster" Multiplicity="0..1" />
+    <End Type="Model.tblSeaMBLMaster" Role="tblSeaMBLMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPOSMaster">
+        <PropertyRef Name="iPortID" />
+      </Principal>
+      <Dependent Role="tblSeaMBLMaster">
+        <PropertyRef Name="iPOSId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRolePermissionMap_tblRoleM">
+    <End Type="Model.tblRoleM" Role="tblRoleM" Multiplicity="0..1" />
+    <End Type="Model.tblRolePermissionMap" Role="tblRolePermissionMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRoleM">
+        <PropertyRef Name="iRoleId" />
+      </Principal>
+      <Dependent Role="tblRolePermissionMap">
+        <PropertyRef Name="iRoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserM_tblRoleM">
+    <End Type="Model.tblRoleM" Role="tblRoleM" Multiplicity="0..1" />
+    <End Type="Model.tblUserM" Role="tblUserM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRoleM">
+        <PropertyRef Name="iRoleId" />
+      </Principal>
+      <Dependent Role="tblUserM">
+        <PropertyRef Name="iRoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSeaBondMaster_tblSeaScheduling">
+    <End Type="Model.tblSeaScheduling" Role="tblSeaScheduling" Multiplicity="1" />
+    <End Type="Model.tblSeaBondMaster" Role="tblSeaBondMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSeaScheduling">
+        <PropertyRef Name="iSchedulingId" />
+      </Principal>
+      <Dependent Role="tblSeaBondMaster">
+        <PropertyRef Name="iSchedulingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSeaContainerMaster_tblSeaHBLMaster">
+    <End Type="Model.tblSeaHBLMaster" Role="tblSeaHBLMaster" Multiplicity="0..1" />
+    <End Type="Model.tblSeaContainerMaster" Role="tblSeaContainerMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSeaHBLMaster">
+        <PropertyRef Name="iHBLID" />
+      </Principal>
+      <Dependent Role="tblSeaContainerMaster">
+        <PropertyRef Name="iHBLID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSeaContainerMaster_tblSeaScheduling">
+    <End Type="Model.tblSeaScheduling" Role="tblSeaScheduling" Multiplicity="0..1" />
+    <End Type="Model.tblSeaContainerMaster" Role="tblSeaContainerMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSeaScheduling">
+        <PropertyRef Name="iSchedulingId" />
+      </Principal>
+      <Dependent Role="tblSeaContainerMaster">
+        <PropertyRef Name="iSchedulingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSeaHBLMaster_tblSeaMBLMaster">
+    <End Type="Model.tblSeaMBLMaster" Role="tblSeaMBLMaster" Multiplicity="1" />
+    <End Type="Model.tblSeaHBLMaster" Role="tblSeaHBLMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSeaMBLMaster">
+        <PropertyRef Name="iMBLId" />
+      </Principal>
+      <Dependent Role="tblSeaHBLMaster">
+        <PropertyRef Name="iMBLId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSeaHBLMaster_tblSeaScheduling">
+    <End Type="Model.tblSeaScheduling" Role="tblSeaScheduling" Multiplicity="0..1" />
+    <End Type="Model.tblSeaHBLMaster" Role="tblSeaHBLMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSeaScheduling">
+        <PropertyRef Name="iSchedulingId" />
+      </Principal>
+      <Dependent Role="tblSeaHBLMaster">
+        <PropertyRef Name="iSchedulingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSeaMBLMaster_tblSeaScheduling">
+    <End Type="Model.tblSeaScheduling" Role="tblSeaScheduling" Multiplicity="0..1" />
+    <End Type="Model.tblSeaMBLMaster" Role="tblSeaMBLMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSeaScheduling">
+        <PropertyRef Name="iSchedulingId" />
+      </Principal>
+      <Dependent Role="tblSeaMBLMaster">
+        <PropertyRef Name="iSchedulingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSeaScheduling_tblShippingLine">
+    <End Type="Model.tblShippingLine" Role="tblShippingLine" Multiplicity="0..1" />
+    <End Type="Model.tblSeaScheduling" Role="tblSeaScheduling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblShippingLine">
+        <PropertyRef Name="iShippingID" />
+      </Principal>
+      <Dependent Role="tblSeaScheduling">
+        <PropertyRef Name="iShippingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vw_AirSea_MAW_MBL">
+    <Key>
+      <PropertyRef Name="ClientId" />
+      <PropertyRef Name="MasterNoID" />
+      <PropertyRef Name="HouseNoID" />
+      <PropertyRef Name="ClientType" />
+    </Key>
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="MasterNoID" Type="Int64" Nullable="false" />
+    <Property Name="HouseNoID" Type="Int64" Nullable="false" />
+    <Property Name="ContainerStatus" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MasterNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="HouseNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ImporterName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="CustomCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="ActionDate" Type="DateTime" Precision="3" />
+    <Property Name="ClientType" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_ClientMaster">
+    <Key>
+      <PropertyRef Name="iClientId" />
+      <PropertyRef Name="iClientType" />
+    </Key>
+    <Property Name="iClientId" Type="Int32" Nullable="false" />
+    <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="iClientType" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="sStateCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="sClientCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dPricePerUnit" Type="Decimal" Precision="12" Scale="2" />
+  </EntityType>
+  <EntityType Name="tblAirMAWBM">
+    <Key>
+      <PropertyRef Name="iMAWBId" />
+    </Key>
+    <Property Name="iMAWBId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iAirClientId" Type="Int32" />
+    <Property Name="iLocationId" Type="Int32" />
+    <Property Name="sIGMNumber" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="dtIGMDate" Type="DateTime" Precision="0" />
+    <Property Name="sFlightNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="dtFlightDate" Type="DateTime" Precision="0" />
+    <Property Name="sMAWBNo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="sOrigin" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="sDestination" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="nPackages" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="nWeight" Type="Decimal" Precision="9" Scale="3" />
+    <Property Name="iStatus" Type="Byte" />
+    <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+    <Property Name="iActionBy" Type="Int32" />
+    <Property Name="dtUpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="iUpdatedBy" Type="Int32" />
+    <NavigationProperty Name="tblAirClientMaster" Relationship="Model.FK_tblAirMAWBM_tblAirClientMaster" FromRole="tblAirMAWBM" ToRole="tblAirClientMaster" />
+    <NavigationProperty Name="tblAirHAWBMs" Relationship="Model.FK_tblAirHAWBM_tblAirMAWBM" FromRole="tblAirMAWBM" ToRole="tblAirHAWBM" />
+    <NavigationProperty Name="tblAirLocationM" Relationship="Model.FK_tblAirMAWBM_tblAirLocationM" FromRole="tblAirMAWBM" ToRole="tblAirLocationM" />
+  </EntityType>
+  <Association Name="FK_tblAirMAWBM_tblAirClientMaster">
+    <End Type="Model.tblAirClientMaster" Role="tblAirClientMaster" Multiplicity="0..1" />
+    <End Type="Model.tblAirMAWBM" Role="tblAirMAWBM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAirClientMaster">
+        <PropertyRef Name="iAirClientId" />
+      </Principal>
+      <Dependent Role="tblAirMAWBM">
+        <PropertyRef Name="iAirClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAirHAWBM_tblAirMAWBM">
+    <End Type="Model.tblAirMAWBM" Role="tblAirMAWBM" Multiplicity="0..1" />
+    <End Type="Model.tblAirHAWBM" Role="tblAirHAWBM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAirMAWBM">
+        <PropertyRef Name="iMAWBId" />
+      </Principal>
+      <Dependent Role="tblAirHAWBM">
+        <PropertyRef Name="iMAWBId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAirMAWBM_tblAirLocationM">
+    <End Type="Model.tblAirLocationM" Role="tblAirLocationM" Multiplicity="0..1" />
+    <End Type="Model.tblAirMAWBM" Role="tblAirMAWBM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAirLocationM">
+        <PropertyRef Name="iLocationId" />
+      </Principal>
+      <Dependent Role="tblAirMAWBM">
+        <PropertyRef Name="iLocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

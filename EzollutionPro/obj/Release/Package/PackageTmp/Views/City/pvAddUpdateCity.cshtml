@@ -1,0 +1,47 @@
+﻿@model EzollutionPro_BAL.Models.Masters.CityModel
+<div class="modal-header">
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update City</h4>
+</div>
+@using (Html.BeginForm("AddUpdateCity", "City", FormMethod.Post, new { @id = "frmSaveCity" }))
+{
+    <div class="modal-body">
+        @Html.HiddenFor(x => x.iCityId)
+        <div class="row mt-2">
+            <div class="col-md-2">
+                @Html.Label("Country")
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownListFor(x => x.iCountryId, new SelectList(ViewBag.Countries, "Value", "Text"), "[ SELECT ]", new { @class = "form-control",@data_live_search="true" })
+                @Html.ValidationMessageFor(x => x.iCountryId)
+            </div>
+            <div class="col-md-2">
+                @Html.Label("State")
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownListFor(x => x.iStateId, new SelectList(ViewBag.States, "Value", "Text"), "[ SELECT ]", new { @class = "form-control", @data_live_search = "true" })
+                @Html.ValidationMessageFor(x => x.iStateId)
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-2">
+                @Html.Label("City Name")
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(x => x.sCityName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sCityName)
+            </div>
+            <div class="col-md-2">
+                @Html.Label("Description")
+            </div>
+            <div class="col-md-4">
+                @Html.TextAreaFor(x => x.sCityDescription, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sCityDescription)
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+    </div>
+}

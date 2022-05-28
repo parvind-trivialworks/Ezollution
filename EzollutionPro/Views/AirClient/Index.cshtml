@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Air Clients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Clients</h3>
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" onclick="AddAirClient(0)"><i class="fa fa-plus"></i> Add New Client</button>
+            </div>
+        </div>
+        <div class="pull-right">
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="table table-responsive">
+            <table class="table table-bordered" id="tblAirClient">
+                <thead>
+                    <tr>
+                        <th>Client Name</th>
+                        <th>CARN</th>
+                        <th>Company Name</th>
+                        <th>GSTN-No</th>
+                        <th>Email-Id</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/PageScripts/Masters/AirClient.js"></script>
+}
+
+

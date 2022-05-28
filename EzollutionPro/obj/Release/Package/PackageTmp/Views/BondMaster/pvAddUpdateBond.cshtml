@@ -1,0 +1,105 @@
+﻿@model EzollutionPro_BAL.Models.Masters.BondModel
+<div class="modal-header">
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update Bond Master</h4>
+</div>
+@using (Html.BeginForm("SaveBond", "BondMaster", FormMethod.Post, new { @id = "frmSaveBond" }))
+{
+    <div class="modal-body">
+        @Html.HiddenFor(x => x.iBondId)
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Shipping Line Name</label>
+                        @Html.DropDownListFor(z => z.iShippingId, new SelectList(ViewBag.ShippingLines as List<SelectListItem>, "Value", "Text"), "[ SELECT ]", new { @data_live_search = "true", @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.iShippingId)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Port of Destination</label>
+                        @Html.DropDownListFor(z => z.iPODId, new SelectList(ViewBag.PODs as List<SelectListItem>, "Value", "Text"), "[ SELECT ]", new { @data_live_search = "true", @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.iPODId)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Cargo Movement</label>
+                        @Html.DropDownListFor(z => z.sCargoMovement, new SelectList(
+                       new List<SelectListItem> {
+                            new SelectListItem{Value="TI",Text="Trans Shipment"},
+                            new SelectListItem{Value="LC",Text="Local Cargo"},
+                       }, "Value","Text"),"[ SELECT ]", new { @data_live_search="true", @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sCargoMovement)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Final Destination</label>
+                        @Html.DropDownListFor(z => z.iFPODId, new SelectList(ViewBag.FPODs as List<SelectListItem>, "Value", "Text"), "[ SELECT ]", new { @data_live_search = "true", @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.iFPODId)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Bond Number</label>
+                        @Html.TextBoxFor(m => m.nBondNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.nBondNo)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Carrier Code</label>
+                        @Html.TextBoxFor(m => m.sCarrierCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.sCarrierCode)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Mode of Transport</label>
+                        @Html.DropDownListFor(m => m.sModeOfTransport,new List<SelectListItem>
+                                   {
+                                       new SelectListItem{ Text="TRAIN", Value = "T" },
+                                       new SelectListItem{ Text="ROAD", Value = "R" },
+                                   }, "[ SELECT ]",new { @class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.sModeOfTransport)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>MLO Code</label>
+                        @Html.TextBoxFor(m => m.sMLOCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.sMLOCode)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>CFS Name</label>
+                        @Html.TextBoxFor(m => m.sCFSName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.sCFSName)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>CFS Code</label>
+                        @Html.TextBoxFor(m => m.sCFSCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.sCFSCode)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+    </div>
+}

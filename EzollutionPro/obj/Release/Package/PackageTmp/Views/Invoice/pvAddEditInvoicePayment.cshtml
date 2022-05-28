@@ -1,0 +1,116 @@
+﻿@model EzollutionPro_BAL.Models.InvoicePaymentModel
+    @{ 
+      
+        
+    }
+<div class="modal-header">
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; 
+cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update Invoice Payment</h4>
+</div>
+
+@using (Html.BeginForm("SaveInvoicePayment", "Invoice", FormMethod.Post, new { @id = "frmSaveInvoicePayment" }))
+{
+<div class="modal-body capitalize">
+    @Html.HiddenFor(x => x.iInvoiceId)
+    @Html.HiddenFor(x => x.iInvoicePaymentID)
+    @Html.HiddenFor(x => x.blsActive)
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("Amount Receive Date")
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                @Html.TextBoxFor(model => Model.dtReceivedDate, new { @class = "form-control", @readonly = "true" })
+            </div>
+           
+            @Html.ValidationMessageFor(x => x.dtReceivedDate)
+
+        </div>
+        <div class="col-md-6">
+            @Html.Label("Amount Received")
+            @Html.TextBoxFor(model => Model.dAmount, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.dAmount)
+        </div>
+
+    </div>
+    <div class="row mt-3">
+
+
+        <div class="col-md-6">
+            @Html.Label("Payment Mode")
+            @{
+                List<SelectListItem> listPayMode = new List<SelectListItem>();
+                listPayMode.Add(new SelectListItem
+                {
+                    Text = "NEFT",
+                    Value = "NEFT",
+                    Selected = true
+                });
+
+                listPayMode.Add(new SelectListItem
+                {
+                    Text = "Check No",
+                    Value = "Check No"
+                });
+
+            }
+            @Html.DropDownListFor(model => model.sPaymentMode, listPayMode, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sPaymentMode)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("NEFT/Cheque Number")
+            @Html.TextBoxFor(model => Model.sCheckNeftNo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sCheckNeftNo)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("TDS")
+            @Html.TextBoxFor(model => Model.dTds, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.dTds)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("Check Date")
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                @Html.TextBoxFor(model => Model.dtCheckDate, new { @class = "form-control", @readonly = "true" })
+            </div>
+            
+            @Html.ValidationMessageFor(x => x.dtCheckDate)
+        </div>
+       
+    </div>
+    <div class="row mt-3" style="display:none">
+        <div class="col-md-6">
+            @Html.Label("Payment Status :(check for paid)") <br />
+            @Html.CheckBoxFor(model => Model.blsPaymentStatus, new { })
+            @Html.ValidationMessageFor(x => x.blsPaymentStatus)
+        </div>
+    </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+    </div>
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dtReceivedDate').datepicker({
+                format: "dd/mm/yyyy",
+                endDate: 'today',
+                autoclose: true
+            });
+
+            $('#dtCheckDate').datepicker({
+                format: "dd/mm/yyyy",
+                autoclose: true
+            });
+        });
+
+    </script>

@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+<link href="~/Content/daterangepicker/daterangepicker.css" rel="stylesheet" />
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            <i class="fa fa-files-o"></i>
+            List of Transmitted(s)
+        </h3>
+        <br />
+        <br />
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning pull-left" id="daterange-btn">
+                    <span>
+                        <i class="fa fa-calendar"></i>&nbsp;Select Date range
+                    </span>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <button id="btnApplyDateRange" class="btn btn-success"><i class="fa fa-search"></i></button>
+                <button id="btnRemoveDateRange" class="btn btn-danger pull-right"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="box-body">
+        @if (TempData["MAWBSuccess"] != null)
+        {
+            <div class="alert alert-success alert-dismissable show" role="alert">
+                @TempData["MAWBSuccess"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        <table id="tblScheduler" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Client Name</th>
+                    <th>MAWB Number</th>
+                    <th>Location</th>
+                    <th>Date & Time </th>
+                    <th>Updated By</th>
+                    <th ></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Scripts/PageScripts/AirFiling/Transmited.js"></script>
+}
+
+

@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "IGM Flight Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+<link href="~/Content/daterangepicker/daterangepicker.css" rel="stylesheet" />
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            <i class="fa fa-files-o"></i>
+            List of Transmitted(s)
+        </h3>
+        <br />
+        <br />
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning pull-left" id="daterange-btn">
+                    <span>
+                        <i class="fa fa-calendar"></i>&nbsp;Select Date range
+                    </span>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <button id="btnApplyDateRange" class="btn btn-success"><i class="fa fa-search"></i></button>
+                <button id="btnRemoveDateRange" class="btn btn-danger pull-right"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="table table-responsive">
+            <table class="table table-bordered" id="tblAirFlight">
+                <thead>
+                    <tr>
+                        <th>SNo</th>
+                        <th>Client Name</th>
+                        <th>Flight Number</th>
+                        <th>Location</th>
+                        <th>Date & Time</th>
+                        <th>User Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/daterangepicker/daterangepicker.js"></script>
+    <script>
+        var startDateRange, endDateRange, schedulerTable;
+        $(function () {
+            $('#daterange-btn').daterangepicker(
+                {
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment(),
+                    minDate: '01/01/2015',
+                    format: 'DD/MM/YYYY',
+                    showDropdowns: true,
+                    showWeekNumbers: true,
+                    opens: 'left',
+                    locale: {
+                        applyLabel: 'Apply',
+                        fromLabel: 'From',
+                        toLabel: 'To',
+                        customRangeLabel: 'Custom Range',
+                        daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                        firstDay: 1
+                    }
+                },
+                function (start, end) {
+                    $('#daterange-btn span').html(start.format('D MMMM, YYYY') + ' - ' + end.format('D MMMM, YYYY'));
+                    startDateRange = start;
+                    endDateRange = end;
+                }
+            );
+
+            schedulerTable = $('#tblAirFlight').DataTable({
+                processing: true,
+                serverSide: true,
+                'searching': true,
+                'orderable': false,
+                'ajax': {
+                    url: '/AirIGMFlight/GetTransmittedFlights',
+                    method: 'POST',
+                    async: false,
+                    data: function (d) {
+                        d.minDate = (startDateRange != null && startDateRange != "" && startDateRange != undefined) ? startDateRange.format('DD/MM/YYYY') : "";
+                        d.maxDate = (endDateRange != null && endDateRange != "" && endDateRange != undefined) ? endDateRange.format('DD/MM/YYYY') : "";
+                        return d;
+                    }
+
+                },
+                'columns': [
+                    {
+                        "data": "sNo", 'orderable': false
+                    },
+                    {
+                        "data": "sClientName", 'orderable': false
+                    },
+                    {
+                        "data": "sFlightNo", 'orderable': false
+                    },
+                    {
+                        "data": "sLocation", 'orderable': false
+                    },
+                    {
+                        "data": "sDateTime", 'orderable': false
+                    },
+                    {
+                        "data": "sUserName", 'orderable': false
+                    },
+                    {
+                        "data": "iFlightId", 'orderable': false, 'mRender': function (data, abc, full) {
+                            return '<button type="button" onClick="AddUpdateAirIGMFlight(' + data + ')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>'
+                                + ' <button type="button" onClick="ProceedToTransmit(' + data + ')" class="btn btn-xs btn-success"><i class="fa fa-rss"></i> Transmit</button>';
+                        }
+                    }]
+            })
+        });
+        $(document).on('click', '#btnApplyDateRange', function () {
+            if (startDateRange == null || startDateRange == '') {
+                alert('Please select the Date Range !');
+            }
+            else {
+                schedulerTable.ajax.reload();
+            }
+        });
+        $(document).on('click', '#btnRemoveDateRange', function () {
+            startDateRange = '';
+            endDateRange = '';
+            schedulerTable.ajax.reload();
+            $('#daterange-btn span').html('<i class="fa fa-calendar"></i>&nbsp;Select Date range');
+        });
+
+
+        function AddUpdateAirIGMFlight(iFlightId) {
+            location.href = '/AirIGMFlight/AddUpdateFlightDetails?iFlightId=' + iFlightId
+        }
+
+        function ProceedToTransmit(iFlightId) {
+            location.href = '/AirIGMFlight/TransmitFile?iFlightId=' + iFlightId;
+        }
+    </script>
+}
+

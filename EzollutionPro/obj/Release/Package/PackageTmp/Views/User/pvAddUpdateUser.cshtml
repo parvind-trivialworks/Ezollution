@@ -1,0 +1,135 @@
+﻿@model EzollutionPro_BAL.Models.UserModel
+<div class="modal-header">
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update User</h4>
+</div>
+@using (Html.BeginForm("AddUpdateUser", "User", FormMethod.Post, new { @id = "frmSaveUser", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.iUserId)
+<div class="modal-body">
+    <div class="row mt-2">
+        <div class="col-md-2">
+            @Html.Label("Username")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.sUsername, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sUsername)
+        </div>
+        <div class="col-md-2">
+            @Html.Label("Password")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.sPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sPassword)
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2">
+            @Html.Label("Role")
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownListFor(x => x.iRoleId, new SelectList(ViewBag.Roles, "Value", "Text"), "[ SELECT ]", new { @data_live_Search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iRoleId)
+        </div>
+        <div class="col-md-2">
+            @Html.Label("First Name")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.sFirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sFirstName)
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2">
+            @Html.Label("Last Name")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.sLastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sLastName)
+        </div>
+        <div class="col-md-2">
+            @Html.Label("Address")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.sAddress, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sAddress)
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2">
+            @Html.Label("Address 2")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.sAddress2, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sAddress2)
+        </div>
+        <div class="col-md-2">
+            @Html.Label("Country")
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownListFor(x => x.iCountryId, new SelectList(ViewBag.Countries, "Value", "Text"), "[ SELECT ]", new { @data_live_Search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iCountryId)
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2">
+            @Html.Label("State")
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownListFor(x => x.iStateId, new SelectList(ViewBag.States, "Value", "Text"), "[ SELECT ]", new { @data_live_Search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iStateId)
+        </div>
+        <div class="col-md-2">
+            @Html.Label("City")
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownListFor(x => x.iCityId, new SelectList(ViewBag.Cities, "Value", "Text"), "[ SELECT ]", new { @data_live_Search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iCityId)
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2">
+            @Html.Label("Zip Code")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.sZipCode, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sZipCode)
+        </div>
+        <div class="col-md-2">
+            @Html.Label("Phone")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.sPhoneNo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sPhoneNo)
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-2">
+            @Html.Label("Email")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.sEmailID, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sEmailID)
+        </div>
+        <div class="col-md-2">
+            @Html.Label("Picture")
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(x => x.Picture, new { @type = "file", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Picture)
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-4">
+            Client Name(Only Air Client)
+            @Html.DropDownListFor(x => x.iClientID, new SelectList(ViewBag.Clients, "iAirClientId", "sClientName"), "[ SELECT ]", new { @data_live_Search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iClientID)
+        </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+    </div>
+
+    }

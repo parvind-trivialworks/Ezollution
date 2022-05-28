@@ -1,0 +1,108 @@
+﻿@model EzollutionPro_BAL.Models.Masters.HAWBModel
+
+@{
+    ViewBag.Title = "AddUpdateHAWB";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    if (TempData["HAWBError"] != null)
+    {
+        <div class="alert alert-danger alert-dismissable show" role="alert">
+            @TempData["HAWBError"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <section class="container">
+        <section class="content">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add/Update HAWB</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.iHAWBId)
+                    @Html.HiddenFor(model => model.iMAWBId)
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sHAWBNo, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sHAWBNo, new { htmlAttributes = new { @class = "form-control", @maxlength = 20 } })
+                            @Html.ValidationMessageFor(model => model.sHAWBNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sOrigin, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sOrigin, new { htmlAttributes = new { @class = "form-control", @maxlength = 3 } })
+                            @Html.ValidationMessageFor(model => model.sOrigin, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sDestination, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sDestination, new { htmlAttributes = new { @class = "form-control", @maxlength = 3 } })
+                            @Html.ValidationMessageFor(model => model.sDestination, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sPackages, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sPackages, new { htmlAttributes = new { @class = "form-control", @maxlength = 7 } })
+                            @Html.ValidationMessageFor(model => model.sPackages, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sWeight, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sWeight, new { htmlAttributes = new { @class = "form-control", @maxlength = 13 } })
+                            @Html.ValidationMessageFor(model => model.sWeight, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(z => z.sDescription, htmlAttributes: new { @class = "control-label" })
+                            @Html.TextBoxFor(z => z.sDescription, new { @class = "form-control", @maxlength = 30 })
+                            @Html.ValidationMessageFor(z => z.sDescription)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script>
+        $(function () {
+            $.validator.unobtrusive.parse("form");
+            $('#sIGMDate').datepicker({
+                endDate: new Date(),
+                format: "dd/mm/yyyy",
+            }).on('changeDate', function (ev) {
+                $('#sIGMDate').datepicker('hide');
+            });;
+            var d = moment(new Date()).add(1, 'Days');
+            $('#sFlightDate').datepicker({
+                endDate: d.toDate(),
+                format: "dd/mm/yyyy"
+            }).on('changeDate', function (ev) {
+                $('#sFlightDate').datepicker('hide');
+            });
+        });
+        $(document).on('keyup', 'input[type="text"],textarea', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    </script>
+}

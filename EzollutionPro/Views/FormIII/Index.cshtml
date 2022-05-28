@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Form-III";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+<link href="~/Content/daterangepicker/daterangepicker.css" rel="stylesheet" />
+<div class="container">
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-files-o"></i>&nbsp;List of MBL(s) Manifested</h3>
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning pull-left" id="daterange-btn">
+                            <span>
+                                <i class="fa fa-calendar"></i>&nbsp;Select Date range
+                            </span>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <button id="btnApplyDateRange" class="btn btn-success"><i class="fa fa-search"></i></button>
+                        <button id="btnRemoveDateRange" class="btn btn-danger pull-right"><i class="fa fa-remove"></i></button>
+                    </div>
+                </div>
+                <div class="pull-right">
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div id="home" class="tab-pane fade in active">
+                        <div class="">
+                            <div class="box-body">
+                                <table id="tblScheduler" class="table table-bordered table-width">
+                                    <thead style="background-color: #3c8dbc; color: white;">
+                                        <tr>
+                                            <th style="width: 10px">SNo.</th>
+                                            <th>MBLNo</th>
+                                            <th>Client Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Scripts/PageScripts/FormIII.js"></script>
+}
+
+

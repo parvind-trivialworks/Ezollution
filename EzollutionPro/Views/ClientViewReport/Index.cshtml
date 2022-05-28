@@ -1,0 +1,132 @@
+﻿@model EzollutionPro_BAL.Models.ClientViewSearchModel
+@using ReportViewerForMvc
+@{
+    ViewBag.Title = "Client Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+<link href="~/Content/daterangepicker/daterangepicker.css" rel="stylesheet" />
+ 
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-files-o"></i>&nbsp;@ViewBag.Title</h3>
+                <div class="pull-right">
+
+                </div>
+                <div class="pull-right">
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div id="home" class="tab-pane fade in active">
+                        <div class="">
+                            @using (Html.BeginForm("Index", "ClientViewReport", FormMethod.Post, new { @id = "frmReport" }))
+                            {
+                                <div class="box-body" style="min-height:500px">
+                                    <div class="row mt-3">
+                                   
+                                        <div class="col-md-2">
+                                            <label>Report Name</label>
+                                            <div class="input-group">
+                                                @{
+
+                                                    List<SelectListItem> listrptName = new List<SelectListItem>();
+
+                                                    listrptName.Add(new SelectListItem
+                                                    {
+                                                        Text = "Daily Submittion Report",
+                                                        Value = "DSR",
+                                                        Selected = true
+                                                    });
+                                                    //listrptName.Add(new SelectListItem
+                                                    // {
+                                                    //     Text = "Party wise Invoice",
+                                                    //     Value = "PWI",
+                                                    //     Selected = true
+                                                    // });
+                                                    //listrptName.Add(new SelectListItem
+                                                    //{
+                                                    //    Text = "Date wise Invoice",
+                                                    //    Value = "DWI",
+                                                    //    Selected = true
+                                                    //});
+
+                                                }
+
+                                                @Html.DropDownListFor(model => model.ReportName, listrptName, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="col-md-2">
+                                            @Html.Label("From Date")
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                @Html.TextBoxFor(x => x.sFromDate, new { @class = "form-control" })
+                                            </div>
+                                            @Html.ValidationMessageFor(x => x.sFromDate)
+                                        </div>
+                                        <div class="col-md-2">
+                                            @Html.Label("To Date")
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                @Html.TextBoxFor(x => x.sToDate, new { @class = "form-control" })
+                                            </div>
+                                            @Html.ValidationMessageFor(x => x.sToDate)
+                                        </div>
+                                        <div class="col-md-2" id="filterby">
+                                            <label>Filter by</label>
+                                            <div class="input-group">
+                                                @{
+
+                                                    List<SelectListItem> listItems = new List<SelectListItem>();
+                                                   
+                                                        listItems.Add(new SelectListItem
+                                                        {
+                                                            Text = "Create Date",
+                                                            Value = "CD",
+                                                            Selected = true
+                                                        });
+                                                   
+                                                }
+
+                                                @Html.DropDownListFor(model => model.filterBy, listItems, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                     
+                                        <div class="col-md-1">
+                                            <label>&nbsp;</label>
+                                            <div class="input-group">
+                                                <input type="submit" value="View" class="btn btn-success" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-3">
+                                    @if (ViewBag.ReportViewer != null)
+                                    {
+                                        @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
+                                    }
+                                    </div>
+                                   
+                                </div>
+                            }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>     
+  
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Scripts/PageScripts/clientreports.js"></script>
+}
+
+

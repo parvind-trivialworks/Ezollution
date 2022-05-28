@@ -1,0 +1,12 @@
+E:\Ashish\Project_2020\EzollutionPro_DAL\bin\Release\EzollutionPro_DAL.dll.config
+E:\Ashish\Project_2020\EzollutionPro_DAL\bin\Release\EzollutionPro_DAL.dll
+E:\Ashish\Project_2020\EzollutionPro_DAL\bin\Release\EzollutionPro_DAL.pdb
+E:\Ashish\Project_2020\EzollutionPro_DAL\bin\Release\EntityFramework.dll
+E:\Ashish\Project_2020\EzollutionPro_DAL\bin\Release\EntityFramework.SqlServer.dll
+E:\Ashish\Project_2020\EzollutionPro_DAL\bin\Release\EntityFramework.xml
+E:\Ashish\Project_2020\EzollutionPro_DAL\bin\Release\EntityFramework.SqlServer.xml
+E:\Ashish\Project_2020\EzollutionPro_DAL\obj\Release\EzollutionPro_DAL.csprojAssemblyReference.cache
+E:\Ashish\Project_2020\EzollutionPro_DAL\obj\Release\EzollutionPro_DAL.csproj.CoreCompileInputs.cache
+E:\Ashish\Project_2020\EzollutionPro_DAL\obj\Release\EzollutionPro_DAL.csproj.CopyComplete
+E:\Ashish\Project_2020\EzollutionPro_DAL\obj\Release\EzollutionPro_DAL.dll
+E:\Ashish\Project_2020\EzollutionPro_DAL\obj\Release\EzollutionPro_DAL.pdb

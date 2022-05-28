@@ -1,0 +1,111 @@
+﻿@model EzollutionPro_BAL.Models.ClientManagementFollowupModel
+    @{ 
+
+        bool AllowEdit = (bool)ViewBag.AllowEdit;
+    }
+<div class="modal-header">
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; 
+cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update Client Followup</h4>
+</div>
+
+@using (Html.BeginForm("SaveClientManagementFollowUp", "ClientManagement", FormMethod.Post, new { @id = "frmSaveClientManagementFollowUp" }))
+{
+<div class="modal-body capitalize">
+    @Html.HiddenFor(x => x.iClientManagementId)
+    @Html.HiddenFor(x => x.iClientManagementFollowupId)
+    @Html.HiddenFor(x => x.blsActive)
+    <div class="row mt-3">
+
+        <div class="col-md-6">
+            @Html.Label("Followup Type")
+            @{
+                List<SelectListItem> lisFollowUpType = new List<SelectListItem>();
+
+                lisFollowUpType.Add(new SelectListItem
+                {
+                    Text = "CALL",
+                    Value = "CALL",
+                });
+                lisFollowUpType.Add(new SelectListItem
+                {
+                    Text = "VISIT",
+                    Value = "VISIT"
+                });
+
+            }
+
+            @Html.DropDownListFor(model => Model.sFollowUpType, lisFollowUpType, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sFollowUpType)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("Difference")
+            @Html.TextBoxFor(model => Model.sDifference, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sDifference)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("Remark")
+            @Html.TextBoxFor(model => Model.sRemark, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sRemark)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("Management Remark")
+            @Html.TextBoxFor(model => Model.sManagementRemark, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sManagementRemark)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("Rate Offered")
+            @Html.TextBoxFor(model => Model.dRateOffered, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.dRateOffered)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("Final Rate")
+            @Html.TextBoxFor(model => Model.dFinalRate, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.dFinalRate)
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("Revenue  Expected")
+            @Html.TextBoxFor(model => Model.dRevenueExpected, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.dRevenueExpected)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("Actual Revenue")
+            @Html.TextBoxFor(model => Model.dActualRevenue, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.dActualRevenue)
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("Next Follow UpDate")
+            @Html.TextBoxFor(model => Model.dtNextFollowUpDate, new { @class = "form-control dtNextFollowUpDate",@readonly="true" })
+            @Html.ValidationMessageFor(x => x.dtNextFollowUpDate)
+        </div>
+    </div>
+
+</div>
+    <div class="modal-footer">
+        @if (AllowEdit)
+        {
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        }
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.dtNextFollowUpDate').datepicker({
+            format: "dd/mm/yyyy",
+            autoclose: true
+        });
+    });
+    
+</script>

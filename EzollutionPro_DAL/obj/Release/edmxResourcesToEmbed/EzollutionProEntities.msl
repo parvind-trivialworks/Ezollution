@@ -1,0 +1,777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="EzollutionProEntities">
+    <FunctionImportMapping FunctionImportName="sp_AddBillingItem" FunctionName="Model.Store.sp_AddBillingItem" />
+    <FunctionImportMapping FunctionImportName="sp_GetInvoice" FunctionName="Model.Store.sp_GetInvoice" />
+    <FunctionImportMapping FunctionImportName="sp_GetInvoiceItemCount" FunctionName="Model.Store.sp_GetInvoiceItemCount" />
+    <FunctionImportMapping FunctionImportName="Usp_AddInvoiceItem" FunctionName="Model.Store.Usp_AddInvoiceItem" />
+    <FunctionImportMapping FunctionImportName="Usp_UpdateInvoiceTotal" FunctionName="Model.Store.Usp_UpdateInvoiceTotal" />
+    <FunctionImportMapping FunctionImportName="uspBulkUploadHBL" FunctionName="Model.Store.uspBulkUploadHBL" />
+    <FunctionImportMapping FunctionImportName="Usp_UpdateIsDefaultEmail" FunctionName="Model.Store.Usp_UpdateIsDefaultEmail" />
+    <FunctionImportMapping FunctionImportName="sp_rpt_ALLDateWiseReport" FunctionName="Model.Store.sp_rpt_ALLDateWiseReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_rpt_ALLDateWiseReport_Result">
+          <ScalarProperty Name="clientName" ColumnName="clientName" />
+          <ScalarProperty Name="iInvoiceID" ColumnName="iInvoiceID" />
+          <ScalarProperty Name="sInvoiceNo" ColumnName="sInvoiceNo" />
+          <ScalarProperty Name="iYear" ColumnName="iYear" />
+          <ScalarProperty Name="iMonth" ColumnName="iMonth" />
+          <ScalarProperty Name="InvoiceCreatedDate" ColumnName="InvoiceCreatedDate" />
+          <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+          <ScalarProperty Name="TotalTax" ColumnName="TotalTax" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_rpt_DateWiseReport" FunctionName="Model.Store.sp_rpt_DateWiseReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_rpt_DateWiseReport_Result">
+          <ScalarProperty Name="clientName" ColumnName="clientName" />
+          <ScalarProperty Name="iInvoiceID" ColumnName="iInvoiceID" />
+          <ScalarProperty Name="sInvoiceNo" ColumnName="sInvoiceNo" />
+          <ScalarProperty Name="iYear" ColumnName="iYear" />
+          <ScalarProperty Name="iMonth" ColumnName="iMonth" />
+          <ScalarProperty Name="InvoiceCreatedDate" ColumnName="InvoiceCreatedDate" />
+          <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+          <ScalarProperty Name="TotalTax" ColumnName="TotalTax" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_rpt_IGMAIR_Report" FunctionName="Model.Store.sp_rpt_IGMAIR_Report">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_rpt_IGMAIR_Report_Result">
+          <ScalarProperty Name="iAirClientId" ColumnName="iAirClientId" />
+          <ScalarProperty Name="sClientName" ColumnName="sClientName" />
+          <ScalarProperty Name="sCustomLocation" ColumnName="sCustomLocation" />
+          <ScalarProperty Name="sCustomCode" ColumnName="sCustomCode" />
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="sMAWBNo" ColumnName="sMAWBNo" />
+          <ScalarProperty Name="sHAWBNo" ColumnName="sHAWBNo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_rpt_MBLReport" FunctionName="Model.Store.sp_rpt_MBLReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_rpt_MBLReport_Result">
+          <ScalarProperty Name="iclientid" ColumnName="iclientid" />
+          <ScalarProperty Name="sclientname" ColumnName="sclientname" />
+          <ScalarProperty Name="mblnumber" ColumnName="mblnumber" />
+          <ScalarProperty Name="sHouseBillofLadingNo" ColumnName="sHouseBillofLadingNo" />
+          <ScalarProperty Name="sImporterName" ColumnName="sImporterName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="uspGetMsgResult" FunctionName="Model.Store.uspGetMsgResult">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.uspGetMsgResult_Result">
+          <ScalarProperty Name="SchedulingId" ColumnName="SchedulingId" />
+          <ScalarProperty Name="CARN" ColumnName="CARN" />
+          <ScalarProperty Name="ICEGateSeaID" ColumnName="ICEGateSeaID" />
+          <ScalarProperty Name="PortOfDestination" ColumnName="PortOfDestination" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Usp_AddInvoiceItem_Old" FunctionName="Model.Store.Usp_AddInvoiceItem_Old" />
+    <FunctionImportMapping FunctionImportName="Usp_AddInvoiceItem2" FunctionName="Model.Store.Usp_AddInvoiceItem2" />
+    <FunctionImportMapping FunctionImportName="Usp_UpdateInvoiceBalance1" FunctionName="Model.Store.Usp_UpdateInvoiceBalance" />
+    <EntitySetMapping Name="tblAirClientMasters">
+      <EntityTypeMapping TypeName="Model.tblAirClientMaster">
+        <MappingFragment StoreEntitySet="tblAirClientMaster">
+          <ScalarProperty Name="dPricePerUnit" ColumnName="dPricePerUnit" />
+          <ScalarProperty Name="sClientCode" ColumnName="sClientCode" />
+          <ScalarProperty Name="sStateCode" ColumnName="sStateCode" />
+          <ScalarProperty Name="sStateName" ColumnName="sStateName" />
+          <ScalarProperty Name="sEmailId" ColumnName="sEmailId" />
+          <ScalarProperty Name="sPinCode" ColumnName="sPinCode" />
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="sICEGateId" ColumnName="sICEGateId" />
+          <ScalarProperty Name="sCompanyName" ColumnName="sCompanyName" />
+          <ScalarProperty Name="sCARNNo" ColumnName="sCARNNo" />
+          <ScalarProperty Name="sGSTNo" ColumnName="sGSTNo" />
+          <ScalarProperty Name="sAddress" ColumnName="sAddress" />
+          <ScalarProperty Name="sPassword" ColumnName="sPassword" />
+          <ScalarProperty Name="sClientName" ColumnName="sClientName" />
+          <ScalarProperty Name="iAirClientId" ColumnName="iAirClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAirEGMFlightDetailsMs">
+      <EntityTypeMapping TypeName="Model.tblAirEGMFlightDetailsM">
+        <MappingFragment StoreEntitySet="tblAirEGMFlightDetailsM">
+          <ScalarProperty Name="bIsReadyForTransmit" ColumnName="bIsReadyForTransmit" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="sFlightRegistrationNo" ColumnName="sFlightRegistrationNo" />
+          <ScalarProperty Name="sPortOfDestination" ColumnName="sPortOfDestination" />
+          <ScalarProperty Name="sPortOfOrigin" ColumnName="sPortOfOrigin" />
+          <ScalarProperty Name="sEGMNo" ColumnName="sEGMNo" />
+          <ScalarProperty Name="dtFlightDate" ColumnName="dtFlightDate" />
+          <ScalarProperty Name="sFlightNo" ColumnName="sFlightNo" />
+          <ScalarProperty Name="iLocationId" ColumnName="iLocationId" />
+          <ScalarProperty Name="iClientId" ColumnName="iClientId" />
+          <ScalarProperty Name="iFlightId" ColumnName="iFlightId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAirEGMMAWBMs">
+      <EntityTypeMapping TypeName="Model.tblAirEGMMAWBM">
+        <MappingFragment StoreEntitySet="tblAirEGMMAWBM">
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="cShipmentType" ColumnName="cShipmentType" />
+          <ScalarProperty Name="sGoodsDescription" ColumnName="sGoodsDescription" />
+          <ScalarProperty Name="dTotalWeight" ColumnName="dTotalWeight" />
+          <ScalarProperty Name="dNoOfPackages" ColumnName="dNoOfPackages" />
+          <ScalarProperty Name="sPortOfDestination" ColumnName="sPortOfDestination" />
+          <ScalarProperty Name="sPortOfOrigin" ColumnName="sPortOfOrigin" />
+          <ScalarProperty Name="sMAWBNo" ColumnName="sMAWBNo" />
+          <ScalarProperty Name="iAirEGMFlightDetailsId" ColumnName="iAirEGMFlightDetailsId" />
+          <ScalarProperty Name="iAirEGMMAWBId" ColumnName="iAirEGMMAWBId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAirHAWBMs">
+      <EntityTypeMapping TypeName="Model.tblAirHAWBM">
+        <MappingFragment StoreEntitySet="tblAirHAWBM">
+          <ScalarProperty Name="sOrigin" ColumnName="sOrigin" />
+          <ScalarProperty Name="sDestination" ColumnName="sDestination" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="sDescription" ColumnName="sDescription" />
+          <ScalarProperty Name="nWeight" ColumnName="nWeight" />
+          <ScalarProperty Name="nPackages" ColumnName="nPackages" />
+          <ScalarProperty Name="sHAWBNo" ColumnName="sHAWBNo" />
+          <ScalarProperty Name="iMAWBId" ColumnName="iMAWBId" />
+          <ScalarProperty Name="iHAWBId" ColumnName="iHAWBId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAirIGMFlightDetailsMs">
+      <EntityTypeMapping TypeName="Model.tblAirIGMFlightDetailsM">
+        <MappingFragment StoreEntitySet="tblAirIGMFlightDetailsM">
+          <ScalarProperty Name="bIsReadyForTransmit" ColumnName="bIsReadyForTransmit" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="sFlightRegistrationNo" ColumnName="sFlightRegistrationNo" />
+          <ScalarProperty Name="sPortOfDestination" ColumnName="sPortOfDestination" />
+          <ScalarProperty Name="sPortOfOrigin" ColumnName="sPortOfOrigin" />
+          <ScalarProperty Name="tTime" ColumnName="tTime" />
+          <ScalarProperty Name="dtArrivalDate" ColumnName="dtArrivalDate" />
+          <ScalarProperty Name="dtDepartureDate" ColumnName="dtDepartureDate" />
+          <ScalarProperty Name="sFlightNo" ColumnName="sFlightNo" />
+          <ScalarProperty Name="iLocationId" ColumnName="iLocationId" />
+          <ScalarProperty Name="iClientId" ColumnName="iClientId" />
+          <ScalarProperty Name="iFlightId" ColumnName="iFlightId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAirIGMMAWBMs">
+      <EntityTypeMapping TypeName="Model.tblAirIGMMAWBM">
+        <MappingFragment StoreEntitySet="tblAirIGMMAWBM">
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="cShipmentType" ColumnName="cShipmentType" />
+          <ScalarProperty Name="sGoodsDescription" ColumnName="sGoodsDescription" />
+          <ScalarProperty Name="dTotalWeight" ColumnName="dTotalWeight" />
+          <ScalarProperty Name="dNoOfPackages" ColumnName="dNoOfPackages" />
+          <ScalarProperty Name="sPortOfDestination" ColumnName="sPortOfDestination" />
+          <ScalarProperty Name="sPortOfOrigin" ColumnName="sPortOfOrigin" />
+          <ScalarProperty Name="sMAWBNo" ColumnName="sMAWBNo" />
+          <ScalarProperty Name="sPalletNo" ColumnName="sPalletNo" />
+          <ScalarProperty Name="sSpecialHandlingCode" ColumnName="sSpecialHandlingCode" />
+          <ScalarProperty Name="iAirIGMFlightDetailsId" ColumnName="iAirIGMFlightDetailsId" />
+          <ScalarProperty Name="iAirIGMMAWBId" ColumnName="iAirIGMMAWBId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAirLocationMs">
+      <EntityTypeMapping TypeName="Model.tblAirLocationM">
+        <MappingFragment StoreEntitySet="tblAirLocationM">
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="sThreeLetterCode" ColumnName="sThreeLetterCode" />
+          <ScalarProperty Name="sCustomCode" ColumnName="sCustomCode" />
+          <ScalarProperty Name="sCustomLocation" ColumnName="sCustomLocation" />
+          <ScalarProperty Name="iLocationId" ColumnName="iLocationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBillingItems">
+      <EntityTypeMapping TypeName="Model.tblBillingItem">
+        <MappingFragment StoreEntitySet="tblBillingItem">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="iClientType" ColumnName="iClientType" />
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iHouseNo" ColumnName="iHouseNo" />
+          <ScalarProperty Name="iMasterID" ColumnName="iMasterID" />
+          <ScalarProperty Name="iClientId" ColumnName="iClientId" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="iBillingId" ColumnName="iBillingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBondMasterMs">
+      <EntityTypeMapping TypeName="Model.tblBondMasterM">
+        <MappingFragment StoreEntitySet="tblBondMasterM">
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="sCFSCode" ColumnName="sCFSCode" />
+          <ScalarProperty Name="sCFSName" ColumnName="sCFSName" />
+          <ScalarProperty Name="sModeOfTransport" ColumnName="sModeOfTransport" />
+          <ScalarProperty Name="sMLOCode" ColumnName="sMLOCode" />
+          <ScalarProperty Name="sCarrierCode" ColumnName="sCarrierCode" />
+          <ScalarProperty Name="nBondNo" ColumnName="nBondNo" />
+          <ScalarProperty Name="iFPODId" ColumnName="iFPODId" />
+          <ScalarProperty Name="iPODId" ColumnName="iPODId" />
+          <ScalarProperty Name="iShippingId" ColumnName="iShippingId" />
+          <ScalarProperty Name="sCargoMovement" ColumnName="sCargoMovement" />
+          <ScalarProperty Name="iBondId" ColumnName="iBondId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCityMs">
+      <EntityTypeMapping TypeName="Model.tblCityM">
+        <MappingFragment StoreEntitySet="tblCityMs">
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="sDescription" ColumnName="sDescription" />
+          <ScalarProperty Name="sCityName" ColumnName="sCityName" />
+          <ScalarProperty Name="iStateId" ColumnName="iStateId" />
+          <ScalarProperty Name="iCityId" ColumnName="iCityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblClientManagements">
+      <EntityTypeMapping TypeName="Model.tblClientManagement">
+        <MappingFragment StoreEntitySet="tblClientManagement">
+          <ScalarProperty Name="sModifiedFromIp" ColumnName="sModifiedFromIp" />
+          <ScalarProperty Name="dtModifiedOn" ColumnName="dtModifiedOn" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="sAddedFromIp" ColumnName="sAddedFromIp" />
+          <ScalarProperty Name="dtAddedOn" ColumnName="dtAddedOn" />
+          <ScalarProperty Name="iAddedBy" ColumnName="iAddedBy" />
+          <ScalarProperty Name="blsActive" ColumnName="blsActive" />
+          <ScalarProperty Name="sAgreementImageName" ColumnName="sAgreementImageName" />
+          <ScalarProperty Name="dtBusinessStartDate" ColumnName="dtBusinessStartDate" />
+          <ScalarProperty Name="dActualRevenue" ColumnName="dActualRevenue" />
+          <ScalarProperty Name="dRevenueExpected" ColumnName="dRevenueExpected" />
+          <ScalarProperty Name="dFinalRate" ColumnName="dFinalRate" />
+          <ScalarProperty Name="dRateOffered" ColumnName="dRateOffered" />
+          <ScalarProperty Name="sServiceType" ColumnName="sServiceType" />
+          <ScalarProperty Name="sEmailId" ColumnName="sEmailId" />
+          <ScalarProperty Name="dtNextFollowUpDate" ColumnName="dtNextFollowUpDate" />
+          <ScalarProperty Name="sAddress" ColumnName="sAddress" />
+          <ScalarProperty Name="sBranch" ColumnName="sBranch" />
+          <ScalarProperty Name="sReference" ColumnName="sReference" />
+          <ScalarProperty Name="sDecisionMakerContactNo" ColumnName="sDecisionMakerContactNo" />
+          <ScalarProperty Name="sDecisionMakerName" ColumnName="sDecisionMakerName" />
+          <ScalarProperty Name="sContactPersonContactNo" ColumnName="sContactPersonContactNo" />
+          <ScalarProperty Name="sContactPersonName" ColumnName="sContactPersonName" />
+          <ScalarProperty Name="sExistingClientName" ColumnName="sExistingClientName" />
+          <ScalarProperty Name="sNewClientName" ColumnName="sNewClientName" />
+          <ScalarProperty Name="dtDate" ColumnName="dtDate" />
+          <ScalarProperty Name="sClientCode" ColumnName="sClientCode" />
+          <ScalarProperty Name="iClientManagementId" ColumnName="iClientManagementId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblClientManagementFollowups">
+      <EntityTypeMapping TypeName="Model.tblClientManagementFollowup">
+        <MappingFragment StoreEntitySet="tblClientManagementFollowup">
+          <ScalarProperty Name="sModifiedFromIp" ColumnName="sModifiedFromIp" />
+          <ScalarProperty Name="dtModifiedOn" ColumnName="dtModifiedOn" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="sAddedFromIp" ColumnName="sAddedFromIp" />
+          <ScalarProperty Name="dtAddedOn" ColumnName="dtAddedOn" />
+          <ScalarProperty Name="iAddedBy" ColumnName="iAddedBy" />
+          <ScalarProperty Name="blsActive" ColumnName="blsActive" />
+          <ScalarProperty Name="dtNextFollowUpDate" ColumnName="dtNextFollowUpDate" />
+          <ScalarProperty Name="dActualRevenue" ColumnName="dActualRevenue" />
+          <ScalarProperty Name="dRevenueExpected" ColumnName="dRevenueExpected" />
+          <ScalarProperty Name="dFinalRate" ColumnName="dFinalRate" />
+          <ScalarProperty Name="dRateOffered" ColumnName="dRateOffered" />
+          <ScalarProperty Name="sManagementRemark" ColumnName="sManagementRemark" />
+          <ScalarProperty Name="sRemark" ColumnName="sRemark" />
+          <ScalarProperty Name="sDifference" ColumnName="sDifference" />
+          <ScalarProperty Name="sFollowUpType" ColumnName="sFollowUpType" />
+          <ScalarProperty Name="iClientManagementId" ColumnName="iClientManagementId" />
+          <ScalarProperty Name="iClientManagementFollowupId" ColumnName="iClientManagementFollowupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblClientMasters">
+      <EntityTypeMapping TypeName="Model.tblClientMaster">
+        <MappingFragment StoreEntitySet="tblClientMaster">
+          <ScalarProperty Name="dPricePerUnit" ColumnName="dPricePerUnit" />
+          <ScalarProperty Name="sStateCode" ColumnName="sStateCode" />
+          <ScalarProperty Name="sStateName" ColumnName="sStateName" />
+          <ScalarProperty Name="sGSTNNo" ColumnName="sGSTNNo" />
+          <ScalarProperty Name="sPinCode" ColumnName="sPinCode" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="dtModifiedDate" ColumnName="dtModifiedDate" />
+          <ScalarProperty Name="iCreatedBy" ColumnName="iCreatedBy" />
+          <ScalarProperty Name="dtCreatedDate" ColumnName="dtCreatedDate" />
+          <ScalarProperty Name="bIsActive" ColumnName="bIsActive" />
+          <ScalarProperty Name="sICEGateAirPassword" ColumnName="sICEGateAirPassword" />
+          <ScalarProperty Name="sICEGateAirID" ColumnName="sICEGateAirID" />
+          <ScalarProperty Name="sICEGateSeaPassword" ColumnName="sICEGateSeaPassword" />
+          <ScalarProperty Name="sICEGateSeaID" ColumnName="sICEGateSeaID" />
+          <ScalarProperty Name="sEmailID" ColumnName="sEmailID" />
+          <ScalarProperty Name="sFaxNumber" ColumnName="sFaxNumber" />
+          <ScalarProperty Name="sMobileNumber" ColumnName="sMobileNumber" />
+          <ScalarProperty Name="sLandLineNumber" ColumnName="sLandLineNumber" />
+          <ScalarProperty Name="sCompanyName" ColumnName="sCompanyName" />
+          <ScalarProperty Name="sOfficeAddress" ColumnName="sOfficeAddress" />
+          <ScalarProperty Name="sCARN" ColumnName="sCARN" />
+          <ScalarProperty Name="sClientCode" ColumnName="sClientCode" />
+          <ScalarProperty Name="sClientName" ColumnName="sClientName" />
+          <ScalarProperty Name="iClientID" ColumnName="iClientID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblClientMultipleEmails">
+      <EntityTypeMapping TypeName="Model.tblClientMultipleEmail">
+        <MappingFragment StoreEntitySet="tblClientMultipleEmail">
+          <ScalarProperty Name="blsActive" ColumnName="blsActive" />
+          <ScalarProperty Name="bIsDefault" ColumnName="bIsDefault" />
+          <ScalarProperty Name="sEmailPersonName" ColumnName="sEmailPersonName" />
+          <ScalarProperty Name="sEmailId" ColumnName="sEmailId" />
+          <ScalarProperty Name="iClientId" ColumnName="iClientId" />
+          <ScalarProperty Name="iClientType" ColumnName="iClientType" />
+          <ScalarProperty Name="iMailId" ColumnName="iMailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCompanies">
+      <EntityTypeMapping TypeName="Model.tblCompany">
+        <MappingFragment StoreEntitySet="tblCompany">
+          <ScalarProperty Name="blsActive" ColumnName="blsActive" />
+          <ScalarProperty Name="dtCreateDate" ColumnName="dtCreateDate" />
+          <ScalarProperty Name="blsIsDefault" ColumnName="blsIsDefault" />
+          <ScalarProperty Name="sEamilID" ColumnName="sEamilID" />
+          <ScalarProperty Name="sContactNo" ColumnName="sContactNo" />
+          <ScalarProperty Name="sGSTNNo" ColumnName="sGSTNNo" />
+          <ScalarProperty Name="sPanNo" ColumnName="sPanNo" />
+          <ScalarProperty Name="sStateCode" ColumnName="sStateCode" />
+          <ScalarProperty Name="sState" ColumnName="sState" />
+          <ScalarProperty Name="sCity" ColumnName="sCity" />
+          <ScalarProperty Name="sPincode" ColumnName="sPincode" />
+          <ScalarProperty Name="sAddress" ColumnName="sAddress" />
+          <ScalarProperty Name="sName" ColumnName="sName" />
+          <ScalarProperty Name="iCompanyId" ColumnName="iCompanyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCountryMs">
+      <EntityTypeMapping TypeName="Model.tblCountryM">
+        <MappingFragment StoreEntitySet="tblCountryMs">
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="sCountryImageUrl" ColumnName="sCountryImageUrl" />
+          <ScalarProperty Name="sCurrencyDescription" ColumnName="sCurrencyDescription" />
+          <ScalarProperty Name="sCountryDescription" ColumnName="sCountryDescription" />
+          <ScalarProperty Name="sCurrencyCode" ColumnName="sCurrencyCode" />
+          <ScalarProperty Name="sCountryPhoneCode" ColumnName="sCountryPhoneCode" />
+          <ScalarProperty Name="sCountryCode" ColumnName="sCountryCode" />
+          <ScalarProperty Name="sCountryName" ColumnName="sCountryName" />
+          <ScalarProperty Name="iCountryId" ColumnName="iCountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblInvoices">
+      <EntityTypeMapping TypeName="Model.tblInvoice">
+        <MappingFragment StoreEntitySet="tblInvoice">
+          <ScalarProperty Name="dTotalTds" ColumnName="dTotalTds" />
+          <ScalarProperty Name="iCompanyId" ColumnName="iCompanyId" />
+          <ScalarProperty Name="dtReceivedDate" ColumnName="dtReceivedDate" />
+          <ScalarProperty Name="dtPaymentDate" ColumnName="dtPaymentDate" />
+          <ScalarProperty Name="sPaymentMode" ColumnName="sPaymentMode" />
+          <ScalarProperty Name="blsPaymentStatus" ColumnName="blsPaymentStatus" />
+          <ScalarProperty Name="sModifiedFromIp" ColumnName="sModifiedFromIp" />
+          <ScalarProperty Name="dtModifiedOn" ColumnName="dtModifiedOn" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="sAddedFromIp" ColumnName="sAddedFromIp" />
+          <ScalarProperty Name="dtAddedOn" ColumnName="dtAddedOn" />
+          <ScalarProperty Name="iAddedBy" ColumnName="iAddedBy" />
+          <ScalarProperty Name="blsActive" ColumnName="blsActive" />
+          <ScalarProperty Name="dBalance" ColumnName="dBalance" />
+          <ScalarProperty Name="dPaidAmount" ColumnName="dPaidAmount" />
+          <ScalarProperty Name="dTotalCses" ColumnName="dTotalCses" />
+          <ScalarProperty Name="dTotalIgst" ColumnName="dTotalIgst" />
+          <ScalarProperty Name="dTotalSgst" ColumnName="dTotalSgst" />
+          <ScalarProperty Name="dTotalCgst" ColumnName="dTotalCgst" />
+          <ScalarProperty Name="dTotalAmount" ColumnName="dTotalAmount" />
+          <ScalarProperty Name="iTotalQuantity" ColumnName="iTotalQuantity" />
+          <ScalarProperty Name="sPOS" ColumnName="sPOS" />
+          <ScalarProperty Name="iClientType" ColumnName="iClientType" />
+          <ScalarProperty Name="InvoiceCreatedDate" ColumnName="InvoiceCreatedDate" />
+          <ScalarProperty Name="ToInvoiceDate" ColumnName="ToInvoiceDate" />
+          <ScalarProperty Name="FromInvoiceDate" ColumnName="FromInvoiceDate" />
+          <ScalarProperty Name="iMonth" ColumnName="iMonth" />
+          <ScalarProperty Name="iYear" ColumnName="iYear" />
+          <ScalarProperty Name="iClientId" ColumnName="iClientId" />
+          <ScalarProperty Name="sInvoiceNo" ColumnName="sInvoiceNo" />
+          <ScalarProperty Name="iInvoiceID" ColumnName="iInvoiceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblInvoiceItems">
+      <EntityTypeMapping TypeName="Model.tblInvoiceItem">
+        <MappingFragment StoreEntitySet="tblInvoiceItems">
+          <ScalarProperty Name="dtModifiedOn" ColumnName="dtModifiedOn" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="dtAddedOn" ColumnName="dtAddedOn" />
+          <ScalarProperty Name="iAddedBy" ColumnName="iAddedBy" />
+          <ScalarProperty Name="blsActive" ColumnName="blsActive" />
+          <ScalarProperty Name="dCsesInAmount" ColumnName="dCsesInAmount" />
+          <ScalarProperty Name="dIgstInAmount" ColumnName="dIgstInAmount" />
+          <ScalarProperty Name="dSgstInAmount" ColumnName="dSgstInAmount" />
+          <ScalarProperty Name="dCgstInAmount" ColumnName="dCgstInAmount" />
+          <ScalarProperty Name="dCsesInPercent" ColumnName="dCsesInPercent" />
+          <ScalarProperty Name="dIgstInPercent" ColumnName="dIgstInPercent" />
+          <ScalarProperty Name="dSgstInPercent" ColumnName="dSgstInPercent" />
+          <ScalarProperty Name="dCgstInPercent" ColumnName="dCgstInPercent" />
+          <ScalarProperty Name="dTotalAmount" ColumnName="dTotalAmount" />
+          <ScalarProperty Name="dAmountPerUnit" ColumnName="dAmountPerUnit" />
+          <ScalarProperty Name="sUnit" ColumnName="sUnit" />
+          <ScalarProperty Name="iQuantity" ColumnName="iQuantity" />
+          <ScalarProperty Name="sItemDescription" ColumnName="sItemDescription" />
+          <ScalarProperty Name="sHSN_Desc" ColumnName="sHSN_Desc" />
+          <ScalarProperty Name="sHSN_SAC" ColumnName="sHSN_SAC" />
+          <ScalarProperty Name="iInvoiceID" ColumnName="iInvoiceID" />
+          <ScalarProperty Name="iInvoiceItemID" ColumnName="iInvoiceItemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblInvoicePayments">
+      <EntityTypeMapping TypeName="Model.tblInvoicePayment">
+        <MappingFragment StoreEntitySet="tblInvoicePayment">
+          <ScalarProperty Name="sModifiedFromIp" ColumnName="sModifiedFromIp" />
+          <ScalarProperty Name="dtModifiedOn" ColumnName="dtModifiedOn" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="sAddedFromIp" ColumnName="sAddedFromIp" />
+          <ScalarProperty Name="dtAddedOn" ColumnName="dtAddedOn" />
+          <ScalarProperty Name="iAddedBy" ColumnName="iAddedBy" />
+          <ScalarProperty Name="blsActive" ColumnName="blsActive" />
+          <ScalarProperty Name="dtReceivedDate" ColumnName="dtReceivedDate" />
+          <ScalarProperty Name="dtCheckDate" ColumnName="dtCheckDate" />
+          <ScalarProperty Name="sCheckNeftNo" ColumnName="sCheckNeftNo" />
+          <ScalarProperty Name="sPaymentMode" ColumnName="sPaymentMode" />
+          <ScalarProperty Name="blsPaymentStatus" ColumnName="blsPaymentStatus" />
+          <ScalarProperty Name="dBalance" ColumnName="dBalance" />
+          <ScalarProperty Name="dTds" ColumnName="dTds" />
+          <ScalarProperty Name="dAmount" ColumnName="dAmount" />
+          <ScalarProperty Name="dtCreateDate" ColumnName="dtCreateDate" />
+          <ScalarProperty Name="iInvoiceId" ColumnName="iInvoiceId" />
+          <ScalarProperty Name="iInvoicePaymentID" ColumnName="iInvoicePaymentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPermissionsMs">
+      <EntityTypeMapping TypeName="Model.tblPermissionsM">
+        <MappingFragment StoreEntitySet="tblPermissionsMs">
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="bIsMaster" ColumnName="bIsMaster" />
+          <ScalarProperty Name="bShownInMenu" ColumnName="bShownInMenu" />
+          <ScalarProperty Name="iSort" ColumnName="iSort" />
+          <ScalarProperty Name="sPath" ColumnName="sPath" />
+          <ScalarProperty Name="sDescription" ColumnName="sDescription" />
+          <ScalarProperty Name="sPermissionName" ColumnName="sPermissionName" />
+          <ScalarProperty Name="iParentId" ColumnName="iParentId" />
+          <ScalarProperty Name="iPermissionId" ColumnName="iPermissionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPODMasters">
+      <EntityTypeMapping TypeName="Model.tblPODMaster">
+        <MappingFragment StoreEntitySet="tblPODMaster">
+          <ScalarProperty Name="dtModifiedDate" ColumnName="dtModifiedDate" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="dtCreatedDate" ColumnName="dtCreatedDate" />
+          <ScalarProperty Name="iCreatedBy" ColumnName="iCreatedBy" />
+          <ScalarProperty Name="bStatus" ColumnName="bStatus" />
+          <ScalarProperty Name="sDescription" ColumnName="sDescription" />
+          <ScalarProperty Name="sPortName" ColumnName="sPortName" />
+          <ScalarProperty Name="sPortCode" ColumnName="sPortCode" />
+          <ScalarProperty Name="iPortID" ColumnName="iPortID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPOFDMasters">
+      <EntityTypeMapping TypeName="Model.tblPOFDMaster">
+        <MappingFragment StoreEntitySet="tblPOFDMaster">
+          <ScalarProperty Name="dtModifiedDate" ColumnName="dtModifiedDate" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="dtCreatedDate" ColumnName="dtCreatedDate" />
+          <ScalarProperty Name="iCreatedBy" ColumnName="iCreatedBy" />
+          <ScalarProperty Name="bStatus" ColumnName="bStatus" />
+          <ScalarProperty Name="sDescription" ColumnName="sDescription" />
+          <ScalarProperty Name="sPortName" ColumnName="sPortName" />
+          <ScalarProperty Name="sPortCode" ColumnName="sPortCode" />
+          <ScalarProperty Name="iPortID" ColumnName="iPortID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPOSMasters">
+      <EntityTypeMapping TypeName="Model.tblPOSMaster">
+        <MappingFragment StoreEntitySet="tblPOSMaster">
+          <ScalarProperty Name="dtModifiedDate" ColumnName="dtModifiedDate" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="dtCreatedDate" ColumnName="dtCreatedDate" />
+          <ScalarProperty Name="iCreatedBy" ColumnName="iCreatedBy" />
+          <ScalarProperty Name="bStatus" ColumnName="bStatus" />
+          <ScalarProperty Name="sDescription" ColumnName="sDescription" />
+          <ScalarProperty Name="sPortName" ColumnName="sPortName" />
+          <ScalarProperty Name="sPortCode" ColumnName="sPortCode" />
+          <ScalarProperty Name="iPortID" ColumnName="iPortID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRoleMs">
+      <EntityTypeMapping TypeName="Model.tblRoleM">
+        <MappingFragment StoreEntitySet="tblRoleMs">
+          <ScalarProperty Name="bIsClient" ColumnName="bIsClient" />
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="sDescription" ColumnName="sDescription" />
+          <ScalarProperty Name="sRoleName" ColumnName="sRoleName" />
+          <ScalarProperty Name="iRoleId" ColumnName="iRoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRolePermissionMaps">
+      <EntityTypeMapping TypeName="Model.tblRolePermissionMap">
+        <MappingFragment StoreEntitySet="tblRolePermissionMaps">
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="iPermissionId" ColumnName="iPermissionId" />
+          <ScalarProperty Name="iRoleId" ColumnName="iRoleId" />
+          <ScalarProperty Name="iPermissionRoleMapId" ColumnName="iPermissionRoleMapId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSeaBondMasters">
+      <EntityTypeMapping TypeName="Model.tblSeaBondMaster">
+        <MappingFragment StoreEntitySet="tblSeaBondMaster">
+          <ScalarProperty Name="sModifiedFromIp" ColumnName="sModifiedFromIp" />
+          <ScalarProperty Name="dtModifiedOn" ColumnName="dtModifiedOn" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="sAddedFromIp" ColumnName="sAddedFromIp" />
+          <ScalarProperty Name="dtAddedOn" ColumnName="dtAddedOn" />
+          <ScalarProperty Name="iAddedBy" ColumnName="iAddedBy" />
+          <ScalarProperty Name="sMovementType" ColumnName="sMovementType" />
+          <ScalarProperty Name="sCarrierCode" ColumnName="sCarrierCode" />
+          <ScalarProperty Name="dBondNumber" ColumnName="dBondNumber" />
+          <ScalarProperty Name="iSchedulingId" ColumnName="iSchedulingId" />
+          <ScalarProperty Name="iBondID" ColumnName="iBondID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSeaContainerMasters">
+      <EntityTypeMapping TypeName="Model.tblSeaContainerMaster">
+        <MappingFragment StoreEntitySet="tblSeaContainerMaster">
+          <ScalarProperty Name="bStatus" ColumnName="bStatus" />
+          <ScalarProperty Name="iModifiedFromIp" ColumnName="iModifiedFromIp" />
+          <ScalarProperty Name="dtModifiedOn" ColumnName="dtModifiedOn" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="sAddedFromIp" ColumnName="sAddedFromIp" />
+          <ScalarProperty Name="dtAddedOn" ColumnName="dtAddedOn" />
+          <ScalarProperty Name="iAddedBy" ColumnName="iAddedBy" />
+          <ScalarProperty Name="sISOCode" ColumnName="sISOCode" />
+          <ScalarProperty Name="sContainerStatus" ColumnName="sContainerStatus" />
+          <ScalarProperty Name="nContainerWeight" ColumnName="nContainerWeight" />
+          <ScalarProperty Name="nTotalPackages" ColumnName="nTotalPackages" />
+          <ScalarProperty Name="sContainerSealNo" ColumnName="sContainerSealNo" />
+          <ScalarProperty Name="sContainerNumber" ColumnName="sContainerNumber" />
+          <ScalarProperty Name="iHBLID" ColumnName="iHBLID" />
+          <ScalarProperty Name="iSchedulingId" ColumnName="iSchedulingId" />
+          <ScalarProperty Name="iContainerId" ColumnName="iContainerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSeaHBLMasters">
+      <EntityTypeMapping TypeName="Model.tblSeaHBLMaster">
+        <MappingFragment StoreEntitySet="tblSeaHBLMaster">
+          <ScalarProperty Name="iSubLineNo" ColumnName="iSubLineNo" />
+          <ScalarProperty Name="sModifiedFromIp" ColumnName="sModifiedFromIp" />
+          <ScalarProperty Name="dtModifiedOn" ColumnName="dtModifiedOn" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="sAddedFromIp" ColumnName="sAddedFromIp" />
+          <ScalarProperty Name="dtAddedOn" ColumnName="dtAddedOn" />
+          <ScalarProperty Name="iAddedBy" ColumnName="iAddedBy" />
+          <ScalarProperty Name="sGoodsDescription" ColumnName="sGoodsDescription" />
+          <ScalarProperty Name="sMarksandNumbers" ColumnName="sMarksandNumbers" />
+          <ScalarProperty Name="sUnitofWeight" ColumnName="sUnitofWeight" />
+          <ScalarProperty Name="dGrossWeight" ColumnName="dGrossWeight" />
+          <ScalarProperty Name="sPackageCode" ColumnName="sPackageCode" />
+          <ScalarProperty Name="dTotalNumberofPackages" ColumnName="dTotalNumberofPackages" />
+          <ScalarProperty Name="sImporterAddress3" ColumnName="sImporterAddress3" />
+          <ScalarProperty Name="sImporterAddress2" ColumnName="sImporterAddress2" />
+          <ScalarProperty Name="sImporterAddress1" ColumnName="sImporterAddress1" />
+          <ScalarProperty Name="sImporterName" ColumnName="sImporterName" />
+          <ScalarProperty Name="dtHouseBillofLadingDate" ColumnName="dtHouseBillofLadingDate" />
+          <ScalarProperty Name="sHouseBillofLadingNo" ColumnName="sHouseBillofLadingNo" />
+          <ScalarProperty Name="iSchedulingId" ColumnName="iSchedulingId" />
+          <ScalarProperty Name="iMBLId" ColumnName="iMBLId" />
+          <ScalarProperty Name="iHBLID" ColumnName="iHBLID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSeaMBLMasters">
+      <EntityTypeMapping TypeName="Model.tblSeaMBLMaster">
+        <MappingFragment StoreEntitySet="tblSeaMBLMaster">
+          <ScalarProperty Name="sModifiedFromIp" ColumnName="sModifiedFromIp" />
+          <ScalarProperty Name="dtModifiedOn" ColumnName="dtModifiedOn" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="sAddedFromIp" ColumnName="sAddedFromIp" />
+          <ScalarProperty Name="dtAddedOn" ColumnName="dtAddedOn" />
+          <ScalarProperty Name="iAddedBy" ColumnName="iAddedBy" />
+          <ScalarProperty Name="nLineNo" ColumnName="nLineNo" />
+          <ScalarProperty Name="sVoyageNo" ColumnName="sVoyageNo" />
+          <ScalarProperty Name="sVesselCode" ColumnName="sVesselCode" />
+          <ScalarProperty Name="sIMOCode" ColumnName="sIMOCode" />
+          <ScalarProperty Name="dtIGMDate" ColumnName="dtIGMDate" />
+          <ScalarProperty Name="nIGMNo" ColumnName="nIGMNo" />
+          <ScalarProperty Name="sCFSCode" ColumnName="sCFSCode" />
+          <ScalarProperty Name="sCargoMovement" ColumnName="sCargoMovement" />
+          <ScalarProperty Name="iPOSId" ColumnName="iPOSId" />
+          <ScalarProperty Name="dtMBLDate" ColumnName="dtMBLDate" />
+          <ScalarProperty Name="iSchedulingId" ColumnName="iSchedulingId" />
+          <ScalarProperty Name="iMBLId" ColumnName="iMBLId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSeaSchedulings">
+      <EntityTypeMapping TypeName="Model.tblSeaScheduling">
+        <MappingFragment StoreEntitySet="tblSeaScheduling">
+          <ScalarProperty Name="sModifiedFromIp" ColumnName="sModifiedFromIp" />
+          <ScalarProperty Name="dtModifiedOn" ColumnName="dtModifiedOn" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="sAddedFromIp" ColumnName="sAddedFromIp" />
+          <ScalarProperty Name="dtCreatedOn" ColumnName="dtCreatedOn" />
+          <ScalarProperty Name="iCreatedBy" ColumnName="iCreatedBy" />
+          <ScalarProperty Name="sInvoiceRemarks" ColumnName="sInvoiceRemarks" />
+          <ScalarProperty Name="sRemarks" ColumnName="sRemarks" />
+          <ScalarProperty Name="dtReceivedOn" ColumnName="dtReceivedOn" />
+          <ScalarProperty Name="iSAction" ColumnName="iSAction" />
+          <ScalarProperty Name="bCheckListApproved" ColumnName="bCheckListApproved" />
+          <ScalarProperty Name="bCheckListSent" ColumnName="bCheckListSent" />
+          <ScalarProperty Name="dtEstimatedDateOfArrival" ColumnName="dtEstimatedDateOfArrival" />
+          <ScalarProperty Name="sVesselName" ColumnName="sVesselName" />
+          <ScalarProperty Name="iPortOfFinalDestinationID" ColumnName="iPortOfFinalDestinationID" />
+          <ScalarProperty Name="iPortOfDestinationID" ColumnName="iPortOfDestinationID" />
+          <ScalarProperty Name="sContainerNumber" ColumnName="sContainerNumber" />
+          <ScalarProperty Name="sMBLNumber" ColumnName="sMBLNumber" />
+          <ScalarProperty Name="iShippingID" ColumnName="iShippingID" />
+          <ScalarProperty Name="iClientId" ColumnName="iClientId" />
+          <ScalarProperty Name="iSchedulingId" ColumnName="iSchedulingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblShippingLines">
+      <EntityTypeMapping TypeName="Model.tblShippingLine">
+        <MappingFragment StoreEntitySet="tblShippingLine">
+          <ScalarProperty Name="dtModifiedDate" ColumnName="dtModifiedDate" />
+          <ScalarProperty Name="iModifiedBy" ColumnName="iModifiedBy" />
+          <ScalarProperty Name="dtCreatedDate" ColumnName="dtCreatedDate" />
+          <ScalarProperty Name="iCreatedBy" ColumnName="iCreatedBy" />
+          <ScalarProperty Name="bStatus" ColumnName="bStatus" />
+          <ScalarProperty Name="sDescription" ColumnName="sDescription" />
+          <ScalarProperty Name="sShippingLineName" ColumnName="sShippingLineName" />
+          <ScalarProperty Name="sMLOCode" ColumnName="sMLOCode" />
+          <ScalarProperty Name="iShippingID" ColumnName="iShippingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStateMs">
+      <EntityTypeMapping TypeName="Model.tblStateM">
+        <MappingFragment StoreEntitySet="tblStateMs">
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="sDescription" ColumnName="sDescription" />
+          <ScalarProperty Name="sStateCode" ColumnName="sStateCode" />
+          <ScalarProperty Name="sStateName" ColumnName="sStateName" />
+          <ScalarProperty Name="iCountryId" ColumnName="iCountryId" />
+          <ScalarProperty Name="iStateId" ColumnName="iStateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserMs">
+      <EntityTypeMapping TypeName="Model.tblUserM">
+        <MappingFragment StoreEntitySet="tblUserMs">
+          <ScalarProperty Name="iClientID" ColumnName="iClientID" />
+          <ScalarProperty Name="sPANCARD" ColumnName="sPANCARD" />
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="sPhoneNo" ColumnName="sPhoneNo" />
+          <ScalarProperty Name="sPhotoUrl" ColumnName="sPhotoUrl" />
+          <ScalarProperty Name="sEmailID" ColumnName="sEmailID" />
+          <ScalarProperty Name="sZipCode" ColumnName="sZipCode" />
+          <ScalarProperty Name="iCityId" ColumnName="iCityId" />
+          <ScalarProperty Name="sAddress2" ColumnName="sAddress2" />
+          <ScalarProperty Name="sAddress" ColumnName="sAddress" />
+          <ScalarProperty Name="sLastName" ColumnName="sLastName" />
+          <ScalarProperty Name="sFirstName" ColumnName="sFirstName" />
+          <ScalarProperty Name="iRoleId" ColumnName="iRoleId" />
+          <ScalarProperty Name="sPassword" ColumnName="sPassword" />
+          <ScalarProperty Name="sUsername" ColumnName="sUsername" />
+          <ScalarProperty Name="iUserId" ColumnName="iUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_AirSea_MAW_MBL">
+      <EntityTypeMapping TypeName="Model.vw_AirSea_MAW_MBL">
+        <MappingFragment StoreEntitySet="vw_AirSea_MAW_MBL">
+          <ScalarProperty Name="ClientType" ColumnName="ClientType" />
+          <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+          <ScalarProperty Name="CustomCode" ColumnName="CustomCode" />
+          <ScalarProperty Name="ImporterName" ColumnName="ImporterName" />
+          <ScalarProperty Name="HouseNo" ColumnName="HouseNo" />
+          <ScalarProperty Name="MasterNumber" ColumnName="MasterNumber" />
+          <ScalarProperty Name="CustomLocation" ColumnName="CustomLocation" />
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="ContainerStatus" ColumnName="ContainerStatus" />
+          <ScalarProperty Name="HouseNoID" ColumnName="HouseNoID" />
+          <ScalarProperty Name="MasterNoID" ColumnName="MasterNoID" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ClientMaster">
+      <EntityTypeMapping TypeName="Model.vw_ClientMaster">
+        <MappingFragment StoreEntitySet="vw_ClientMaster">
+          <ScalarProperty Name="dPricePerUnit" ColumnName="dPricePerUnit" />
+          <ScalarProperty Name="sClientCode" ColumnName="sClientCode" />
+          <ScalarProperty Name="sStateCode" ColumnName="sStateCode" />
+          <ScalarProperty Name="iClientType" ColumnName="iClientType" />
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="iClientId" ColumnName="iClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAirMAWBMs">
+      <EntityTypeMapping TypeName="Model.tblAirMAWBM">
+        <MappingFragment StoreEntitySet="tblAirMAWBM">
+          <ScalarProperty Name="iUpdatedBy" ColumnName="iUpdatedBy" />
+          <ScalarProperty Name="dtUpdateDate" ColumnName="dtUpdateDate" />
+          <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+          <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+          <ScalarProperty Name="iStatus" ColumnName="iStatus" />
+          <ScalarProperty Name="nWeight" ColumnName="nWeight" />
+          <ScalarProperty Name="nPackages" ColumnName="nPackages" />
+          <ScalarProperty Name="sDestination" ColumnName="sDestination" />
+          <ScalarProperty Name="sOrigin" ColumnName="sOrigin" />
+          <ScalarProperty Name="sMAWBNo" ColumnName="sMAWBNo" />
+          <ScalarProperty Name="dtFlightDate" ColumnName="dtFlightDate" />
+          <ScalarProperty Name="sFlightNumber" ColumnName="sFlightNumber" />
+          <ScalarProperty Name="dtIGMDate" ColumnName="dtIGMDate" />
+          <ScalarProperty Name="sIGMNumber" ColumnName="sIGMNumber" />
+          <ScalarProperty Name="iLocationId" ColumnName="iLocationId" />
+          <ScalarProperty Name="iAirClientId" ColumnName="iAirClientId" />
+          <ScalarProperty Name="iMAWBId" ColumnName="iMAWBId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

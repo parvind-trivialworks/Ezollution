@@ -1,0 +1,219 @@
+﻿@model EzollutionPro_BAL.Models.InvoiceModel
+@{
+    ViewBag.Title = "Add Edit Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<SelectListItem> litaxrate = new List<SelectListItem>();
+    //litaxrate.Add(new SelectListItem
+    //{
+    //    Text = "[ SELECT ]",
+    //    Value = "",
+    //    Selected = true
+    //});
+    litaxrate.Add(new SelectListItem
+    {
+        Text = "0%",
+        Value = "0",
+    });
+    
+    litaxrate.Add(new SelectListItem
+    {
+        Text = "9%",
+        Value = "9",
+    }); litaxrate.Add(new SelectListItem
+    {
+        Text = "18%",
+        Value = "18",
+    });
+
+    string ButtonText = "Proceed";
+    if(Model.iInvoiceID>0)
+    {
+        ButtonText = "Update Details";
+    }
+}
+<style type="text/css">
+    .input-group {
+        width: 100%;
+    }
+</style>
+
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+<link href="~/Content/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title"><i class="fa fa-files-o"></i>&nbsp;@ViewBag.Title
+        @if(Model.iInvoiceID>0)
+        {
+            <span>Invoice No.: @Model.sInvoiceNo</span>
+        }
+        </h3>
+        <div class="pull-right">
+
+        </div>
+        <div class="pull-right">
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div id="home" class="tab-pane fade in active">
+                <div class="">
+
+                    <div class="box-body" style="min-height:500px">
+                        @if (ViewBag.Message == "success")
+                        {
+                            <div class="alert alert-success">Invoice item added successfully.</div>
+                        }
+                        @using (Html.BeginForm("AddEdit", "Invoice", FormMethod.Post, new { @id = "frmInvoice2" }))
+                        {
+                            @Html.HiddenFor(x => x.iInvoiceID)
+                            @Html.HiddenFor(x => x.blsActive)
+                            @Html.ValidationSummary()
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-3">
+                                            @Html.Label("Company")
+                                            @Html.DropDownListFor(x => x.iCompanyId, new SelectList(ViewBag.Companies, "Value", "Text"), new { @data_live_search = "true", @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.iCompanyId)
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @Html.Label("Invoice From Date")
+                                            @Html.TextBoxFor(x => x.FromInvoiceDate, new { @class = "form-control" })
+
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            @Html.Label("Invoice To Date")
+                                            @Html.TextBoxFor(x => x.ToInvoiceDate, new { @class = "form-control" })
+
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>Client Type</label>
+                                            <div class="input-group">
+                                                @{
+                                                    List<SelectListItem> listClientType = new List<SelectListItem>();
+                                                    listClientType.Add(new SelectListItem
+                                                    {
+                                                        Text = "SEA",
+                                                        Value = "0",
+                                                        Selected = true
+                                                    });
+
+                                                    listClientType.Add(new SelectListItem
+                                                    {
+                                                        Text = "AIR",
+                                                        Value = "1",
+                                                    });
+
+                                                }
+                                                @Html.DropDownListFor(model => model.iClientType, listClientType, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.iClientType)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-3">
+                                            @Html.Label("Client")
+                                            @Html.DropDownListFor(x => x.iClientId, new SelectList(ViewBag.Clients, "Value", "Text"), "[ SELECT ]", new { @data_live_search = "true", @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.iClientId)
+                                        </div>
+
+
+                                        <div class="col-md-3">
+                                            @Html.Label("POS")
+                                            @Html.TextBoxFor(x => x.sPOS, new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>&nbsp;</label>
+                                            <div class="input-group">
+
+                                                <input type="submit" value="@ButtonText" name="get" class="btn btn-success" id="btnGet" />&nbsp;
+                                                @if (Model.iInvoiceID > 0)
+                                                {
+                                                    <a href="/Invoice/Index" class="btn btn-danger">Back</a>
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br />
+
+                        }
+                        @if (Model.iInvoiceID > 0)
+                        {
+                            <div class="box box-success">
+
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">
+                                        <i class="fa fa-files-o"></i>&nbsp;Invoice Items
+                                        &nbsp; <button class='btn btn-warning btn-xs' onclick='AddEditInvoiceItem(@Model.iInvoiceID,0)'>
+                                        <i class='fa fa-plus'></i>Add New Item</button>
+                                    </h3>
+                                </div>
+                                <div class="box-body">
+                                    <table id="tblInvoiceItems" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>HSN/SAC</th>
+                                                <th>Description</th>
+                                                <th>Item Description</th>
+                                                <th>Quantity</th>
+                                                <th>Price/Unit</th>
+                                                <th>Total Amount</th>
+                                                <th>CGST</th>
+                                                <th>SGST</th>
+                                                <th>IGST</th>
+                                                <th></th>
+                                            </tr>
+                                        <tfoot>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Total</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td id="T_TotalAmount">0.00</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Scripts/PageScripts/invoice.js"></script>
+    <script>
+        $(document).ready(function () {
+            GetInvoiceItems('@Model.iInvoiceID');
+        });
+    </script>
+}

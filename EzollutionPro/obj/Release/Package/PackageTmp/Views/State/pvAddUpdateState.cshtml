@@ -1,0 +1,47 @@
+﻿@model EzollutionPro_BAL.Models.Masters.StateModel
+<div class="modal-header">
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update State</h4>
+</div>
+@using (Html.BeginForm("AddUpdateState", "State", FormMethod.Post, new { @id = "frmSaveState" }))
+{
+    <div class="modal-body">
+        @Html.HiddenFor(x => x.iStateId)
+        <div class="row mt-2">
+            <div class="col-md-2">
+                @Html.Label("Country")
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownListFor(x => x.iCountryId,new SelectList(ViewBag.Countries,"Value","Text"),"[ SELECT ]", new { @class = "form-control", @data_live_search = "true" })
+                @Html.ValidationMessageFor(x => x.iCountryId)
+            </div>
+            <div class="col-md-2">
+                @Html.Label("State Code")
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(x => x.sStateCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sStateCode)
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-2">
+                @Html.Label("State Name")
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(x => x.sStateName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sStateName)
+            </div>
+            <div class="col-md-2">
+                @Html.Label("Description")
+            </div>
+            <div class="col-md-4">
+                @Html.TextAreaFor(x => x.sStateDescription, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sStateDescription)
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+    </div>
+}

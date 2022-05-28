@@ -1,0 +1,31 @@
+﻿<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Port Of Destination</h3>
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" onclick="AddPOD(0)"><i class="fa fa-plus"></i> Add New Port Of Destination</button>
+            </div>
+        </div>
+        <div class="pull-right">
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="table table-responsive">
+            <table class="table table-bordered" id="tblPOD">
+                <thead>
+                    <tr>
+                        <th>SNo.</th>
+                        <th>Port Name</th>
+                        <th>Port Code</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/PageScripts/Masters/POD.js"></script>
+}
+

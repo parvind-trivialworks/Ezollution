@@ -1,0 +1,174 @@
+﻿@model EzollutionPro_BAL.Models.AirIGMMAWBModel
+
+@{
+    ViewBag.Title = "AddUpdateMAWB";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm("AddUpdateMAWB", "AirIGMFlight", FormMethod.Post, new { @id = "frmAirIGMFlightUpdate" }))
+{
+    @Html.AntiForgeryToken()
+    if (TempData["MAWBError"] != null)
+    {
+        <div class="alert alert-danger alert-dismissable show" role="alert">
+            @TempData["MAWBError"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <section class="container">
+        <section class="content">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add/Update MAWB</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.iAirIGMMAWBId)
+                    @Html.HiddenFor(model => model.iFlightId)
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>MAWB No</label>
+                            @Html.EditorFor(model => model.sMAWBNo, new { htmlAttributes = new { @class = "form-control", @maxlength = 11, onkeypress = "return isNumber(event)" } })
+                            @Html.ValidationMessageFor(model => model.sMAWBNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Pallet No</label>
+                            @Html.EditorFor(model => model.sPalletNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.sPalletNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Port of Origin</label>
+                            @Html.EditorFor(model => model.sPortOfOrigin, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.sPortOfOrigin, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Port of Destination</label>
+                            @Html.EditorFor(model => model.sPortOfDestination, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.sPortOfDestination, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>No of Packages</label>
+                            @Html.EditorFor(model => model.sNoOfPackages, new { htmlAttributes = new { @class = "form-control", @maxlength = 8, onkeypress = "return isNumber(event)" } })
+                            @Html.ValidationMessageFor(model => model.sNoOfPackages, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Total Weight</label>
+                            @Html.EditorFor(model => model.sTotalWeight, new { htmlAttributes = new { @class = "form-control", @maxlength = 13, onkeypress = "return isDecimalField(this,event)" } })
+                            @Html.ValidationMessageFor(model => model.sTotalWeight, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Goods Description</label>
+                            @Html.TextBoxFor(z => z.sGoodsDescription, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(z => z.sGoodsDescription)
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Special Handling Code</label>
+                            @Html.TextBoxFor(z => z.sSpecialHandlingCode, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(z => z.sSpecialHandlingCode)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>Shipment Type</label>
+                            @Html.DropDownListFor(z => z.cShipmentType, new List<SelectListItem>
+                            {
+                                new SelectListItem{ Text= "Total",Value="T"},
+                                new SelectListItem{ Text= "Part",Value="P"}
+                            }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(z => z.cShipmentType)
+                        </div>
+                        <div class="col-md-9">
+                           
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            @*@if (System.Configuration.ConfigurationManager.AppSettings["AirSetting"] == "1")
+        {
+
+        }*@
+                            <input type="submit" value="Save" class="btn btn-default" id="btnSubmit" />
+
+                        </div>
+                    </div>
+                </div>
+                    </div>
+</section>
+    </section>
+@*  *@}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script>
+
+        function isDecimalField(txt, evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode == 46) {
+                //Check if the text already contains the . character
+                if (txt.value.indexOf('.') === -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (charCode > 31 &&
+                    (charCode < 48 || charCode > 57))
+                    return false;
+            }
+            return true;
+        }
+
+         $(document).ready(function () {
+            $("#btnSubmit").click(function (event) {
+                var ID = @Model.iAirIGMMAWBId;
+                if (ID == 0) {
+                    if ($("#frmAirIGMFlightUpdate").valid()) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Common/ValidateMAWB",
+                            contentType: "application/json; charset=utf-8",
+                            data: '{"PageName":"AirIGMFlight","MAWBNo": ' + $("#sMAWBNo").val().trim() + '}',
+                            dataType: "json",
+                            async: false,
+                            success: function (res) {
+                                debugger;
+                                if (res.Status == false) {
+                                    if (!confirm(res.Message + " Do you want to enter again ?")) {
+                                        event.preventDefault();
+                                        return false;
+                                    }
+                                    else {
+                                        return true;
+                                    }
+                                }
+                            }
+                        })
+                    }
+                    else {
+                        event.preventDefault();
+                    }
+                }
+            });
+        });
+
+        $(document).on('keyup', 'input[type="text"],textarea', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+
+
+    </script>
+}

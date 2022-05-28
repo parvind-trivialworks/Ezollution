@@ -1,0 +1,37 @@
+﻿<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">States</h3>
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success" onclick="AddState(0)"><i class="fa fa-plus"></i> Add New State</button>
+            </div>
+        </div>
+        <div class="pull-right">
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="table table-responsive">
+            <table class="table table-bordered" id="tblState">
+                <thead>
+                    <tr>
+                        <th>
+                            State Code
+                        </th>
+                        <th>
+                            State Name
+                        </th>
+                        <th>Country Name</th>
+                        <th>Description</th>
+
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/PageScripts/Masters/State.js"></script>
+}
+

@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E9AAA690-0452-465F-881D-70098E7C135E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EzollutionPro_DAL</RootNamespace>
+    <AssemblyName>EzollutionPro_DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EzollutionProEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EzollutionProEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EzollutionProEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EzollutionProEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EzollutionProEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sp_rpt_ALLDateWiseReport_Result.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_rpt_DateWiseReport_Result.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_rpt_IGMAIR_Report_Result.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_rpt_MBLReport_Result.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAirClientMaster.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAirEGMFlightDetailsM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAirEGMMAWBM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAirHAWBM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAirIGMFlightDetailsM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAirIGMMAWBM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAirLocationM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAirMAWBM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBillingItem.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBondMasterM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCityM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClientManagement.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClientManagementFollowup.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClientMaster.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClientMultipleEmail.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCompany.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCountryM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblInvoice.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblInvoiceItem.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblInvoicePayment.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPermissionsM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPODMaster.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPOFDMaster.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPOSMaster.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRoleM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRolePermissionMap.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSeaBondMaster.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSeaContainerMaster.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSeaHBLMaster.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSeaMBLMaster.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSeaScheduling.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblShippingLine.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblStateM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUserM.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspGetMsgResult_Result.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_AirSea_MAW_MBL.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_ClientMaster.cs">
+      <DependentUpon>EzollutionProEntities.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="EzollutionProEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EzollutionProEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EzollutionProEntities.edmx.diagram">
+      <DependentUpon>EzollutionProEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EzollutionProEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EzollutionProEntities.Context.cs</LastGenOutput>
+      <DependentUpon>EzollutionProEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="EzollutionProEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EzollutionProEntities.edmx</DependentUpon>
+      <LastGenOutput>EzollutionProEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

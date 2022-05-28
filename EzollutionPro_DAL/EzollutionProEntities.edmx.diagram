@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fea24042ccb04ca99029a6e57ce47bf6" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="Model.tblAirClientMaster" Width="1.5" PointX="17.75" PointY="1.875" />
+        <EntityTypeShape EntityType="Model.tblAirEGMFlightDetailsM" Width="1.5" PointX="20" PointY="8.25" />
+        <EntityTypeShape EntityType="Model.tblAirEGMMAWBM" Width="1.5" PointX="22.25" PointY="8.5" />
+        <EntityTypeShape EntityType="Model.tblAirHAWBM" Width="1.5" PointX="22.25" PointY="3.625" />
+        <EntityTypeShape EntityType="Model.tblAirIGMFlightDetailsM" Width="1.5" PointX="17" PointY="8.125" />
+        <EntityTypeShape EntityType="Model.tblAirIGMMAWBM" Width="1.5" PointX="19.25" PointY="13.375" />
+        <EntityTypeShape EntityType="Model.tblAirLocationM" Width="1.5" PointX="14.75" PointY="8.875" />
+        <EntityTypeShape EntityType="Model.tblBillingItem" Width="1.5" PointX="17" PointY="25.125" />
+        <EntityTypeShape EntityType="Model.tblBondMasterM" Width="1.5" PointX="6" PointY="14.625" />
+        <EntityTypeShape EntityType="Model.tblCityM" Width="1.5" PointX="11.75" PointY="1.5" />
+        <EntityTypeShape EntityType="Model.tblClientManagement" Width="1.5" PointX="5.75" PointY="20.5" />
+        <EntityTypeShape EntityType="Model.tblClientManagementFollowup" Width="1.75" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="Model.tblClientMaster" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.tblClientMultipleEmail" Width="1.5" PointX="2.75" PointY="2.5" />
+        <EntityTypeShape EntityType="Model.tblCompany" Width="1.5" PointX="5.75" PointY="5.5" />
+        <EntityTypeShape EntityType="Model.tblCountryM" Width="1.5" PointX="7.25" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.tblInvoice" Width="1.5" PointX="14.75" PointY="19.75" />
+        <EntityTypeShape EntityType="Model.tblInvoiceItem" Width="1.5" PointX="17" PointY="19" />
+        <EntityTypeShape EntityType="Model.tblInvoicePayment" Width="1.5" PointX="14.75" PointY="13.5" />
+        <EntityTypeShape EntityType="Model.tblPermissionsM" Width="1.5" PointX="8.75" PointY="9.25" />
+        <EntityTypeShape EntityType="Model.tblPODMaster" Width="1.5" PointX="3.75" PointY="21.125" />
+        <EntityTypeShape EntityType="Model.tblPOFDMaster" Width="1.5" PointX="0.75" PointY="15.125" />
+        <EntityTypeShape EntityType="Model.tblPOSMaster" Width="1.5" PointX="6" PointY="10.25" />
+        <EntityTypeShape EntityType="Model.tblRoleM" Width="1.5" PointX="8.75" PointY="5.5" />
+        <EntityTypeShape EntityType="Model.tblRolePermissionMap" Width="1.5" PointX="11" PointY="5.625" />
+        <EntityTypeShape EntityType="Model.tblSeaBondMaster" Width="1.5" PointX="5.25" PointY="32.625" />
+        <EntityTypeShape EntityType="Model.tblSeaContainerMaster" Width="1.5" PointX="12.75" PointY="14.5" />
+        <EntityTypeShape EntityType="Model.tblSeaHBLMaster" Width="1.5" PointX="10.5" PointY="13.75" />
+        <EntityTypeShape EntityType="Model.tblSeaMBLMaster" Width="1.5" PointX="8.25" PointY="14.125" />
+        <EntityTypeShape EntityType="Model.tblSeaScheduling" Width="1.5" PointX="3" PointY="13.375" />
+        <EntityTypeShape EntityType="Model.tblShippingLine" Width="1.5" PointX="3.75" PointY="9.25" />
+        <EntityTypeShape EntityType="Model.tblStateM" Width="1.5" PointX="9.5" PointY="1.5" />
+        <EntityTypeShape EntityType="Model.tblUserM" Width="1.5" PointX="14" PointY="2.5" />
+        <AssociationConnector Association="Model.FK_tblAirEGMFlightDetailsM_tblAirClientMaster" />
+        <AssociationConnector Association="Model.FK_tblAirIGMFlightDetailsM_tblAirClientMaster" />
+        <AssociationConnector Association="Model.FK_tblAirEGMFlightDetailsM_tblAirLocationM" />
+        <AssociationConnector Association="Model.FK_tblAirEGMMAWBM_tblAirEGMFlightDetailsM" />
+        <AssociationConnector Association="Model.FK_tblAirIGMFlightDetailsM_tblAirLocationM" />
+        <AssociationConnector Association="Model.FK_tblAirIGMMAWBM_tblAirIGMFlightDetailsM" />
+        <AssociationConnector Association="Model.FK_tblBillingItem_tblBillingItem" />
+        <AssociationConnector Association="Model.FK_tblBondMasterM_tblPODMaster" />
+        <AssociationConnector Association="Model.FK_tblBondMasterM_tblPOFDMaster" />
+        <AssociationConnector Association="Model.FK_tblBondMasterM_tblShippingLine" />
+        <AssociationConnector Association="Model.FK_tblCityM_tblStateM" />
+        <AssociationConnector Association="Model.FK_tblUserM_tblCityM" />
+        <AssociationConnector Association="Model.FK_tblSeaScheduling_tblClientMaster" />
+        <AssociationConnector Association="Model.FK_tblStateM_tblCountryM" />
+        <AssociationConnector Association="Model.FK__tblInvoic__iInvo__3C89F72A" />
+        <AssociationConnector Association="Model.FK_tblRolePermissionMap_tblPermissionM" />
+        <AssociationConnector Association="Model.FK_tblSeaScheduling_tblPODMaster" />
+        <AssociationConnector Association="Model.FK_tblSeaScheduling_tblPOFDMaster" />
+        <AssociationConnector Association="Model.FK_tblSeaMBLMaster_tblPOSMaster" />
+        <AssociationConnector Association="Model.FK_tblRolePermissionMap_tblRoleM" />
+        <AssociationConnector Association="Model.FK_tblUserM_tblRoleM" />
+        <AssociationConnector Association="Model.FK_tblSeaBondMaster_tblSeaScheduling" />
+        <AssociationConnector Association="Model.FK_tblSeaContainerMaster_tblSeaHBLMaster" />
+        <AssociationConnector Association="Model.FK_tblSeaContainerMaster_tblSeaScheduling" />
+        <AssociationConnector Association="Model.FK_tblSeaHBLMaster_tblSeaMBLMaster" />
+        <AssociationConnector Association="Model.FK_tblSeaHBLMaster_tblSeaScheduling" />
+        <AssociationConnector Association="Model.FK_tblSeaMBLMaster_tblSeaScheduling" />
+        <AssociationConnector Association="Model.FK_tblSeaScheduling_tblShippingLine" />
+        <EntityTypeShape EntityType="Model.vw_AirSea_MAW_MBL" Width="1.5" PointX="11.375" PointY="8.75" />
+        <EntityTypeShape EntityType="Model.vw_ClientMaster" Width="1.5" PointX="19.375" PointY="18.75" />
+        <EntityTypeShape EntityType="Model.tblAirMAWBM" Width="1.5" PointX="20" PointY="2.375" />
+        <AssociationConnector Association="Model.FK_tblAirMAWBM_tblAirClientMaster" />
+        <AssociationConnector Association="Model.FK_tblAirHAWBM_tblAirMAWBM" />
+        <AssociationConnector Association="Model.FK_tblAirMAWBM_tblAirLocationM" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

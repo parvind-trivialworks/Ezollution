@@ -1,0 +1,122 @@
+﻿@model EzollutionPro_BAL.Models.SchedulingViewModel
+<div class="modal-header">
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update Schedule</h4>
+</div>
+@{
+    var CheckList = new List<SelectListItem>
+{
+new SelectListItem{Text="No",Value="No" },
+new SelectListItem{Text="Yes",Value="Yes" }
+};
+}
+@using (Html.BeginForm("SaveSchedule", "SeaScheduling", FormMethod.Post, new { @id = "frmSaveScheduling" }))
+{
+<div class="modal-body capitalize">
+    @Html.HiddenFor(x => x.iSchedulingId)
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("Agent")
+            @Html.DropDownListFor(x => x.iClientId, new SelectList(ViewBag.Clients, "Value", "Text"), "[ SELECT ]", new { @data_live_search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iClientId)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("MBL Number")
+            @Html.TextBoxFor(x => x.sMBLNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sMBLNumber)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("Shipping Line Name")
+            @Html.DropDownListFor(x => x.iShippingId, new SelectList(ViewBag.ShippingLines, "Value", "Text"), "[ SELECT ]", new { @data_live_search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iShippingId)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("Container Number")
+            @Html.TextBoxFor(x => x.sContainerNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sContainerNumber)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("Port Of Destination")
+            @Html.DropDownListFor(x => x.iPODId, new SelectList(ViewBag.PODs, "Value", "Text"), "[ SELECT ]", new { @data_live_search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iPODId)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("Final Destination")
+            @Html.DropDownListFor(x => x.iFPODId, new SelectList(ViewBag.FPODs, "Value", "Text"), "[ SELECT ]", new { @data_live_search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iFPODId)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("Vessel Name")
+            @Html.TextBoxFor(x => x.sVesselName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sVesselName)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("Estimated Date Of Arrival")
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                @Html.TextBoxFor(x => x.sEDA, new { @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(x => x.iFPODId)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("CheckList Sent")
+            @Html.DropDownListFor(x => x.sCheckListSent, new SelectList(CheckList, "Value", "Text"), new { @data_live_search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sCheckListSent)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("CheckList Approved")
+            @Html.DropDownListFor(x => x.sCheckListApproved, new SelectList(CheckList, "Value", "Text"), new { @data_live_search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sCheckListApproved)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("File Status")
+            @Html.DropDownListFor(x => x.iSAction, new SelectList(ViewBag.FileStatus_s, "Value", "Text"), new { @data_live_search = "true", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iSAction)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("RecievedOn")
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                @Html.TextBoxFor(x => x.sRecieveOn, new { @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(x => x.sRecieveOn)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            @Html.Label("Remarks")
+            @Html.TextAreaFor(x => x.sRemarks, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sRemarks)
+        </div>
+    </div> <div class="row mt-3">
+        <div class="col-md-12">
+            @Html.Label("Invoice Remarks")
+            @Html.TextAreaFor(x => x.sInvoiceRemarks, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sInvoiceRemarks)
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+ 
+
+                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+
+
+
+    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+</div>
+}

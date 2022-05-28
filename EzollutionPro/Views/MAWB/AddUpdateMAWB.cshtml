@@ -1,0 +1,254 @@
+﻿@model EzollutionPro_BAL.Models.Masters.MAWBModel
+
+@{
+    ViewBag.Title = "AddUpdateMAWB";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm("AddUpdateMAWB", "MAWB", FormMethod.Post,new { @id= "frmMAWBAddUpdate" }))
+{
+    @Html.AntiForgeryToken()
+   
+   
+    <section class="container">
+        <section class="content">
+            @if (TempData["MAWBError"] != null)
+            {
+            <div class="alert alert-danger alert-dismissable show" role="alert">
+                @TempData["MAWBError"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            }
+            @if (TempData["MAWBSuccess"] != null)
+            {
+            <div class="alert alert-success alert-dismissable show" role="alert">
+                @TempData["MAWBSuccess"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            }
+            <!-- SELECT2 EXAMPLE -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add/Update MAWB</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.iMAWBId)
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.iAirClientId, htmlAttributes: new { @class = "control-label" })
+                            <select id="iAirClientId" name="iAirClientId" class="form-control">
+                                <option>Select</option>
+                                @foreach (var item in (List<EzollutionPro_BAL.Models.Masters.DropDownData>)ViewBag.Clients)
+                                {
+                                    <option data-carn="@item.Value" value=@item.Id @(item.Id == Model.iAirClientId ? "selected" : "")>@item.Text</option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(model => model.iAirClientId, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.sCARNNo, htmlAttributes: new { @class = "control-label" })
+                            
+                            @Html.EditorFor(model => model.sCARNNo, new { htmlAttributes = new { @class = "form-control", @maxlength = 10 } })
+                            @Html.ValidationMessageFor(model => model.sCARNNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.iLocationId, htmlAttributes: new { @class = "control-label" })
+                            <select id="iLocationId" name="iLocationId" class="form-control selectpicker">
+                                <option>Select</option>
+                                @foreach (var item in (List<EzollutionPro_BAL.Models.Masters.DropDownData>)ViewBag.CustomLocations)
+                                {
+                                    <option data-custom="@item.Value" value=@item.Id @(item.Id == Model.iLocationId ? "selected" : "")>@item.Text</option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(model => model.iLocationId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sIGMNumber, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sIGMNumber, new { htmlAttributes = new { @class = "form-control", @maxlength = 7 } })
+                            @Html.ValidationMessageFor(model => model.sIGMNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sIGMDate, htmlAttributes: new { @class = "control-label" })
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.sIGMDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <label for="sIGMDate" class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </label>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.sIGMDate, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sFlightNumber, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sFlightNumber, new { htmlAttributes = new { @class = "form-control", @maxlength = 15 } })
+                            @Html.ValidationMessageFor(model => model.sFlightNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sFlightDate, htmlAttributes: new { @class = "control-label" })
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.sFlightDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <label for="sFlightDate" class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </label>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.sFlightDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sMAWBNo, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sMAWBNo, new { htmlAttributes = new { @class = "form-control", @maxlength = 11, onkeypress = "return isNumber(event)" } })
+                            @Html.ValidationMessageFor(model => model.sMAWBNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sOrigin, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sOrigin, new { htmlAttributes = new { @class = "form-control", @maxlength = 3 } })
+                            @Html.ValidationMessageFor(model => model.sOrigin, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sDestination, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sDestination, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.sDestination, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sPackages, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sPackages, new { htmlAttributes = new { @class = "form-control", @maxlength = 7, onkeypress = "return isNumber(event)" } })
+                            @Html.ValidationMessageFor(model => model.sPackages, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.sWeight, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.sWeight, new { htmlAttributes = new { @class = "form-control", @maxlength = 13, onkeypress = "return isDecimalField(this,event)" } })
+                            @Html.ValidationMessageFor(model => model.sWeight, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.Label("Description", htmlAttributes: new { @class = "control-label" })
+                            @Html.TextBox("Description", "CONSOL", new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                          @*@if (System.Configuration.ConfigurationManager.AppSettings["AirSetting"] == "1")
+                          {*@
+                            <input type="submit" value="Save" class="btn btn-success" id="btnSubmit" />
+                          
+                            <a class="btn btn-default" ifef="/MAWB/Index">Back</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script>
+
+        function isDecimalField(txt, evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode == 46) {
+                //Check if the text already contains the . character
+                if (txt.value.indexOf('.') === -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (charCode > 31 &&
+                    (charCode < 48 || charCode > 57))
+                    return false;
+            }
+            return true;
+        }
+
+        $(document).ready(function () {
+          
+            $("#btnSubmit").click(function (event) {
+
+                var ID = @Model.iMAWBId;
+                if (ID == 0) {
+
+                    if ($("#frmMAWBAddUpdate").valid()) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Common/ValidateMAWB",
+                            contentType: "application/json; charset=utf-8",
+                            data: '{"PageName":"MAWB","MAWBNo": ' + $("#sMAWBNo").val().trim() + '}',
+                            dataType: "json",
+                            async: false,
+                            success: function (res) {
+                                debugger;
+                                if (res.Status == false) {
+                                    if (!confirm(res.Message + " Do you want to enter again ?")) {
+                                        event.preventDefault();
+                                        return false;
+                                    }
+                                    else {
+                                        return true;
+                                    }
+                                }
+                            }
+                        })
+                    }
+                    else {
+                        event.preventDefault();
+                    }
+                }
+            });
+        });
+
+     
+        $(function () {
+
+            $.validator.unobtrusive.parse("form");
+            $('#iAirClientId').selectpicker({ liveSearch: true });
+            $('#sIGMDate').datepicker({
+                endDate: new Date(),
+                format: "dd/mm/yyyy",
+                autoclose: true
+            });
+            var d = moment(new Date()).add(1, 'Days');
+            $('#sFlightDate').datepicker({
+                endDate: d.toDate(),
+                format: "dd/mm/yyyy",
+                autoclose: true
+            });
+            if ($('#iAirClientId option:selected').text().toUpperCase() != "COMMON") {
+                $("#sCARNNo").attr("readonly", true);
+            }
+
+        });
+        $(document).on('change', '#iAirClientId', function () {
+            $('#sCARNNo').val($('#iAirClientId option:selected').data('carn'));
+            if ($('#iAirClientId option:selected').text().toUpperCase() == "COMMON") {
+                $("#sCARNNo").removeAttr("readonly");
+            }
+            else {
+                $("#sCARNNo").attr("readonly", true);
+            }
+        });
+        $(document).on('change', '#iLocationId', function () {
+            $('#sDestination').val($('#iLocationId option:selected').data('custom'));
+        });
+        $(document).on('keyup', 'input[type="text"],textarea', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    </script>
+}

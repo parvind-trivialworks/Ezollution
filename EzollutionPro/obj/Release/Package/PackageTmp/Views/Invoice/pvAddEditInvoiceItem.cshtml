@@ -1,0 +1,268 @@
+﻿@model EzollutionPro_BAL.Models.InvoiceItemModel
+    @{ 
+        List<SelectListItem> litaxrate = new List<SelectListItem>();
+        litaxrate.Add(new SelectListItem
+        {
+            Text = "0%",
+            Value = "0",
+        });
+        litaxrate.Add(new SelectListItem
+        {
+            Text = "9%",
+            Value = "9",
+        }); litaxrate.Add(new SelectListItem
+        {
+            Text = "18%",
+            Value = "18",
+        });
+        
+    }
+<div class="modal-header">
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; 
+cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update Invoice Item</h4>
+</div>
+
+@using (Html.BeginForm("SaveInvoiceItem", "Invoice", FormMethod.Post, new { @id = "frmSaveInvoiceItem" }))
+{
+<div class="modal-body capitalize">
+    @Html.HiddenFor(x => x.iInvoiceID)
+    @Html.HiddenFor(x => x.iInvoiceItemID)
+    @Html.HiddenFor(x => x.blsActive)
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("HSN/SAC")
+            @{
+                List<SelectListItem> lihsn = new List<SelectListItem>();
+                //lihsn.Add(new SelectListItem
+                //{
+                //    Text = "[ SELECT ]",
+                //    Value = ""
+                //});
+                lihsn.Add(new SelectListItem
+                {
+                    Text = "998313",
+                    Value = "998313"
+                });
+                //lihsn.Add(new SelectListItem
+                //{
+                //    Text = "998313",
+                //    Value = "998313"
+                //});
+            }
+            @Html.DropDownListFor(model => Model.sHSN_SAC, lihsn, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sHSN_SAC)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("Description")
+            @{
+                List<SelectListItem> lihsndesc = new List<SelectListItem>();
+                lihsndesc.Add(new SelectListItem
+                {
+                    Text = "[ SELECT ]",
+                    Value = "",
+                    Selected = true
+                });
+                lihsndesc.Add(new SelectListItem
+                {
+                    Text = "Towards DATA Transmission Charges.",
+                    Value = "Towards DATA Transmission Charges.",
+                });
+                lihsndesc.Add(new SelectListItem
+                {
+                    Text = "Amandmend charges",
+                    Value = "Amandmend charges"
+                });
+                lihsndesc.Add(new SelectListItem
+                {
+                    Text = "Job Deletion Charges",
+                    Value = "Job Deletion Charges"
+                });
+            }
+
+            @Html.DropDownListFor(model => Model.sHSN_Desc, lihsndesc, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sHSN_Desc)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("Item Description")
+            @Html.TextBoxFor(model => Model.sItemDescription, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.sItemDescription)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("Quantity")
+            @Html.TextBoxFor(model => Model.iQuantity, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.iQuantity)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("Price/Unit")
+            @Html.TextBoxFor(model => Model.dAmountPerUnit, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.dAmountPerUnit)
+
+            <div style="display:none">
+                @Html.Label("Unit")
+                @Html.DropDownListFor(m => m.sUnit, new List<SelectListItem>
+{
+new SelectListItem{ Text="[ UNIT]", Value = ""},
+new SelectListItem{ Text="BUNDLE  ( BDL )", Value = "BDL" },
+new SelectListItem{ Text="BAGS  ( BGS )", Value = "BGS" },
+new SelectListItem{ Text="BULK  ( BLK )", Value = "BLK" },
+new SelectListItem{ Text="STEEL BLOCKS  ( BLO )", Value = "BLO" },
+new SelectListItem{ Text="BAILS  ( BLS )", Value = "BLS" },
+new SelectListItem{ Text="BOXES  ( BOX )", Value = "BOX" },
+new SelectListItem{ Text="BARREL  ( BRL )", Value = "BRL" },
+new SelectListItem{ Text="STEEL BULKS  ( BUL )", Value = "BUL" },
+new SelectListItem{ Text="CANS  ( CAN )", Value = "CAN" },
+new SelectListItem{ Text="CASES  ( CAS )", Value = "CAS" },
+new SelectListItem{ Text="CARBOYS  ( CBY )", Value = "CBY" },
+new SelectListItem{ Text="CHEST  ( CHT )", Value = "CHT" },
+new SelectListItem{ Text="COILS  ( CLS )", Value = "CLS" },
+new SelectListItem{ Text="COLLIES  ( COL )", Value = "COL" },
+new SelectListItem{ Text="CONTAINER  ( CON )", Value = "CON" },
+new SelectListItem{ Text="CRATES  ( CRT )", Value = "CRT" },
+new SelectListItem{ Text="WOODEN CASKS  ( CSK )", Value = "CSK" },
+new SelectListItem{ Text="CARTONS  ( CTN )", Value = "CTN" },
+new SelectListItem{ Text="CYLINDER  ( CYL )", Value = "CYL" },
+new SelectListItem{ Text="DRUMS  ( DRM )", Value = "DRM" },
+new SelectListItem{ Text="STEEL ENVELOPES  ( ENV )", Value = "ENV" },
+new SelectListItem{ Text="FLASK  ( FLK )", Value = "FLY" },
+new SelectListItem{ Text="FUTS  ( FUT )", Value = "FUT" },
+new SelectListItem{ Text="HABBUCK  ( HBK )", Value = "HBK" },
+new SelectListItem{ Text="JUMBLE BALE  ( JBL )", Value = "JBL" },
+new SelectListItem{ Text="JOTTA  ( JTA )", Value = "JTA" },
+new SelectListItem{ Text="KEGGS  ( KEG )", Value = "KEG" },
+new SelectListItem{ Text="LIFT  ( LFT )", Value = "LFT" },
+new SelectListItem{ Text="LOGS  ( LOG )", Value = "LOG" },
+new SelectListItem{ Text="INGOT  ( NGT )", Value = "NGT" },
+new SelectListItem{ Text="PALLS  ( PAL )", Value = "PAL" },
+new SelectListItem{ Text="PACKAGES  ( PKG )", Value = "PKG" },
+new SelectListItem{ Text="PALLETS  ( PLT )", Value = "PLT" },
+new SelectListItem{ Text="QUADS  ( QDS )", Value = "QDS" },
+new SelectListItem{ Text="REELS  ( REL )", Value = "REL" },
+new SelectListItem{ Text="ROLLS  ( RLS )", Value = "RLS" },
+new SelectListItem{ Text="SKID &amp; SKIDDED PKGS  ( SKD )", Value = "SKD" },
+new SelectListItem{ Text="SLABS  ( SLB )", Value = "SLB" },
+new SelectListItem{ Text="TABLE  ( TBL )", Value = "TBL" },
+new SelectListItem{ Text="TINS  ( TIN )", Value = "TIN" },
+new SelectListItem{ Text="TRUNK  ( TRK )", Value = "TRK" },
+new SelectListItem{ Text="UNITS  ( UNT )", Value = "UNT" },
+new SelectListItem{ Text="PIECES ( PCS )", Value = "PCS" },
+}, new { @data_live_search = "true", @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sUnit)
+            </div>
+        </div>
+        <div class="col-md-6">
+            @Html.Label("CGST")
+            @if (Model.IsStateCodeSame.GetValueOrDefault())
+            {
+                if (Model.iInvoiceItemID == 0)
+                {
+                    Model.dCgstInPercent = 9;
+                }
+                @Html.DropDownListFor(model => Model.dCgstInPercent, litaxrate, new { @class = "form-control", @disabled = "disabled" })
+            }
+            else
+            {
+                if (Model.iInvoiceItemID == 0)
+                {
+                    Model.dCgstInPercent = 9;
+                }
+                @Html.DropDownListFor(model => Model.dCgstInPercent, litaxrate, new { @class = "form-control" })
+            }
+            @Html.ValidationMessageFor(x => x.dCgstInPercent)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6">
+            @Html.Label("SGST")
+
+            @if (Model.IsStateCodeSame.GetValueOrDefault())
+            {
+                if (Model.iInvoiceItemID == 0)
+                {
+                    Model.dSgstInPercent = 0;
+                }
+                @Html.DropDownListFor(model => Model.dSgstInPercent, litaxrate, new { @class = "form-control", @disabled = "disabled" })
+            }
+            else
+            {
+                if (Model.iInvoiceItemID == 0)
+                {
+                    Model.dSgstInPercent = 9;
+                }
+                @Html.DropDownListFor(model => Model.dSgstInPercent, litaxrate, new { @class = "form-control" })
+            }
+            @Html.ValidationMessageFor(x => x.dSgstInPercent)
+        </div>
+        <div class="col-md-6">
+            @Html.Label("IGST")
+            @if (Model.IsStateCodeSame.GetValueOrDefault())
+            {
+                if (Model.iInvoiceItemID == 0)
+                {
+                    Model.dIgstInPercent = 18;
+                }
+                @Html.DropDownListFor(model => Model.dIgstInPercent, litaxrate, new { @class = "form-control" })
+            }
+            else
+            {
+                if (Model.iInvoiceItemID == 0)
+                {
+                    Model.dIgstInPercent = 0;
+                }
+                @Html.DropDownListFor(model => Model.dIgstInPercent, litaxrate, new { @class = "form-control",@disabled= "disabled" })
+            }
+            @Html.ValidationMessageFor(x => x.dIgstInPercent)
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-2" style="display:none;">
+            @Html.Label("CESS")
+            @Html.DropDownListFor(model => Model.dCsesInPercent, litaxrate, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.dCsesInPercent)
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //alert($("#dAmountPerUnit").val().replace(' ', '.'));
+       // $("#dAmountPerUnit").val($("#dAmountPerUnit").val().replace(/ /g, '.'));
+        var sHSN_SAC_2 = $("#sHSN_SAC").val();
+        if (sHSN_SAC_2 != "") {
+            if ("@Model.iInvoiceItemID" == "0") {
+                GetCount();
+            }
+            
+        }
+        $("#sHSN_SAC").change(function () {
+            if ($("#sHSN_SAC").val() != "") {
+                GetCount();
+            }
+        });
+    });
+
+    function GetCount() {
+        var sHSN_SAC = $("#sHSN_SAC").val();
+        var iInvoiceId="@Model.iInvoiceID";
+        $.ajax({
+            type: "POST",
+            url: "/Invoice/GetItemCount",
+            contentType: "application/json; charset=utf-8",
+            data: '{"sHSN_SAC":"' + sHSN_SAC.trim() + '","iInvoiceId":"' + iInvoiceId+'"}',
+            dataType: "json",
+            async: false,
+            success: function (res) {
+                $("#iQuantity").val(res);
+            }
+        })
+    }
+</script>

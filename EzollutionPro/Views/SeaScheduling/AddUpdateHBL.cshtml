@@ -1,0 +1,199 @@
+﻿@model EzollutionPro_BAL.Models.HBLData
+@{
+    ViewBag.Title = "Add/Update HBL Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+@using (Html.BeginForm("AddUpdateHBL", "SeaScheduling", FormMethod.Post))
+{
+    <!-- Main content -->
+    <div class="container capitalize">
+        <section class="content">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add/Update HBL Details (MBL No: @Model.sMBLNumber)</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @if (!string.IsNullOrEmpty(TempData.Peek("SuccessMessage") as string))
+                    {
+                        <div class="alert alert-success alert-dismissable">
+                            @TempData["SuccessMessage"]
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>House Bill of Lading No.</label>
+                                    @Html.TextBoxFor(m => m.sHouseBillofLadingNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sHouseBillofLadingNo)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>House Bill of Lading Date</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.TextBoxFor(m => m.sHouseBillofLadingDate, new { @class = "form-control" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.sHouseBillofLadingDate)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Importer Name</label>
+                                    @Html.TextBoxFor(m => m.sImporterName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sImporterName)
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Importer Address1</label>
+                                    @Html.TextBoxFor(m => m.sImporterAddress1, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sImporterAddress1)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Importer Address2</label>
+                                    @Html.TextBoxFor(m => m.sImporterAddress2, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sImporterAddress2)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Importer Address3</label>
+                                    @Html.TextBoxFor(m => m.sImporterAddress3, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sImporterAddress3)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Total Number of Packages</label>
+                                    @Html.TextBoxFor(m => m.dTotalNumberofPackages, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.dTotalNumberofPackages)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Package Code</label>
+                                    @Html.DropDownListFor(m => m.sPackageCode, new List<SelectListItem>
+                                    {
+                                    new SelectListItem{ Text="----Choose Package Code----", Value = ""},
+                                    new SelectListItem{ Text="BUNDLE  ( BDL )", Value = "BDL" },
+                                    new SelectListItem{ Text="BAGS  ( BGS )", Value = "BGS" },
+                                    new SelectListItem{ Text="BULK  ( BLK )", Value = "BLK" },
+                                    new SelectListItem{ Text="STEEL BLOCKS  ( BLO )", Value = "BLO" },
+                                    new SelectListItem{ Text="BAILS  ( BLS )", Value = "BLS" },
+                                    new SelectListItem{ Text="BOXES  ( BOX )", Value = "BOX" },
+                                    new SelectListItem{ Text="BARREL  ( BRL )", Value = "BRL" },
+                                    new SelectListItem{ Text="STEEL BULKS  ( BUL )", Value = "BUL" },
+                                    new SelectListItem{ Text="CANS  ( CAN )", Value = "CAN" },
+                                    new SelectListItem{ Text="CASES  ( CAS )", Value = "CAS" },
+                                    new SelectListItem{ Text="CARBOYS  ( CBY )", Value = "CBY" },
+                                    new SelectListItem{ Text="CHEST  ( CHT )", Value = "CHT" },
+                                    new SelectListItem{ Text="COILS  ( CLS )", Value = "CLS" },
+                                    new SelectListItem{ Text="COLLIES  ( COL )", Value = "COL" },
+                                    new SelectListItem{ Text="CONTAINER  ( CON )", Value = "CON" },
+                                    new SelectListItem{ Text="CRATES  ( CRT )", Value = "CRT" },
+                                    new SelectListItem{ Text="WOODEN CASKS  ( CSK )", Value = "CSK" },
+                                    new SelectListItem{ Text="CARTONS  ( CTN )", Value = "CTN" },
+                                    new SelectListItem{ Text="CYLINDER  ( CYL )", Value = "CYL" },
+                                    new SelectListItem{ Text="DRUMS  ( DRM )", Value = "DRM" },
+                                    new SelectListItem{ Text="STEEL ENVELOPES  ( ENV )", Value = "ENV" },
+                                    new SelectListItem{ Text="FLASK  ( FLK )", Value = "FLY" },
+                                    new SelectListItem{ Text="FUTS  ( FUT )", Value = "FUT" },
+                                    new SelectListItem{ Text="HABBUCK  ( HBK )", Value = "HBK" },
+                                    new SelectListItem{ Text="JUMBLE BALE  ( JBL )", Value = "JBL" },
+                                    new SelectListItem{ Text="JOTTA  ( JTA )", Value = "JTA" },
+                                    new SelectListItem{ Text="KEGGS  ( KEG )", Value = "KEG" },
+                                    new SelectListItem{ Text="LIFT  ( LFT )", Value = "LFT" },
+                                    new SelectListItem{ Text="LOGS  ( LOG )", Value = "LOG" },
+                                    new SelectListItem{ Text="INGOT  ( NGT )", Value = "NGT" },
+                                    new SelectListItem{ Text="PALLS  ( PAL )", Value = "PAL" },
+                                    new SelectListItem{ Text="PACKAGES  ( PKG )", Value = "PKG" },
+                                    new SelectListItem{ Text="PALLETS  ( PLT )", Value = "PLT" },
+                                    new SelectListItem{ Text="QUADS  ( QDS )", Value = "QDS" },
+                                    new SelectListItem{ Text="REELS  ( REL )", Value = "REL" },
+                                    new SelectListItem{ Text="ROLLS  ( RLS )", Value = "RLS" },
+                                    new SelectListItem{ Text="SKID &amp; SKIDDED PKGS  ( SKD )", Value = "SKD" },
+                                    new SelectListItem{ Text="SLABS  ( SLB )", Value = "SLB" },
+                                    new SelectListItem{ Text="TABLE  ( TBL )", Value = "TBL" },
+                                    new SelectListItem{ Text="TINS  ( TIN )", Value = "TIN" },
+                                    new SelectListItem{ Text="TRUNK  ( TRK )", Value = "TRK" },
+                                    new SelectListItem{ Text="UNITS  ( UNT )", Value = "UNT" },
+                                    new SelectListItem{ Text="PIECES ( PCS )", Value = "PCS" },
+                                    }, new { @data_live_search = "true", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sPackageCode)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Gross Weight</label>
+                                    @Html.TextBoxFor(m => m.dGrossWeight, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.dGrossWeight)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Unit of Weight</label>
+                                    @Html.TextBoxFor(m => m.sUnitofWeight, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.sUnitofWeight)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Marks and Numbers</label>
+                                    @Html.TextAreaFor(m => m.sMarksandNumbers, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.sMarksandNumbers)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Goods Description</label>
+                                    @Html.TextAreaFor(m => m.sGoodsDescription, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.sGoodsDescription)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                    @*<button onclick="@("window.location.href='" + @Url.Action("fileinfo", "SeaScheduler", new { schedulingId = ViewBag.schedulingId, mblNumber = ViewBag.mblnumber }) + "'");" class="btn btn-danger">Cancle</button>*@
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+            </div>
+            @Html.HiddenFor(m => m.iSchedulingId)
+            @Html.HiddenFor(m => m.iHBLId)
+            @Html.HiddenFor(m => m.iMBLId)
+            <!-- /.box -->
+        </section>
+    </div>
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/PageScripts/SeaScheduling/AddUpdateHBL.js"></script>
+}

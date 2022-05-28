@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Payments";
+}
+@model EzollutionPro_BAL.Models.InvoicePaymentContainer
+<link href="~/Content/datepicker/datepicker3.css" rel="stylesheet" />
+<link href="~/Content/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            <i class="fa fa-files-o"></i>
+            @if (Model._InvoiceModel.iInvoiceID > 0)
+            {
+                <span>Payments for Invoice No.: @Model._InvoiceModel.sInvoiceNo</span>
+            }
+        </h3>
+        <div class="pull-right">
+            <a class="btn btn-danger" href="/Invoice/Index">Back</a>
+        </div>
+        <div class="pull-right">
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div id="home" class="tab-pane fade in active">
+                <div class="">
+                    <div class="box-body" style="min-height:500px">
+                        @Html.HiddenFor(x => x._InvoiceModel.iInvoiceID)
+                        @Html.ValidationSummary()
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <div class="col-md-3">
+                                        @Html.Label("Invoice Number")
+                                        @Html.TextBoxFor(x => x._InvoiceModel.sInvoiceNo, new { @class = "form-control", @disabled = "disabled" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        @Html.Label("Total Amount")
+                                        @Html.TextBoxFor(x => x._InvoiceModel.dTotalAmount, new { @class = "form-control", @disabled = "disabled" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        @Html.Label("Paid Amount")
+                                        @Html.TextBoxFor(x => x._InvoiceModel.dPaidAmount, new { @class = "form-control", @disabled = "disabled" })
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.Label("Balance")
+                                        @Html.TextBoxFor(x => x._InvoiceModel.dBalance, new { @class = "form-control", @disabled = "disabled" })
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <br />
+
+
+                        @if (Model._InvoiceModel.iInvoiceID > 0)
+                        {
+                            <div class="box box-success">
+
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">
+                                        <i class="fa fa-files-o"></i>&nbsp;Payments List
+                                        &nbsp; <button class='btn btn-warning btn-xs' onclick='AddEditInvoicePayment(@Model._InvoiceModel.iInvoiceID,0)'>
+                                            <i class='fa fa-plus'></i>Add New Payment
+                                        </button>
+                                    </h3>
+                                </div>
+                                <div class="box-body">
+                                    <table id="tblInvoicePayments" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>SR. NO.</th>
+                                                <th>Create Date</th>
+                                                <th>Amount Received</th>
+                                                <th>TDS</th>
+                                                @*<th>Balance</th>*@
+                                                <th>Receive Date</th>
+                                                <th>Payment Mode</th>
+                                                <th>Payment Status</th>
+                                                <th>NEFT/Cheque No.</th>
+                                                <th>Cheque Date</th>
+                                                <th></th>
+                                            </tr>
+                                        <tfoot>
+                                            <tr>
+                                                <td></td>
+                                                <td>Total</td>
+                                                <td id="Total_Amount"></td>
+                                                <td id="Total_Tds"></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Scripts/PageScripts/invoice.js"></script>
+    <script>
+        $(document).ready(function () {
+           GetInvoicePayments('@Model._InvoiceModel.iInvoiceID');
+        });
+    </script>
+}
